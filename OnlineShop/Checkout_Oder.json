@@ -1,0 +1,10 @@
+{ 
+    "_id" : ObjectId("60a5dc53afa4882420999289"), 
+    "Id_KH" : 678.0, 
+    "Id_SanPham" : 22.0, 
+    "TenSP" : "Kem dưỡng da", 
+    "SoLipng" : 1.0, 
+    "Gia" : 120000.0, 
+    "NgayTao" : "2021-01-28", 
+    "TrangThai" : "Đang chờ"
+}

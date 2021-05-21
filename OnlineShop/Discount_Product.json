@@ -1,0 +1,16 @@
+{ 
+    "_id" : ObjectId("60a5db0fafa488242099927e"), 
+    "Content" : "5%", 
+    "Price_Dis" : 2280000.0, 
+    "Start" : "2021-04-30", 
+    "End" : "2021-05-28", 
+    "Id_SanPham" : 16.0
+}
+{ 
+    "_id" : ObjectId("60a5db37afa488242099927f"), 
+    "Content" : "5%", 
+    "Price_Dis" : 266000.0, 
+    "Start" : "2021-04-30", 
+    "End" : "2021-05-28", 
+    "Id_SanPham" : 17.0
+}

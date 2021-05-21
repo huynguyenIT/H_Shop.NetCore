@@ -1,0 +1,10 @@
+{ 
+    "_id" : ObjectId("60a5d9afafa488242099926c"), 
+    "Id_SanPham" : 16.0, 
+    "Quantity" : 8.0
+}
+{ 
+    "_id" : ObjectId("60a5d9b3afa488242099926d"), 
+    "Id_SanPham" : 17.0, 
+    "Quantity" : 13.0
+}

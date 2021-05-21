@@ -1,0 +1,14 @@
+{ 
+    "_id" : ObjectId("60a5dbdaafa4882420999284"), 
+    "Id_KH" : 678.0, 
+    "FirstName" : "Huy", 
+    "LastName" : "Nguyen", 
+    "Email" : "nguyentuanhuy@gmail.com", 
+    "SDT" : 935893363.0, 
+    "DiaChi" : "35 Nam Cao", 
+    "City" : "Hà Nội", 
+    "Zipcode" : "", 
+    "GiamGia" : "", 
+    "TongTien" : "", 
+    "TrangThai" : "Đang chờ"
+}

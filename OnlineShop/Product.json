@@ -1,0 +1,18 @@
+{ 
+    "_id" : ObjectId("60a5d7ccafa4882420999258"), 
+    "Id_SanPham" : 15.0, 
+    "Name" : "váy trắng", 
+    "Price" : 175000.0, 
+    "Photo" : "~/images_product/product-10.jpg", 
+    "Details" : "Váy đẹp", 
+    "Id_Item" : 9.0
+}
+{ 
+    "_id" : ObjectId("60a5d844afa4882420999259"), 
+    "Id_SanPham" : 16.0, 
+    "Name" : "Giày Name F02", 
+    "Price" : 2400000.0, 
+    "Photo" : "~/images_product/giaynam1.jpg", 
+    "Details" : "giày đẹp 01", 
+    "Id_Item" : 8.0
+}

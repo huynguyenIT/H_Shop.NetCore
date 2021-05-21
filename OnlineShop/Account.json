@@ -1,0 +1,9 @@
+{ 
+    "_id" : ObjectId("60a75f561f295644f830bf9f"), 
+    "idUser" : "1009", 
+    "FirstName" : "Huy", 
+    "LastName" : "Nguyen", 
+    "Email" : "nguyentuanhuy@gmail.com", 
+    "Password" : "c775d56fc7d95377c77869e0624de8c5", 
+    "RoleId" : "1"
+}
