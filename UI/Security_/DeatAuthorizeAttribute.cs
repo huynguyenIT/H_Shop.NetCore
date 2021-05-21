@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using DataAndServices.DataModel;
+using Model.DTO.DTO_Ad;
 
 namespace UI.Security_
 {
@@ -21,7 +21,7 @@ namespace UI.Security_
         {
             //Account acc = new Account();
             //DbModels db = new DbModels();
-            var session = (Account)HttpContext.Current.Session[CommonConstants.ACCOUNT_SESSION];
+            var session = (DTO_Account)HttpContext.Current.Session[CommonConstants.ACCOUNT_SESSION];
             if (session == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Account", action = "Login", area = "Admin" }));

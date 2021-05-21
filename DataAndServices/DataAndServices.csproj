@@ -169,7 +169,7 @@
   <ItemGroup>
     <Folder Include="Admin_Services\Checkout_Order\" />
     <Folder Include="Admin_Services\Products\" />
-    <Folder Include="Admin_Services\User_Acc\" />
+    <Folder Include="Admin_Services\UserAccServices\" />
     <Folder Include="Client_Services\Cart\" />
     <Folder Include="Client_Services\Feedback\" />
     <Folder Include="Client_Services\Home\" />
