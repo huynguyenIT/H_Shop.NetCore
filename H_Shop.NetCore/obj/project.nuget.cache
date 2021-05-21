@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T3IGFRXxcCR5IktcnjS9DX5R7RlUZluXd48jf2wXjFt8tIeH5D7xv3M33vL/uoWC99I++0swZ9vtX6bOuD0XQg==",
+  "dgSpecHash": "36d0eaKWOzqlWvuXR7EmeD3YdhcwGyTqDlfp5z+oCrXkuAAT8BUbs5+3RfZkL2ZFwD11qrpIghkWEqzbfpkDOQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\huy.nguyen\\source\\repos\\H_Shop.NetCore\\H_Shop.NetCore\\H_Shop.NetCore.csproj",
+  "projectFilePath": "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore\\H_Shop.NetCore\\H_Shop.NetCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\huy.nguyen\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\huy.nguyen\\.nuget\\packages\\log4net\\2.0.12\\log4net.2.0.12.nupkg.sha512",

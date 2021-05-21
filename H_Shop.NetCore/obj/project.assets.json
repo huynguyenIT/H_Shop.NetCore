@@ -4433,11 +4433,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\huy.nguyen\\source\\repos\\H_Shop.NetCore\\H_Shop.NetCore\\H_Shop.NetCore.csproj",
+      "projectUniqueName": "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore\\H_Shop.NetCore\\H_Shop.NetCore.csproj",
       "projectName": "H_Shop.NetCore",
-      "projectPath": "C:\\Users\\huy.nguyen\\source\\repos\\H_Shop.NetCore\\H_Shop.NetCore\\H_Shop.NetCore.csproj",
+      "projectPath": "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore\\H_Shop.NetCore\\H_Shop.NetCore.csproj",
       "packagesPath": "C:\\Users\\huy.nguyen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\huy.nguyen\\source\\repos\\H_Shop.NetCore\\H_Shop.NetCore\\obj\\",
+      "outputPath": "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore\\H_Shop.NetCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\huy.nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4454,8 +4454,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\huy.nguyen\\source\\repos\\H_Shop.NetCore\\DataAndServices\\DataAndServices.csproj": {
-              "projectPath": "C:\\Users\\huy.nguyen\\source\\repos\\H_Shop.NetCore\\DataAndServices\\DataAndServices.csproj"
+            "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore\\DataAndServices\\DataAndServices.csproj": {
+              "projectPath": "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore\\DataAndServices\\DataAndServices.csproj"
             }
           }
         }
