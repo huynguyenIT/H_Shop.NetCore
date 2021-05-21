@@ -31,3 +31,7 @@ C:\Users\huy.nguyen\source\repos\H_Shop.NetCore\DataAndServices\bin\Debug\MongoD
 C:\Users\huy.nguyen\source\repos\H_Shop.NetCore\DataAndServices\bin\Debug\MongoDB.Driver.Core.xml
 C:\Users\huy.nguyen\source\repos\H_Shop.NetCore\DataAndServices\bin\Debug\System.Buffers.xml
 C:\Users\huy.nguyen\source\repos\H_Shop.NetCore\DataAndServices\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.csprojAssemblyReference.cache
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.csproj.CoreCompileInputs.cache
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.dll
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.pdb

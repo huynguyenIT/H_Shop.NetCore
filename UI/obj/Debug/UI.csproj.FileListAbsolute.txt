@@ -98,3 +98,5 @@ C:\Users\huy.nguyen\Documents\GitHub\H_Shop\UI\bin\roslyn\vbc.exe.config
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop\UI\bin\roslyn\vbc.rsp
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop\UI\bin\roslyn\VBCSCompiler.exe
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop\UI\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore\UI\obj\Debug\UI.csprojAssemblyReference.cache
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore\UI\obj\Debug\UI.csproj.CoreCompileInputs.cache
