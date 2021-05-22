@@ -31,3 +31,14 @@ C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.csproj
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.dll
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.pdb
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.dll
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.pdb
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\Model.dll.config
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\Model.dll
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\Model.pdb
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\EntityFramework.dll
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\EntityFramework.xml
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.csproj.CopyComplete

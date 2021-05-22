@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\API_Client\**" />
+    <Content Remove="Controllers\API_Client\**" />
+    <EmbeddedResource Remove="Controllers\API_Client\**" />
+    <None Remove="Controllers\API_Client\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
@@ -17,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\API_Client\" />
+    <Folder Include="Controllers\API_Admin\API_Client\" />
   </ItemGroup>
 
 
