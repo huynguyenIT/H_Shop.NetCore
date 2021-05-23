@@ -1,4 +1,5 @@
-﻿using DataAndServices.Client_Services;
+﻿using DataAndServices.Admin_Services.Products;
+using DataAndServices.Client_Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,75 +14,81 @@ namespace H_Shop.NetCore.Controllers.API_Client
     public class ProductController : ControllerBase
     {
         private readonly IProductClientServices _productClientService;
-        public ProductController(IProductClientServices productClientServices)
+        private readonly IProductService _productAdminService;
+        public ProductController(IProductClientServices productClientServices,IProductService productService)
         {
             _productClientService = productClientServices;
+            _productAdminService = productService;
         }
         [HttpGet]
         [Route("GetAllproducts")]
-        public JsonResult<List<DTO_Product_Client>> GetAllProducts()
+        public async Task<IActionResult> GetAllProducts()
         {
-            return Json<List<DTO_Product_Client>>(bLL_Product.GetAllProducts());
+            var listPro= await _productClientService.GetAllProducts();
+            return Ok(listPro);
         }
         //[HttpGet]
         //[Route("GetAllProductByPrice/{giaMin:int}/{giaMax:int}")]
         //public JsonResult<List<DTO_Product_Client>> GetAllProductByPrice(int giaMin,int giaMax)
         //{
-        //    return Json<List<DTO_Product_Client>>(bLL_Product.GetAllProductByPrice(giaMin, giaMax));
+        //    return Json<List<DTO_Product_Client>>(_productClientService.GetAllProductByPrice(giaMin, giaMax));
         //}
         [HttpGet]
         [Route("GetAllProductByPrice/{giaMin:int}/{giaMax:int}")]
-        public JsonResult<List<DTO_Dis_Product>> GetAllProductByPrice(int giaMin, int giaMax)
+        public async Task<IActionResult> GetAllProductByPrice(int giaMin, int giaMax)
         {
-            return Json<List<DTO_Dis_Product>>(bLL_Product.GetAllProductByPrice(giaMin, giaMax));
+           var listProByPrice= await _productClientService.GetAllProductByPrice(giaMin, giaMax);
+            return Ok(listProByPrice);
         }
-        //[HttpGet]
-        //[Route("GetAllProductByName/{name}")]
-        //public JsonResult<List<DTO_Product_Client>> GetAllProductByName(string name)
-        //{
-        //    return Json<List<DTO_Product_Client>>(bLL_Product.GetAllProductByName(name));
-        //}
+      
         [HttpGet]
         [Route("GetAllProductByName/{name}")]
-        public JsonResult<List<DTO_Dis_Product>> GetAllProductByName(string name)
+        public async Task<IActionResult> GetAllProductByName(string name)
         {
-            return Json<List<DTO_Dis_Product>>(bLL_Product.GetAllProductByName(name));
+           var proByName= await _productClientService.GetAllProductByName(name);
+            return Ok(proByName);
         }
 
 
         [HttpGet]
         [Route("GetAllProductItemByPageList")]
-        public JsonResult<List<DTO_Product_Item_Type>> GetAllProductItemByPageList()
+        public async Task<IActionResult> GetAllProductItemByPageList()
         {
-            return Json<List<DTO_Product_Item_Type>>(BLL_Products.GetProductItemByPageList());
+           var listProItemByPage= await  _productAdminService.GetProductItemByPageList();
+            return Ok(listProItemByPage);
         }
         [Route("GetAllProductItem")]
-        public JsonResult<List<DTO_Product_Item_Type>> GetAllProductItem()
+        public async Task<IActionResult> GetAllProductItem()
         {
-            return Json<List<DTO_Product_Item_Type>>(BLL_Products.GetAllProductItem());
+            var listProItem= await _productAdminService.GetAllProductItem();
+            return Ok(listProItem);
         }
         [HttpGet]
-        [Route("GetProductById/{Id:int}")]
-        public JsonResult<DTO_Product_Client> GetProductById(int Id)
+        [Route("GetProductById/{Id}")]
+        public async Task<IActionResult> GetProductById(int Id)
         {
-            return Json<DTO_Product_Client>(bLL_Product.GetProductById(Id));
+           var proById= await _productClientService.GetProductById(Id);
+            return Ok(proById);
         }
         [HttpGet]
-        [Route("GetAllProductByIdItemClient/{id:int}")]
-        public JsonResult<List<DTO_Product_Item_Type>> GetAllProductByIdItem(int id)
+        [Route("GetAllProductByIdItemClient/{id}")]
+        public async Task<IActionResult> GetAllProductByIdItem(int id)
         {
-            return Json<List<DTO_Product_Item_Type>>(BLL_Products.GetProductItemById_client(id));
+            var proItemById = await _productAdminService.GetProductItemById_client(id);
+            return Ok(proItemById);
+           
         }
         [HttpGet]
-        [Route("GetProductItemById/{Id:int}")]
-        public JsonResult<DTO_Product_Item_Type> GetProductItemById(int Id)
+        [Route("GetProductItemById/{Id}")]
+        public IActionResult GetProductItemById(int Id)
         {
-            return Json<DTO_Product_Item_Type>(BLL_Products.GetProductItemById(Id));
+            var proItemById=  _productAdminService.GetProductItemById(Id);
+            return Ok(proItemById);
         }
         [Route("GetSoLuong/{Id:int}")]
-        public int GetSoLuong(int Id)
+        public async Task<int> GetSoLuong(int Id)
         {
-            return bLL_Product.GetSoLuong(Id);
+            return await _productClientService.GetSoLuong(Id);
         }
     }
 }
