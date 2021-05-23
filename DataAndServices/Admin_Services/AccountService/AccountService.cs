@@ -28,19 +28,19 @@ namespace DataAndServices.Admin_Services.AccountService
             return false;
         }
 
-        public async Task<bool> DeleteCustomer(int id)
+        public async Task<bool> DeleteCustomer(string _id)
         {
             try
             {
-                var itemDelete =  GetCustomerByID(id);
-                if (itemDelete != null)
-                {
-                    FilterDefinitionBuilder<Account> filter = Builders<Account>.Filter;
-                    FilterDefinition<Account> eqFilter = filter.Where(x => x.idUser==id);
+                //var itemDelete =  GetCustomerByID(_id);
+                //if (itemDelete != null)
+                //{
+                //    FilterDefinitionBuilder<Account> filter = Builders<Account>.Filter;
+                //    FilterDefinition<Account> eqFilter = filter.Where(x => x.idUser==id);
 
-                   await _db.DeleteOneAsync(eqFilter);
+                   await _db.DeleteOneAsync(_id);
                     //_db.SaveChange();
-                }
+                //}
                 return true;
             }
             catch (Exception)
@@ -54,9 +54,9 @@ namespace DataAndServices.Admin_Services.AccountService
             return await _db.Find(t => t.Email == email).FirstOrDefaultAsync();
         }
 
-        public async Task<Account> GetCustomerByID(int id)
+        public async Task<Account> GetCustomerByID(string _id)
         {
-            return await _db.Find(t => t.idUser == id).FirstOrDefaultAsync();
+            return await _db.Find(t => t._id == _id).FirstOrDefaultAsync();
         }
         public async Task<bool> UserNameIsExist(string userName)
         {
@@ -91,7 +91,7 @@ namespace DataAndServices.Admin_Services.AccountService
             string hash = Encryptor.MD5Hash(pass);
             var cus = await _db.Find(x => x.Email == user & x.Password == hash).FirstOrDefaultAsync();
             if (cus != null)
-                return   new Account() { Email = cus.Email, LastName = cus.LastName, FirstName = cus.FirstName, idUser = cus.idUser, RoleId = cus.RoleId };
+                return   new Account() {_id=cus._id, Email = cus.Email, LastName = cus.LastName, FirstName = cus.FirstName, idUser = cus.idUser, RoleId = cus.RoleId };
             return new  Account();
 
         }
@@ -101,7 +101,7 @@ namespace DataAndServices.Admin_Services.AccountService
             try
             {
               
-                var userAccount = await GetCustomerByID(custom.idUser);
+                var userAccount = await GetCustomerByID(custom._id);
                 if (userAccount != null)
                 {
 

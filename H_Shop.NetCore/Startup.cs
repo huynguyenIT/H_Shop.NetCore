@@ -3,6 +3,7 @@
 using DataAndServices.Admin_Services.AccountService;
 using DataAndServices.Admin_Services.Admin_Acc_Services;
 using DataAndServices.Admin_Services.Checkout_Customer_Services;
+using DataAndServices.CheckoutOrderServices;
 using DataAndServices.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -51,6 +52,7 @@ namespace H_Shop.NetCore
             services.AddScoped<IAccountService, AccountService>();
             services.AddTransient<IAdminAccService, AdminAccService>();
             services.AddTransient<ICheckoutCustomerService, CheckoutCustomerService>();
+            services.AddTransient<IOrderService, OrderService>();
 
         }
 

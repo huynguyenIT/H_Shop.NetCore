@@ -35,16 +35,16 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
             }
         }
 
-        public async Task<bool> DeleteAccount(int id)
+        public async Task<bool> DeleteAccount(string id)
         {
             try
             {
-                //var filter = Builders<Account>.Filter;
-                //var serach = filter(id);
-                //Account account = (Account)_db.Find(s=>s.idUser==id);
-                FilterDefinitionBuilder<Account> filter = Builders<Account>.Filter;
-                FilterDefinition<Account> eqFilter = filter.Where(x => x.idUser == id);
-                await _db.DeleteOneAsync(eqFilter);
+                ////var filter = Builders<Account>.Filter;
+                ////var serach = filter(id);
+                ////Account account = (Account)_db.Find(s=>s.idUser==id);
+                //FilterDefinitionBuilder<Account> filter = Builders<Account>.Filter;
+                //FilterDefinition<Account> eqFilter = filter.Where(x => x._id == id);
+                await _db.DeleteOneAsync(id);
                // db.SaveChanges();
                 return true;
             }
@@ -54,9 +54,9 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
             }
         }
 
-        public async Task<Account> GetAccountById(int id)
+        public async Task<Account> GetAccountById(string id)
         {
-            return await _db.Find(s => s.idUser == id).FirstOrDefaultAsync();
+            return await _db.Find(s => s._id == id).FirstOrDefaultAsync();
         }
 
         public async Task<List<Account>> GetAllAccounts()
@@ -85,7 +85,7 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
 
         public async Task<bool> Update_Ad_acc(Account account)
         {
-            var acc = await GetAccountById(account.idUser);
+            var acc = await GetAccountById(account._id);
             if (acc != null)
             {
                 acc.idUser = account.idUser;
@@ -108,7 +108,7 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
 
         public async Task<bool> Update_Ad_acc2(Account account)
         {
-            var acc = await GetAccountById(account.idUser);
+            var acc = await GetAccountById(account._id);
             if (acc != null)
             {
                 acc.idUser = account.idUser;

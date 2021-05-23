@@ -128,6 +128,10 @@
     <Compile Include="Admin_Services\Admin_Acc_Services\IAdminAccService.cs" />
     <Compile Include="Admin_Services\Checkout_Customer_Services\CheckoutCustomerService.cs" />
     <Compile Include="Admin_Services\Checkout_Customer_Services\ICheckoutCustomerService.cs" />
+    <Compile Include="Admin_Services\UserServices\IUsers.cs" />
+    <Compile Include="Admin_Services\UserServices\UserService.cs" />
+    <Compile Include="CheckoutOrderServices\IOrderService.cs" />
+    <Compile Include="CheckoutOrderServices\OrderService.cs" />
     <Compile Include="CommonModel\Account_Role.cs" />
     <Compile Include="CommonModel\BoolResult.cs" />
     <Compile Include="CommonModel\CheckoutCustomer_Order.cs" />
@@ -167,9 +171,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Admin_Services\Checkout_Order\" />
-    <Folder Include="Admin_Services\Products\" />
-    <Folder Include="Admin_Services\UserAccServices\" />
     <Folder Include="Client_Services\Cart\" />
     <Folder Include="Client_Services\Feedback\" />
     <Folder Include="Client_Services\Home\" />

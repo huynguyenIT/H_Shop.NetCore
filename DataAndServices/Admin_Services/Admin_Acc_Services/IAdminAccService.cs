@@ -16,7 +16,7 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
         Task<List<Account_Role>> GetAllAccounts2();
 
 
-        Task<Account> GetAccountById(int id);
+        Task<Account> GetAccountById(string id);
 
 
         Task<bool> Create_Ad_acc(Account Account);
@@ -28,7 +28,7 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
         Task<bool> Update_Ad_acc2(Account Account);
 
 
-        Task<bool> DeleteAccount(int id);
+        Task<bool> DeleteAccount(string id);
       
     }
 }

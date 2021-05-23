@@ -10,8 +10,8 @@ namespace Model.DTO.DTO_Ad
 {
     public class DTO_Account
     {
-       
-        
+
+        public string _id;
         public int idUser { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 3)]

@@ -1,0 +1,32 @@
+﻿using DataAndServices.DataModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataAndServices.Admin_Services.UserServices
+{
+    public interface IUsers
+    {
+        Task<List<User_Acc>> GetAllAccounts();
+
+
+     
+
+
+        Task<User_Acc> GetAccountById(string id);
+
+
+       
+
+
+        Task<bool> Update_Ad_acc(User_Acc Account);
+
+
+        Task<bool> Update_Ad_acc2(User_Acc Account);
+
+
+        Task<bool> DeleteAccount(string id);
+    }
+}

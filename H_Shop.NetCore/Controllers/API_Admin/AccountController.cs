@@ -66,7 +66,7 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             }
         }
         [Route("GetAccountById")]
-        public async Task<Account> GetAccountById(int id)
+        public async Task<Account> GetAccountById(string id)
         {
             try
             {

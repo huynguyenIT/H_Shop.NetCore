@@ -19,13 +19,13 @@ namespace DataAndServices.Admin_Services.AccountService
         Task<bool> UpdateCustomer(Account cusUpdate);
 
 
-        Task<bool> DeleteCustomer(int id);
+        Task<bool> DeleteCustomer(string _id);
 
 
         Task<bool> InsertCustomer(Account cusInsert);
 
 
-        Task<Account> GetCustomerByID(int id);
+        Task<Account> GetCustomerByID(string _id);
 
 
 

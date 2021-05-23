@@ -9,7 +9,7 @@ namespace DataAndServices.CommonModel
 {
    public class Dis_Product
     {
-
+        public string _id { get; set; }
         public int ID_Discount { get; set; }
         public string Content { get; set; }
         public Nullable<double> Price_Dis { get; set; }

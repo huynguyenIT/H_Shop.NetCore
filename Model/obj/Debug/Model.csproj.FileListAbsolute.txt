@@ -42,3 +42,4 @@ C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\EntityFramework.
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\EntityFramework.xml
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.csprojAssemblyReference.cache

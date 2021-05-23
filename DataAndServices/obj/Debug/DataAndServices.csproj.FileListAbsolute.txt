@@ -98,3 +98,4 @@ C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAn
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.csproj.CopyComplete
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.dll
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.pdb
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.csprojAssemblyReference.cache

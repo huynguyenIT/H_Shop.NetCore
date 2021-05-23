@@ -27,7 +27,7 @@ namespace UI.Areas.Admin.Controllers
             return View(dTO_Accounts);
         }
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             ServiceRepository service = new ServiceRepository();
             HttpResponseMessage responseMessage = service.GetResponse("api/Admin_acc/GetAccountById/" + id);
@@ -37,7 +37,7 @@ namespace UI.Areas.Admin.Controllers
             return View(dtoAccounts);
         }
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             ServiceRepository service = new ServiceRepository();
             HttpResponseMessage responseMessage = service.GetResponse("api/Admin_acc/GetAccountById/" + id);
@@ -127,7 +127,7 @@ namespace UI.Areas.Admin.Controllers
         //    return View(dtoAccounts);
         //}
         
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
             try
             {

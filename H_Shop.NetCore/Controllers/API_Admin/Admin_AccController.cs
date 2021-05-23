@@ -39,8 +39,8 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         }
 
         // DELETE: api/Admin_acc/5
-        [Route("DeleteAccount/{id:int}")]
-        public async Task<bool> DeleteAccount(int id)
+        [Route("DeleteAccount/{id}")]
+        public async Task<bool> DeleteAccount(string id)
         {
             return await adminAccService.DeleteAccount(id);
         }
@@ -59,8 +59,8 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             return Ok(listAccount2);
         }
         [HttpGet]
-        [Route("GetAccountById/{Id:int}")]
-        public async Task<IActionResult> GetProductById(int Id)
+        [Route("GetAccountById/{Id}")]
+        public async Task<IActionResult> GetProductById(string Id)
         {
             var accId= await adminAccService.GetAccountById(Id);
             return Ok(accId);

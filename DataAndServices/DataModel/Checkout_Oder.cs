@@ -12,6 +12,7 @@ namespace DataAndServices.DataModel
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public string _id { get; set; }
         public int ID { get; set; }
 
         public int Id_KH { get; set; }

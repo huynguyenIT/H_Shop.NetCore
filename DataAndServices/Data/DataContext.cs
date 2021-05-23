@@ -40,11 +40,11 @@ namespace DataAndServices.Data
         }
         public IMongoCollection<User_Acc> GetUser_AccCollection()
         {
-            return Database.GetCollection<User_Acc>("User_Acc");
+            return Database.GetCollection<User_Acc>("Users_Acc");
         }
         public IMongoCollection<User_Acc_Client> GetUser_Acc_ClientCollection()
         {
-            return Database.GetCollection<User_Acc_Client>("User_Acc");
+            return Database.GetCollection<User_Acc_Client>("Users_Acc");
         }
         public IMongoCollection<Role> GetRoleCollection()
         {
@@ -69,6 +69,10 @@ namespace DataAndServices.Data
         public IMongoCollection<Feedback> GetFeedbackCollection()
         {
             return Database.GetCollection<Feedback>("Feedback");
+        }
+        public IMongoCollection<Discount_Product> GetDiscountProductCollection()
+        {
+            return Database.GetCollection<Discount_Product>("Discount_Product");
         }
 
 
