@@ -128,10 +128,18 @@
     <Compile Include="Admin_Services\Admin_Acc_Services\IAdminAccService.cs" />
     <Compile Include="Admin_Services\Checkout_Customer_Services\CheckoutCustomerService.cs" />
     <Compile Include="Admin_Services\Checkout_Customer_Services\ICheckoutCustomerService.cs" />
+    <Compile Include="Admin_Services\Products\IProductService.cs" />
+    <Compile Include="Admin_Services\Products\ProductService.cs" />
     <Compile Include="Admin_Services\UserServices\IUsers.cs" />
     <Compile Include="Admin_Services\UserServices\UserService.cs" />
-    <Compile Include="CheckoutOrderServices\IOrderService.cs" />
-    <Compile Include="CheckoutOrderServices\OrderService.cs" />
+    <Compile Include="Admin_Services\CheckoutOrderServices\IOrderService.cs" />
+    <Compile Include="Admin_Services\CheckoutOrderServices\OrderService.cs" />
+    <Compile Include="Client_Services\CartService.cs" />
+    <Compile Include="Client_Services\HomeService.cs" />
+    <Compile Include="Client_Services\ICartServices.cs" />
+    <Compile Include="Client_Services\IHomeServices.cs" />
+    <Compile Include="Client_Services\IProductClientServices.cs" />
+    <Compile Include="Client_Services\ProductClientService.cs" />
     <Compile Include="CommonModel\Account_Role.cs" />
     <Compile Include="CommonModel\BoolResult.cs" />
     <Compile Include="CommonModel\CheckoutCustomer_Order.cs" />
@@ -143,6 +151,7 @@
     <Compile Include="DataModel\Checkout_Customer.cs" />
     <Compile Include="DataModel\Checkout_Oder.cs" />
     <Compile Include="DataModel\CodeDiscount.cs" />
+    <Compile Include="DataModel\Discount_Product.cs" />
     <Compile Include="DataModel\Feedback.cs" />
     <Compile Include="DataModel\Item.cs" />
     <Compile Include="DataModel\Item_Client.cs" />
@@ -170,12 +179,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Client_Services\Cart\" />
-    <Folder Include="Client_Services\Feedback\" />
-    <Folder Include="Client_Services\Home\" />
-    <Folder Include="Client_Services\Product\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MongoDB.Libmongocrypt.1.2.1\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.2.1\build\MongoDB.Libmongocrypt.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
