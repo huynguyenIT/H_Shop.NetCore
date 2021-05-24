@@ -11,7 +11,8 @@ namespace DataAndServices.DataModel
     public class Product_Client
     {
         [BsonId]
-        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        //[BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public string _id { get; set; }
         public int Id_SanPham { get; set; }
 
         [StringLength(50)]

@@ -36,9 +36,9 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         }
         [HttpGet]
         [Route("GetProductItemById_admin/{Id}")]
-        public async Task<IActionResult> GetProductItemById_Admin(int Id)
+        public IActionResult GetProductItemById_Admin(string Id)
         {
-            var proItemById= await _productService.GetProductItemById_admin(Id);
+            var proItemById=  _productService.GetProductItemById_admin(Id);
             return Ok(proItemById);
         }
         [HttpGet]
@@ -59,36 +59,36 @@ namespace H_Shop.NetCore.Controllers.API_Admin
        
         [HttpGet]
         [Route("GetAllProductByIdItem/{id}")]
-        public async Task<IActionResult> GetAllProductByIdItem(int id)
+        public IActionResult GetAllProductByIdItem(int id)
         {
-           var listProItemById= await _productService.GetProductById_Item(id);
+           var listProItemById=  _productService.GetProductById_Item(id);
             return Ok(listProItemById);
         }
 
      
         [HttpGet]
         [Route("GetAllProductByType")]
-        public async Task<IActionResult> GetAllProductByType()
+        public IActionResult GetAllProductByType()
         {
-           var listlistProItem=  await _productService.GetAllProductItem_Type();
+           var listlistProItem=  _productService.GetAllProductItem_Type();
             return Ok(listlistProItem);
         }
         [Route("CreateProduct")]
-        public async Task<int> CreateProduct(Product_Item_Type dTO_Product_Item)
+        public int CreateProduct(Product_Item_Type dTO_Product_Item)
         {
-            return await _productService.CreateProduct(dTO_Product_Item);
+            return  _productService.CreateProduct(dTO_Product_Item);
         }
         [Route("UpdateProduct")]
-        public async Task<int> UpdateProduct(Product_Item_Type dTO_Product_Item)
+        public bool UpdateProduct(Product_Item_Type dTO_Product_Item)
         {
-            return await _productService.UpdateProduct(dTO_Product_Item);
+            return  _productService.UpdateProduct(dTO_Product_Item);
         }
        
 
         [Route("DeleteProduct/{id}")]
-        public async Task <bool> DeleteProduct(int id)
+        public  bool DeleteProduct(string id)
         {
-            return await _productService.DeleteAccount(id);
+            return  _productService.DeleteAccount(id);
         }
         [Route("UpdateQuantityItem")]
         public  async Task<bool> UpdateQuantityItem(Item item)
@@ -98,22 +98,22 @@ namespace H_Shop.NetCore.Controllers.API_Admin
 
         [HttpGet]
         [Route("GetAllProduct_Discount")]
-        public async Task<IActionResult> GetAllProduct_Discount()
+        public IActionResult GetAllProduct_Discount()
         {
-            var listProDis= await _productService.GetAllProduct_Discount();
+            var listProDis=  _productService.GetAllProduct_Discount();
             return Ok(listProDis);
         }
         [HttpGet]
         [Route("GetProduct_DiscountById/{id}")]
-        public async Task<IActionResult> GetProduct_DiscountById(int id)
+        public IActionResult GetProduct_DiscountById(string id)
         {
-            var proDisById= await _productService.GetProduct_DiscountById(id);
+            var proDisById=  _productService.GetProduct_DiscountById(id);
             return Ok(proDisById);
         }
         [Route("CreateProduct_Discount")]
-        public async Task< bool> CreateProduct_Discount(Discount_Product dTO_Product_Item)
+        public bool CreateProduct_Discount(Discount_Product dTO_Product_Item)
         {
-            return await _productService.InsertProduct_Discount(dTO_Product_Item);
+            return _productService.InsertProduct_Discount(dTO_Product_Item);
         }
     }
 }

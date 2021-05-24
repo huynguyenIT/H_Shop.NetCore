@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,8 @@ namespace DataAndServices.DataModel
 {
     public class Discount_Product
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
         public int ID_Discount { get; set; }
         public string Content { get; set; }
@@ -18,10 +22,6 @@ namespace DataAndServices.DataModel
         public Nullable<int> Id_SanPham { get; set; }
 
 
-        public string Name { get; set; }
-        public Nullable<int> Price { get; set; }
-        public string Photo { get; set; }
-        public string Details { get; set; }
-        public int Id_Item { get; set; }
+       
     }
 }

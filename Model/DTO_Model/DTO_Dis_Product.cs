@@ -8,6 +8,7 @@ namespace Model.DTO_Model
 {
     public class DTO_Dis_Product
     {
+        public string _id { get; set; }
         public int ID_Discount { get; set; }
         public string Content { get; set; }
         public Nullable<double> Price_Dis { get; set; }

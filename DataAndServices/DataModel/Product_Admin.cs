@@ -31,7 +31,7 @@ namespace DataAndServices.DataModel
 
         public string Details { get; set; }
 
-        //public int Id_Item { get; set; }
+        public int Id_Item { get; set; }
 
         // public virtual DTO_Item Item { get; set; }
 

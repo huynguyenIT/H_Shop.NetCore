@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using UI.Service;
 using PagedList;
 using Model.DTO.DTO_Ad;
+using System.Threading.Tasks;
 
 namespace UI.Controllers
 {
@@ -16,17 +17,17 @@ namespace UI.Controllers
     {
         ServiceRepository service = new ServiceRepository();
 
-        public ActionResult TypeProduct()
+        public  ActionResult TypeProduct()
         {
-            HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetAllProductByType");
+            HttpResponseMessage responseMessage =  service.GetResponse("api/Products_Ad/GetAllProductByType");
             responseMessage.EnsureSuccessStatusCode();
-            List<List<DTO_Dis_Product>> dTO_Accounts = responseMessage.Content.ReadAsAsync<List<List<DTO_Dis_Product>>>().Result;
+            List<List<DTO_Dis_Product>> dTO_Accounts =  responseMessage.Content.ReadAsAsync<List<List<DTO_Dis_Product>>>().Result;
            
 
             //HttpResponseMessage responseMessage3 = service.GetResponse("api/Products_Ad/GetAllProductByType");
             //responseMessage3.EnsureSuccessStatusCode();
             //List<List<DTO_Product>> dTO_Accounts2 = responseMessage3.Content.ReadAsAsync<List<List<DTO_Product>>>().Result;
-            var view = dTO_Accounts.ToPagedList(1, 50);
+            var view =  dTO_Accounts.ToPagedList(1, 50);
             return View(view);
 
         }
@@ -122,7 +123,7 @@ namespace UI.Controllers
                 //responseMessage.EnsureSuccessStatusCode();
                 //List<DTO_Product_Client> dTO_Accounts = responseMessage.Content.ReadAsAsync<List<DTO_Product_Client>>().Result;
                 //return View(dTO_Accounts.ToPagedList(pageNumber, pageSize));
-                HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetAllProduct_Discount");
+                HttpResponseMessage responseMessage =  service.GetResponse("api/Products_Ad/GetAllProduct_Discount");
                 responseMessage.EnsureSuccessStatusCode();
                 List<DTO_Dis_Product> dTO_Accounts = responseMessage.Content.ReadAsAsync<List<DTO_Dis_Product>>().Result;
                 return View(dTO_Accounts.ToPagedList(pageNumber, pageSize));

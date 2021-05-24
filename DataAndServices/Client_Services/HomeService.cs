@@ -28,37 +28,37 @@ namespace DataAndServices.Client_Services
             throw new NotImplementedException();
         }
 
-        public Task<List<User_Acc>> GetAllCustomers()
+        public async Task<List<User_Acc_Client>> GetAllCustomers()
         {
-            throw new NotImplementedException();
+            return await _dbUser.Find(s => true).ToListAsync();
         }
 
-        public Task<List<Feedback>> GetAllFeedbacks()
+        public async Task<List<Feedback>> GetAllFeedbacks()
         {
-            throw new NotImplementedException();
+            return await _dbFeed.Find(s => true).ToListAsync();
         }
 
-        public Task<List<Item_type>> GetAllItemType()
+        public async Task<List<Item_type>> GetAllItemType()
         {
-            throw new NotImplementedException();
+            return await _dbitemType.Find(s => true).ToListAsync();
         }
 
-        public Task<User_Acc> GetCustomerByEmail(string mail)
+        public async Task<User_Acc_Client> GetCustomerByEmail(string mail)
         {
-            throw new NotImplementedException();
+            return await _dbUser.Find(s => s.Email==mail).FirstOrDefaultAsync();
         }
 
-        public Task<User_Acc> GetCustomerByID(int id)
+        public async Task<User_Acc_Client> GetCustomerByID(string id)
         {
-            throw new NotImplementedException();
+            return await _dbUser.Find(s => s._id == id).FirstOrDefaultAsync();
         }
 
-        public Task<string> GetCustomerByPassword(string email)
+        public async Task<User_Acc_Client> GetCustomerByPassword(string email)
         {
-            throw new NotImplementedException();
+            return await _dbUser.Find(s => s.Password == email).FirstOrDefaultAsync();
         }
 
-        public Task<User_Acc> GetCustomerByUsername(string user)
+        public Task<User_Acc_Client> GetCustomerByUsername(string user)
         {
             throw new NotImplementedException();
         }
@@ -83,7 +83,7 @@ namespace DataAndServices.Client_Services
             throw new NotImplementedException();
         }
 
-        public Task<User_Acc> LoginCustomer(string user, string pass)
+        public Task<User_Acc_Client> LoginCustomer(string user, string pass)
         {
             throw new NotImplementedException();
         }

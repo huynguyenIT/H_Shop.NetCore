@@ -16,30 +16,30 @@ namespace DataAndServices.Admin_Services.Products
         Task<List<Product_Item_Type>> GetAllProductItem();
 
 
-        Task<List<List<Dis_Product>>> GetAllProductItem_Type();
+        List<List<Dis_Product>> GetAllProductItem_Type();
 
         Task<Product_Admin> GetProductById(string id);
 
 
-        Task<List<Dis_Product>> GetProductById_Item(int id);
+        List<Dis_Product> GetProductById_Item(int id);
 
         Product_Item_Type GetProductItemById(int id);
 
-        Task<Product_Item_Type> GetProductItemById_admin(int id);
+        Product_Item_Type GetProductItemById_admin(string id);
 
         Product_Item_Type GetProductItemById2(string id);
 
         Task<List<Product_Item_Type>> GetProductItemByPageList();
 
-        Task<List<Product_Item_Type>> GetProductItemById_client(int id);
+        List<Product_Item_Type> GetProductItemById_client(int id);
 
 
-        Task<int> CreateProduct(Product_Item_Type dTO_Account);
+        int CreateProduct(Product_Item_Type dTO_Account);
 
-        Task<bool> DeleteAccount(int id);
+        bool DeleteAccount(string id);
 
 
-        Task<int> UpdateProduct(Product_Item_Type dTO_Account);
+        bool UpdateProduct(Product_Item_Type dTO_Account);
 
 
 
@@ -58,13 +58,13 @@ namespace DataAndServices.Admin_Services.Products
 
 
 
-        Task<Dis_Product> GetProduct_DiscountById(int id);
+        Dis_Product GetProduct_DiscountById(string id);
 
 
-        Task<List<Dis_Product>> GetAllProduct_Discount();
+        List<Dis_Product> GetAllProduct_Discount();
 
 
-        Task<bool> InsertProduct_Discount(Discount_Product tO_Dis_Product);
+        bool InsertProduct_Discount(Discount_Product tO_Dis_Product);
       
     }
 }

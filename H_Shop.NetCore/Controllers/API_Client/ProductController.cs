@@ -35,17 +35,17 @@ namespace H_Shop.NetCore.Controllers.API_Client
         //}
         [HttpGet]
         [Route("GetAllProductByPrice/{giaMin:int}/{giaMax:int}")]
-        public async Task<IActionResult> GetAllProductByPrice(int giaMin, int giaMax)
+        public IActionResult GetAllProductByPrice(int giaMin, int giaMax)
         {
-           var listProByPrice= await _productClientService.GetAllProductByPrice(giaMin, giaMax);
+           var listProByPrice= _productClientService.GetAllProductByPrice(giaMin, giaMax);
             return Ok(listProByPrice);
         }
       
         [HttpGet]
         [Route("GetAllProductByName/{name}")]
-        public async Task<IActionResult> GetAllProductByName(string name)
+        public IActionResult GetAllProductByName(string name)
         {
-           var proByName= await _productClientService.GetAllProductByName(name);
+           var proByName=  _productClientService.GetAllProductByName(name);
             return Ok(proByName);
         }
 
@@ -72,9 +72,9 @@ namespace H_Shop.NetCore.Controllers.API_Client
         }
         [HttpGet]
         [Route("GetAllProductByIdItemClient/{id}")]
-        public async Task<IActionResult> GetAllProductByIdItem(int id)
+        public IActionResult GetAllProductByIdItem(int id)
         {
-            var proItemById = await _productAdminService.GetProductItemById_client(id);
+            var proItemById =  _productAdminService.GetProductItemById_client(id);
             return Ok(proItemById);
            
         }

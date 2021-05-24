@@ -15,6 +15,7 @@ namespace Model.DTO_Model
             Photo = "~/images_product/gallery-add-512.png";
         }
         [Required(ErrorMessage = "Yêu cầu nhập mã sản phẩm")]
+        public string _id { get; set; }
         public int Id_SanPham { get; set; }
         [Required(ErrorMessage = "Yêu cầu nhập số lượng")]
         public int? Quantity { get; set; }

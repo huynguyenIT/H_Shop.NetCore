@@ -165,7 +165,7 @@ namespace H_Shop.NetCore.Controllers.API_Client
             }
         }
         [Route("GetCustomerByToken")]
-        public async Task<User_Acc> GetCustomerByToken(string token)
+        public async Task<User_Acc_Client> GetCustomerByToken(string token)
         {
             try
             {
@@ -180,7 +180,7 @@ namespace H_Shop.NetCore.Controllers.API_Client
             }
         }
         [Route("GetCustomerByUsername")]
-        public async Task<User_Acc> GetCustomerByUsername(string user)
+        public async Task<User_Acc_Client> GetCustomerByUsername(string user)
         {
             try
             {
@@ -196,7 +196,7 @@ namespace H_Shop.NetCore.Controllers.API_Client
             }
         }
         [Route("GetCustomerByEmail")]
-        public async Task<User_Acc> GetCustomerByEmail(string mail)
+        public async Task<User_Acc_Client> GetCustomerByEmail(string mail)
         {
             try
             {
@@ -209,7 +209,7 @@ namespace H_Shop.NetCore.Controllers.API_Client
             }
         }
         [Route("GetCustomerByPassword")]
-        public async Task<string> GetCustomerByPassword(string email)
+        public async Task<User_Acc_Client> GetCustomerByPassword(string email)
         {
             try
             {
@@ -223,7 +223,7 @@ namespace H_Shop.NetCore.Controllers.API_Client
         }
         [HttpGet]
         [Route("GetLoginResultByUsernamePassword")]
-        public async Task<User_Acc> GetLoginResultByUsernamePassword(string user, string pass)
+        public async Task<User_Acc_Client> GetLoginResultByUsernamePassword(string user, string pass)
         {
             try
             {

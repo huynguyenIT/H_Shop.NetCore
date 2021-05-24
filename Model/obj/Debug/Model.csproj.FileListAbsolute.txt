@@ -43,3 +43,16 @@ C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\EntityFramework.
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\Model.dll.config
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\Model.dll
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\Model.pdb
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\AutoMapper.dll
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\EntityFramework.dll
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\EntityFramework.xml
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.dll
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.pdb

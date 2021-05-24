@@ -1,4 +1,5 @@
 ﻿using DataAndServices.Admin_Services.UserServices;
+using DataAndServices.Client_Services;
 using DataAndServices.DataModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +15,11 @@ namespace H_Shop.NetCore.Controllers.API_Admin
     public class User_AccController : ControllerBase
     {
         private readonly IUsers _users;
-        public User_AccController(IUsers users)
+        private readonly IHomeServices _homeServices;
+        public User_AccController(IUsers users,IHomeServices homeServices)
         {
             _users = users;
+            _homeServices = homeServices;
         }
         [Route("Update")]
         public async Task<bool> Update(User_Acc dTO_Account)
@@ -39,7 +42,7 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         [Route("GetAllAccounts")]
         public async Task<IActionResult> GetAllAccounts()
         {
-            var listuser = await _users.GetAllAccounts();
+            var listuser = await _homeServices.GetAllCustomers();
             return Ok(listuser);
         }
        
@@ -50,5 +53,38 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             var userById= await _users.GetAccountById(Id);
             return Ok(userById);
         }
+        [HttpGet]
+        [Route("GetAllCustomers")]
+        public async Task<IActionResult> GetAllCustomers()
+        {
+            var listAcc= await _homeServices.GetAllCustomers();
+            return Ok(listAcc);
+        }
+        [Route("GetDetailCustomer")]
+        public async Task<IActionResult> GetDetailCustomer(string id)
+        {
+            var cusDetails= await _homeServices.GetCustomerByID(id);
+            return Ok(cusDetails);
+        }
+        [Route("InsertCustomer")]
+        public async Task<bool> InsertCustomer(User_Acc cusInsert)
+        {
+            return await _homeServices.InsertCustomer(cusInsert);
+        }
+        [Route("UpdateCustomer")]
+        public async Task<bool> UpdateCustomer(User_Acc cusUpdate)
+        {
+            return await _homeServices.UpdateCustomer(cusUpdate);
+        }
+        [Route("DeleteCustomer")]
+        public async Task<bool> DeleteCustomer(int id)
+        {
+            return await _homeServices.DeleteCustomer(id);
+        }
+        //[Route("CountCustomer")]
+        //public  int CountCustomer()
+        //{
+        //    return  _homeServices.GetAllCustomers().Count();
+        //}
     }
 }

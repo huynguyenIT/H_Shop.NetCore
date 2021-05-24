@@ -10,7 +10,7 @@ namespace DataAndServices.DataModel
 {
     public class Item
     {
-        [BsonId]
+        //[BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
         public int Id_SanPham { get; set; }

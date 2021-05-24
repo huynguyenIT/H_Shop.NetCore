@@ -9,7 +9,7 @@ namespace DataAndServices.Client_Services
 {
      public interface IHomeServices
     {
-         Task<List<User_Acc>> GetAllCustomers();
+         Task<List<User_Acc_Client>> GetAllCustomers();
 
          Task<List<Item_type>> GetAllItemType();
 
@@ -29,15 +29,15 @@ namespace DataAndServices.Client_Services
 
         Task< bool> DeleteCustomer(int id);
 
-        Task<User_Acc> GetCustomerByID(int id);
+        Task<User_Acc_Client> GetCustomerByID(string id);
 
-        Task<User_Acc> GetCustomerByUsername(string user);
+        Task<User_Acc_Client> GetCustomerByUsername(string user);
 
-        Task<User_Acc> GetCustomerByEmail(string mail);
+        Task<User_Acc_Client> GetCustomerByEmail(string mail);
 
-        Task< string> GetCustomerByPassword(string email);
+        Task<User_Acc_Client> GetCustomerByPassword(string email);
 
-        Task<User_Acc> LoginCustomer(string user, string pass);
+        Task<User_Acc_Client> LoginCustomer(string user, string pass);
         Task<bool> InsertFeedback(Feedback feedback);
         
 

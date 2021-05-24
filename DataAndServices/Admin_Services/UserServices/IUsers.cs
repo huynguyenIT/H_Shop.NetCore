@@ -28,5 +28,6 @@ namespace DataAndServices.Admin_Services.UserServices
 
 
         Task<bool> DeleteAccount(string id);
+       
     }
 }

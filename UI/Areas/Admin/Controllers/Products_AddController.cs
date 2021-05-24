@@ -246,7 +246,7 @@ namespace UI.Areas.Admin.Controllers
             }
         }
         
-        public ActionResult Create_Discount(int id)
+        public ActionResult Create_Discount(string id)
         {
             ServiceRepository service = new ServiceRepository();
             HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetProduct_DiscountById/" + id);
@@ -280,7 +280,7 @@ namespace UI.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(string Id)
         {
             ServiceRepository service = new ServiceRepository();
             HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetProductItemById_admin/" + Id);
@@ -293,7 +293,7 @@ namespace UI.Areas.Admin.Controllers
 
         // POST: Admin/Products_Add/Edit/5
         [HttpPost, ValidateInput(false)]
-        public ActionResult Edit(int id, FormCollection collection, DTO_Product_Item_Type dTO_Product_Item_Type, HttpPostedFileBase ImageUpload)
+        public ActionResult Edit( FormCollection collection, DTO_Product_Item_Type dTO_Product_Item_Type, HttpPostedFileBase ImageUpload)
         {
             var stt = Request.Form["stt"];
             if (stt == "Đồng hồ")
@@ -447,7 +447,7 @@ namespace UI.Areas.Admin.Controllers
         //        return View();
         //    }
         //}
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
             try
             {

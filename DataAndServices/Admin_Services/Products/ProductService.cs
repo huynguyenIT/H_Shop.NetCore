@@ -16,6 +16,7 @@ namespace DataAndServices.Admin_Services.Products
         private readonly IMongoCollection<Product_Admin> _db;
         private readonly IMongoCollection<Discount_Product> _dbDis;
         private readonly IMongoCollection<Item> _dbItem;
+        private readonly IMongoCollection<Item_type> _dbItemtype;
         private readonly DataContext db = new DataContext("mongodb://localhost:27017", "OnlineShop");
 
         public ProductService(DataContext db)
@@ -23,26 +24,118 @@ namespace DataAndServices.Admin_Services.Products
             _db = db.GetProductAdminCollection();
             _dbDis = db.GetDiscountProductCollection();
             _dbItem = db.GetItemCollection();
+            _dbItemtype = db.GetItem_TypeCollection();
+        }
+        public double GetPriceDiscountByIdList(int id)
+        {
+            DateTime dateTime = DateTime.Today;
+            var item_discount = _dbDis.Find(t => t.Id_SanPham == id && t.End.Value >= dateTime).ToList();
+            foreach (var item in item_discount)
+            {
+                if (item != null && item.Price_Dis != null)
+                    return Convert.ToDouble(item.Price_Dis);
+            }
+
+            return 0;
         }
 
-        public Task<int> CreateProduct(Product_Item_Type dTO_Account)
+        public int CreateProduct(Product_Item_Type product_Item_Type)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Product_Admin products = new Product_Admin();
+                products.Id_Item = product_Item_Type.Id_Item;
+                //products.Id_SanPham = product_Item_Type.Id_SanPham;
+                products.Name = product_Item_Type.Name;
+                products.Photo = product_Item_Type.Photo;
+                products.Price = product_Item_Type.Price;
+                products.Details = product_Item_Type.Details;
+
+                Item item = new Item();
+                //item.Id_SanPham = product_Item_Type.Id_SanPham;
+                item.Quantity = product_Item_Type.Quantity;
+
+                _db.InsertOne(products);
+
+
+                 item._id = products._id;
+
+                _dbItem.InsertOne(item);
+                Discount_Product dis = new Discount_Product();
+                dis._id = item._id;
+                _dbDis.InsertOne(dis);
+                return 1;
+
+            }
+            catch
+            {
+                return 0;
+            }
+
+
+
+
+            
+            
         }
 
-        public Task<bool> DeleteAccount(int id)
+        public bool DeleteAccount(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //var product = _db.Find(s=>s.Id_SanPham==id).FirstOrDefault();
+                //Item item = _dbItem.Find(s => s.Id_SanPham == id).FirstOrDefault();
+                //Discount_Product discount_Product = _dbDis.Find(s => s.Id_SanPham == id).FirstOrDefault();
+                _db.DeleteOne(id);
+                _dbItem.DeleteOne(id);
+                _dbDis.DeleteOne(id);
+               // db.Discount_Product.Remove(discount_Product);
+                //db.Items.Remove(item);
+               // db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public Task<List<Product_Item_Type>> GetAllProductItem()
+        public async Task<List<Product_Item_Type>> GetAllProductItem()
         {
-            throw new NotImplementedException();
+            var itemCollection =  db.GetItemCollection();
+            var productCollection = db.GetProductClientCollection();
+            var infoProduct = from item in itemCollection.AsQueryable()
+                              join product in productCollection.AsQueryable() on item.Id_SanPham equals product.Id_SanPham
+
+                              select new Product_Item_Type()
+                              {
+                                  Id_SanPham = product.Id_SanPham,
+                                  Name = product.Name,
+                                  Price = product.Price,
+                                  Details = product.Details,
+                                  Photo = product.Photo,
+                                  Id_Item = product.Id_Item,
+                                  Quantity = item.Quantity
+
+
+
+
+                              };
+            return await infoProduct.ToListAsync();
         }
 
-        public Task<List<List<Dis_Product>>> GetAllProductItem_Type()
+        public List<List<Dis_Product>> GetAllProductItem_Type()
         {
-            throw new NotImplementedException();
+            List<Item_type> item_Types = new List<Item_type>();
+            List<List<Dis_Product>> productsByType = new List<List<Dis_Product>>();
+            item_Types = _dbItemtype.Find(s=>true).ToList();
+            foreach (Item_type item in item_Types)
+            {
+
+                List<Dis_Product> products = GetProductById_Item(item.Id_Item);
+                productsByType.Add(products);
+            }
+            return productsByType.ToList();
         }
 
         public async Task<List<Product_Admin>> GetAllProducts()
@@ -50,9 +143,58 @@ namespace DataAndServices.Admin_Services.Products
             return await _db.Find(s => true).ToListAsync();
         }
 
-        public  Task<List<Dis_Product>> GetAllProduct_Discount()
+        public List<Dis_Product> GetAllProduct_Discount()
         {
-            throw new NotImplementedException();
+          var test=  _db.AsQueryable().Select(x => x.Id_SanPham==15).FirstOrDefault();
+
+            //var discount_Products = (IQueryable<Discount_Product>)db.GetDiscountProductCollection();
+            //var Products = (IQueryable<Product_Client>)db.GetDiscountProductCollection();
+            //var joinResult = discount_Products.Join(Products,
+            //    s => s.Id_SanPham,
+            //    o => o.Id_SanPham,
+            //    (s, o) => new Dis_Product()
+            //    {
+            //        Id_SanPham = o.Id_SanPham,
+            //        Name = o.Name,
+            //        Price = o.Price,
+            //        Details = o.Details,
+            //        Photo = o.Photo,
+            //        Id_Item = o.Id_Item,
+            //        Content =s.Content,
+            //        Price_Dis = s.Price_Dis,
+            //        Start = s.Start,
+            //        End = s.End
+            //    });
+
+            var discountCollection = db.GetDiscountProductCollection();
+            var productCollection = db.GetProductClientCollection();
+            var Info = (from dis in discountCollection.AsQueryable()
+                        join product in productCollection.AsQueryable() on dis._id equals product._id
+
+                        //where product.Id_SanPham == id && item.Id_SanPham == id
+                        select new Dis_Product()
+                        {
+                            _id = dis._id,
+                            Id_SanPham = product.Id_SanPham,
+                            Name = product.Name,
+                            Price = product.Price,
+                            Details = product.Details,
+                            Photo = product.Photo,
+                            Id_Item = product.Id_Item,
+                            Content = dis.Content,
+                            Price_Dis = dis.Price_Dis,
+                            Start = dis.Start,
+                            End = dis.End
+
+
+
+
+                        });
+
+            return  Info.ToList();
+
+
+           
         }
 
         public async Task<Product_Admin> GetProductById(string id)
@@ -61,29 +203,34 @@ namespace DataAndServices.Admin_Services.Products
             return await _db.Find(s => s._id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Dis_Product>> GetProductById_Item(int id)
+        public List<Dis_Product> GetProductById_Item(int id)
         {
-            var itemCollection = db.GetItemCollection();
+            var discountCollection = db.GetDiscountProductCollection();
             var productCollection = db.GetProductClientCollection();
-            var Info = (from item in itemCollection.AsQueryable()
-                        join product in productCollection.AsQueryable() on item.Id_SanPham equals product.Id_SanPham
+            var Info = (from dis in discountCollection.AsQueryable()
+                        join product in productCollection.AsQueryable() on dis._id equals product._id
+                        where product.Id_Item==id
                         //where product.Id_SanPham == id && item.Id_SanPham == id
-                        select new Product_Item_Type()
+                        select new Dis_Product()
                         {
+                            _id = dis._id,
                             Id_SanPham = product.Id_SanPham,
                             Name = product.Name,
                             Price = product.Price,
                             Details = product.Details,
                             Photo = product.Photo,
                             Id_Item = product.Id_Item,
-                            Quantity = item.Quantity
+                            Content = dis.Content,
+                            Price_Dis = dis.Price_Dis,
+                            Start = dis.Start,
+                            End = dis.End
 
 
 
 
-                        }).FirstOrDefault();
+                        });
 
-            return Info;
+            return Info.ToList();
 
         }
 
@@ -96,6 +243,7 @@ namespace DataAndServices.Admin_Services.Products
                        where product.Id_SanPham == id && item.Id_SanPham == id
                        select new Product_Item_Type()
                        {
+                           _id = product._id,
                            Id_SanPham = product.Id_SanPham,
                            Name = product.Name,
                            Price = product.Price,
@@ -115,9 +263,16 @@ namespace DataAndServices.Admin_Services.Products
             return Info;
         }
 
-        private int GetPriceDiscountById(object id_SanPham)
+        private double GetPriceDiscountById(int id)
         {
-            throw new NotImplementedException();
+            DateTime dateTime = DateTime.Today;
+            var item_discount = _dbDis.Find(t => t.Id_SanPham == id && t.End.Value >= dateTime).FirstOrDefault();
+
+            if (item_discount != null && item_discount.Price_Dis != null)
+            {
+                return Convert.ToDouble(item_discount.Price_Dis);
+            }
+            return 0;
         }
 
         public Product_Item_Type GetProductItemById2(string id)
@@ -125,10 +280,11 @@ namespace DataAndServices.Admin_Services.Products
             var itemCollection = db.GetItemCollection();
             var productCollection = db.GetProductClientCollection();
             var Info = (from item in itemCollection.AsQueryable()
-                        join product in productCollection.AsQueryable() on item.Id_SanPham equals product.Id_SanPham
+                        join product in productCollection.AsQueryable() on item._id equals product._id
                         //where product.Id_SanPham == id && item.Id_SanPham == id
                         select new Product_Item_Type()
                         {
+                            _id = product._id,
                             Id_SanPham = product.Id_SanPham,
                             Name = product.Name,
                             Price = product.Price,
@@ -146,20 +302,16 @@ namespace DataAndServices.Admin_Services.Products
         }
     
 
-        public Task<Product_Item_Type> GetProductItemById_admin(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Product_Item_Type>> GetProductItemById_client(int id)
+        public Product_Item_Type GetProductItemById_admin(string id)
         {
             var itemCollection = db.GetItemCollection();
             var productCollection = db.GetProductClientCollection();
             var Info = (from item in itemCollection.AsQueryable()
-                        join product in productCollection.AsQueryable() on item.Id_SanPham equals product.Id_SanPham
-                        //where product.Id_SanPham == id && item.Id_SanPham == id
+                        join product in productCollection.AsQueryable() on item._id equals product._id
+                        where item._id == id 
                         select new Product_Item_Type()
                         {
+                            _id = item._id,
                             Id_SanPham = product.Id_SanPham,
                             Name = product.Name,
                             Price = product.Price,
@@ -171,20 +323,22 @@ namespace DataAndServices.Admin_Services.Products
 
 
 
-                        }).FirstOrDefault();
+                        });
 
-            return Info;
+            return Info.FirstOrDefault();
+            
         }
 
-        public Task<List<Product_Item_Type>> GetProductItemByPageList()
+        public List<Product_Item_Type> GetProductItemById_client(int id)
         {
             var itemCollection = db.GetItemCollection();
             var productCollection = db.GetProductClientCollection();
             var Info = (from item in itemCollection.AsQueryable()
                         join product in productCollection.AsQueryable() on item.Id_SanPham equals product.Id_SanPham
-                        //where product.Id_SanPham == id && item.Id_SanPham == id
+                        where product.Id_SanPham == id && item.Id_SanPham == id
                         select new Product_Item_Type()
                         {
+                            _id = product._id,
                             Id_SanPham = product.Id_SanPham,
                             Name = product.Name,
                             Price = product.Price,
@@ -196,20 +350,55 @@ namespace DataAndServices.Admin_Services.Products
 
 
 
-                        }).FirstOrDefault();
+                        }).ToList();
 
-            return Info;
+            foreach (var item in Info)
+            {
+                if (GetPriceDiscountByIdList(item.Id_SanPham) != 0)
+                {
+                    item.Price = Convert.ToInt32(GetPriceDiscountById(item.Id_SanPham));
+                }
+            }
+            return  Info;
         }
 
-        public async Task<Dis_Product> GetProduct_DiscountById(int id)
+        public async Task<List<Product_Item_Type>> GetProductItemByPageList()
+        {
+            var itemCollection = db.GetItemCollection();
+            var productCollection = db.GetProductClientCollection();
+            var Info = (from item in itemCollection.AsQueryable()
+                        join product in productCollection.AsQueryable() on item.Id_SanPham equals product.Id_SanPham
+                        orderby product.Id_SanPham
+                        //where product.Id_SanPham == id && item.Id_SanPham == id
+                        select new Product_Item_Type()
+                        {
+                            _id = product._id,
+                            Id_SanPham = product.Id_SanPham,
+                            Name = product.Name,
+                            Price = product.Price,
+                            Details = product.Details,
+                            Photo = product.Photo,
+                            Id_Item = product.Id_Item,
+                            Quantity = item.Quantity
+
+
+
+
+                        });
+
+            return await Info.ToListAsync();
+        }
+
+        public Dis_Product GetProduct_DiscountById(string id)
         {
             var discountProCollection = db.GetDiscountProductCollection();
             var productCollection = db.GetProductClientCollection();
             var infoProduct_discount = from dis in discountProCollection.AsQueryable()
-                                       join product in productCollection.AsQueryable() on dis.Id_SanPham equals product.Id_SanPham
-                                       where product.Id_SanPham == id && dis.Id_SanPham == id
+                                       join product in productCollection.AsQueryable() on dis._id equals product._id
+                                       where dis._id == id 
                                        select new Dis_Product()
                                        {
+                                           _id = dis._id,
                                            Id_SanPham = product.Id_SanPham,
                                            Name = product.Name,
                                            Price = product.Price,
@@ -225,24 +414,34 @@ namespace DataAndServices.Admin_Services.Products
 
 
                                        };
-            return await infoProduct_discount.FirstOrDefaultAsync();
+            return  infoProduct_discount.FirstOrDefault();
         }
 
-        public async Task<bool> InsertProduct_Discount(Discount_Product dis)
+        public bool InsertProduct_Discount(Discount_Product custom)
         {
 
-            Discount_Product prodItem = await _dbDis.Find(p => p.Id_SanPham == dis.Id_SanPham).FirstOrDefaultAsync();
+            Discount_Product prodItem =  _dbDis.Find(p => p._id == custom._id).FirstOrDefault();
             if (prodItem != null)
             {
-                prodItem.Id_SanPham = dis.Id_SanPham;
-                prodItem.Price_Dis = dis.Price_Dis;
-                prodItem.Content = dis.Content;
-                prodItem.Start = dis.Start;
-                prodItem.End = dis.End;
-                await _dbDis.InsertOneAsync(prodItem);
+                var eqfilter = Builders<Discount_Product>.Filter.Where(s => s._id == custom._id);
+                var update = Builders<Discount_Product>.Update.Set(s => s._id, custom._id)
+                    .Set(s => s.Price_Dis, custom.Price_Dis)
+                    .Set(s => s.Content, custom.Content)
+                    .Set(s => s.Start, custom.Start)
+                    .Set(s => s.End, custom.End);
+
+                var options = new UpdateOptions { IsUpsert = true };
+                _dbDis.UpdateOneAsync(eqfilter, update, options).ConfigureAwait(false);
+
+              
+                
                 return true;
 
 
+            }
+            else
+            {
+                _dbDis.InsertOne(custom);
             }
             
             return false;
@@ -250,49 +449,49 @@ namespace DataAndServices.Admin_Services.Products
 
         }
 
-        public Task<int> UpdateProduct(Product_Admin productItem, Item item)
-        {
+        //public Task<int> UpdateProduct(Product_Admin productItem, Item item)
+        //{
 
-            try
-            {
-
-
-
-                Product_Admin prodItem = _db.Find(p => p.Id_SanPham == productItem.Id_SanPham).FirstOrDefault();
-                if (prodItem != null)
-                {
-                    prodItem.Id_SanPham = productItem.Id_SanPham;
-                    prodItem.Name = productItem.Name;
-                    prodItem.Price = productItem.Price;
-                    prodItem.Photo = productItem.Photo;
-                    prodItem.Details = productItem.Details;
-                    prodItem.Id_Item = productItem.Id_Item;
-
-                }
-
-                Item it = db.Items.Where(p => p.Id_SanPham == productItem.Id_SanPham).FirstOrDefault();
-                if (it != null)
-                {
-                    it.Id_SanPham = item.Id_SanPham;
-                    it.Quantity = item.Quantity;
-
-                }
-
-                try
-                {
+        //    try
+        //    {
 
 
-                    int result = db.SaveChanges();
-                    transaction.Commit();
-                    return result;
-                }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    return -2;
-                }
-            }
-        }
+
+        //        Product_Admin prodItem = _db.Find(p => p.Id_SanPham == productItem.Id_SanPham).FirstOrDefault();
+        //        if (prodItem != null)
+        //        {
+        //            prodItem.Id_SanPham = productItem.Id_SanPham;
+        //            prodItem.Name = productItem.Name;
+        //            prodItem.Price = productItem.Price;
+        //            prodItem.Photo = productItem.Photo;
+        //            prodItem.Details = productItem.Details;
+        //            //prodItem.Id_Item = productItem.Id_Item;
+
+        //        }
+
+        //        Item it = _dbItem.Find(p => p.Id_SanPham == productItem.Id_SanPham).FirstOrDefault();
+        //        if (it != null)
+        //        {
+        //            it.Id_SanPham = item.Id_SanPham;
+        //            it.Quantity = item.Quantity;
+
+        //        }
+
+        //        try
+        //        {
+
+
+        //            //int result = db.SaveChanges();
+        //           // transaction.Commit();
+        //            //return result;
+        //        }
+        //        catch (Exception)
+        //        {
+        //            //transaction.Rollback();
+        //           // return -2;
+        //        }
+        //    }
+        //}
 
         public async Task<bool> UpdateQuantityItem(string id ,int quantity)
         {
@@ -315,6 +514,48 @@ namespace DataAndServices.Admin_Services.Products
 
             }
             return false;
+        }
+
+        public bool UpdateProduct(Product_Item_Type custom)
+        {
+            try
+            {
+
+
+
+
+
+                var eqfilter = Builders<Product_Admin>.Filter.Where(s => s._id == custom._id);
+                var update = Builders<Product_Admin>.Update.Set(s => s.Name, custom.Name)
+                    .Set(s => s.Photo, custom.Photo)
+                    .Set(s => s.Details, custom.Details)
+                    .Set(s => s._id, custom._id)
+                    .Set(s => s.Id_Item, custom.Id_Item);
+
+                var options = new UpdateOptions { IsUpsert = true };
+                _db.UpdateOneAsync(eqfilter, update, options).ConfigureAwait(false);
+
+                var eqfilter2 = Builders<Item>.Filter.Where(s => s._id == custom._id);
+                var update2 = Builders<Item>.Update.Set(s => s._id, custom._id)
+                    .Set(s => s.Quantity, custom.Quantity);
+                   
+
+                var options2 = new UpdateOptions { IsUpsert = true };
+                _dbItem.UpdateOneAsync(eqfilter2, update2, options2).ConfigureAwait(false);
+
+                return true;
+            }
+
+               
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public Task<bool> UpdateQuantityItem(Item item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

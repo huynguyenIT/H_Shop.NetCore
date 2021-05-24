@@ -14,9 +14,9 @@ namespace DataAndServices.Client_Services
 
         Task< Product_Client> GetProductById(int id);
 
-        Task< List<Dis_Product>> GetAllProductByPrice(int? gia, int? gia_);
+         List<Dis_Product> GetAllProductByPrice(int? gia, int? gia_);
 
-        Task< List<Dis_Product>> GetAllProductByName(string name);
+         List<Dis_Product> GetAllProductByName(string name);
 
         Task< int> GetSoLuong(int id);
        
