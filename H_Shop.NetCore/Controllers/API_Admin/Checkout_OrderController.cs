@@ -20,9 +20,9 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             _orderService = orderService;
         }
         [Route("Update")]
-        public async Task<bool> Update(Checkout_Oder dTO_Account)
+        public bool Update(Checkout_Oder dTO_Account)
         {
-            return await _orderService.Update_Ad_acc(dTO_Account);
+            return  _orderService.Update_Ad_acc(dTO_Account);
         }
 
         // DELETE: api/Admin_acc/5

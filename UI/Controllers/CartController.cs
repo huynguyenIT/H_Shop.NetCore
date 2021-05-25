@@ -296,7 +296,7 @@ namespace UI.Controllers
         {
             return View();
         }
-        public ActionResult Details_(int Id)
+        public ActionResult Details_(string Id)
         {
             if (Session["cart_"] == null)
             {
@@ -360,7 +360,7 @@ namespace UI.Controllers
 
             //return View();
         }
-        private int isExist_(int Id)
+        private int isExist_(string Id)
         {
             List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart_"];
             for (int i = 0; i < cart.Count; i++)
@@ -368,7 +368,7 @@ namespace UI.Controllers
                     return i;
             return -1;
         }
-        public ActionResult Remove_(int Id)
+        public ActionResult Remove_(string Id)
         {
             List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart_"];
             int index = isExist_(Id);
@@ -376,7 +376,7 @@ namespace UI.Controllers
             Session["cart_"] = cart;
             return RedirectToAction("YeuThich");
         }
-        public int isExist(int Id)
+        public int isExist(string Id)
         {
             List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
             for (int i = 0; i < cart.Count; i++)
@@ -384,7 +384,7 @@ namespace UI.Controllers
                     return i;
             return -1;
         }
-        public ActionResult Remove(int Id)
+        public ActionResult Remove(string Id)
         {
             List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
             int index = isExist(Id);
@@ -419,7 +419,7 @@ namespace UI.Controllers
 
             return View();
         }
-        public ActionResult Details_Buy(int Id)
+        public ActionResult Details_Buy(string Id)
         {
             
             HttpResponseMessage response = service.GetResponse("api/Product/GetSoLuong/" + Id);

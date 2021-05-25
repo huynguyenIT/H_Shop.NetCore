@@ -21,21 +21,21 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             adminAccService = _adminAccService;
         }
         [Route("Create")]
-        public async Task<bool> Create(Account Account)
+        public bool Create(Account Account)
         {
-            return await adminAccService.Create_Ad_acc(Account);
+            return  adminAccService.Create_Ad_acc(Account);
         }
 
         // PUT: api/Admin_acc/5
         [Route("Update")]
-        public async Task<bool> Update(Account Account)
+        public bool Update(Account Account)
         {
-            return await adminAccService.Update_Ad_acc(Account);
+            return  adminAccService.Update_Ad_acc(Account);
         }
         [Route("Update2")]
-        public async Task<bool> Update2(Account Account)
+        public bool Update2(Account Account)
         {
-            return await adminAccService.Update_Ad_acc2(Account);
+            return  adminAccService.Update_Ad_acc2(Account);
         }
 
         // DELETE: api/Admin_acc/5
@@ -53,9 +53,9 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         }
         [HttpGet]
         [Route("GetAllAccounts2")]
-        public async Task<IActionResult> GetAllAccounts2()
+        public IActionResult GetAllAccounts2()
         {
-            var listAccount2 = await adminAccService.GetAllAccounts2();
+            var listAccount2 =  adminAccService.GetAllAccounts2();
             return Ok(listAccount2);
         }
         [HttpGet]

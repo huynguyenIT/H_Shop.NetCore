@@ -91,9 +91,9 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             return  _productService.DeleteAccount(id);
         }
         [Route("UpdateQuantityItem")]
-        public  async Task<bool> UpdateQuantityItem(Item item)
+        public  bool UpdateQuantityItem(Item item)
         {
-            return await _productService.UpdateQuantityItem(item);
+            return _productService.UpdateQuantityItem(item);
         }
 
         [HttpGet]

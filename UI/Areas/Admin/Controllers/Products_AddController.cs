@@ -90,7 +90,7 @@ namespace UI.Areas.Admin.Controllers
 
 
         // GET: Admin/Products_Add/Details/5
-        public ActionResult Details(int Id)
+        public ActionResult Details(string Id)
         {
             HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetProductItemById/"+Id);
             responseMessage.EnsureSuccessStatusCode();

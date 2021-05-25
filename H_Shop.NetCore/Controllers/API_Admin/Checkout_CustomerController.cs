@@ -21,9 +21,9 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         }
 
         [Route("Update")]
-        public async Task< bool> Update(Checkout_Customer dTO_Account)
+        public  bool Update(Checkout_Customer dTO_Account)
         {
-            return await _checkoutCustomerService.Update_Ad_acc(dTO_Account);
+            return _checkoutCustomerService.Update_Ad_acc(dTO_Account);
         }
 
         // DELETE: api/Admin_acc/5

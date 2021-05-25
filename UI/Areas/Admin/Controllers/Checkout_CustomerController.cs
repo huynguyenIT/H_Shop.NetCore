@@ -43,7 +43,7 @@ namespace UI.Areas.Admin.Controllers
 
         }
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             ServiceRepository service = new ServiceRepository();
             HttpResponseMessage responseMessage = service.GetResponse("api/Checkout_Customer/GetcustomerById/" + id);
@@ -53,7 +53,7 @@ namespace UI.Areas.Admin.Controllers
             return View(dtocustomer);
         }
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             ServiceRepository service = new ServiceRepository();
             HttpResponseMessage responseMessage = service.GetResponse("api/Checkout_Customer/GetCustomerById/" + id);
@@ -110,7 +110,7 @@ namespace UI.Areas.Admin.Controllers
         //    return View(dtocustomer);
         //}
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
             try
             {
