@@ -15,19 +15,19 @@ namespace DataAndServices.Client_Services
 
          Task<List<Feedback>> GetAllFeedbacks();
 
-         Task<bool> InsertCustomer(User_Acc cusInsert);
+         bool InsertCustomer(User_Acc_Client cusInsert);
 
-         Task<long> InsertForFacebook(User_Acc cusInsert);
+         string InsertForFacebook(User_Acc_Client cusInsert);
 
-         Task<long> InsertForGoogle(User_Acc cusInsert);
+         string InsertForGoogle(User_Acc_Client cusInsert);
 
-         Task<bool> UpdateCustomer(User_Acc cusUpdate);
+         bool UpdateCustomer(User_Acc_Client cusUpdate);
 
-        Task< bool> UpdateCustomer2(User_Acc cusUpdate);
+         bool UpdateCustomer2(User_Acc_Client cusUpdate);
 
-        Task< bool> UpdateCustomer3(User_Acc cusUpdate);
+         bool UpdateCustomer3(User_Acc_Client cusUpdate);
 
-        Task< bool> DeleteCustomer(int id);
+        Task< bool> DeleteCustomer(string id);
 
         Task<User_Acc_Client> GetCustomerByID(string id);
 

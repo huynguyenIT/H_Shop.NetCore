@@ -382,7 +382,7 @@ namespace UI.Controllers
             return PartialView("BagCart_");
         }
 
-        private int isExist(int Id)
+        private int isExist(string Id)
         {
            List<DTO_Product_Item_Type> cart = (List< DTO_Product_Item_Type>)Session["cart"];
 
@@ -391,7 +391,7 @@ namespace UI.Controllers
                     return i;
             return -1;
         }
-        public ActionResult Remove(int Id)
+        public ActionResult Remove(string Id)
         {
             List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
             int index = isExist(Id);
@@ -399,7 +399,7 @@ namespace UI.Controllers
             Session["cart"] = cart;
             return RedirectToAction("Details");
         }
-        public ActionResult Buy(int Id)
+        public ActionResult Buy(string Id)
         {
             
                 HttpResponseMessage response = service.GetResponse("api/Product/GetSoLuong/" + Id);
@@ -487,7 +487,7 @@ namespace UI.Controllers
 
         
         
-        public ActionResult Buy_Favorite(int Id)
+        public ActionResult Buy_Favorite(string Id)
         {
             HttpResponseMessage response = service.GetResponse("api/Product/GetSoLuong/" + Id);
 
@@ -572,7 +572,7 @@ namespace UI.Controllers
 
             //return View();
         }
-        public ActionResult Giam(int Id, DTO_Product_Item_Type item1)
+        public ActionResult Giam(string Id, DTO_Product_Item_Type item1)
         {
             if (Session["cart"] == null)
             {
@@ -645,7 +645,7 @@ namespace UI.Controllers
             
 
         }
-        public ActionResult Update(int Id, FormCollection fc)
+        public ActionResult Update(string Id, FormCollection fc)
         {
 
             List<DTO_Product_Item_Type> li = (List<DTO_Product_Item_Type>)Session["cart"];
@@ -685,7 +685,7 @@ namespace UI.Controllers
             return RedirectToAction("Details", "Product");
         }
         [HttpPost]
-        public ActionResult Tang(int Id, DTO_Product_Item_Type item1)
+        public ActionResult Tang(string Id, DTO_Product_Item_Type item1)
         {
             if (Session["cart"] == null)
             {
@@ -750,7 +750,7 @@ namespace UI.Controllers
            
         }
 
-        public ActionResult Details1(int Id)
+        public ActionResult Details1(string Id)
         {
             if (Session["cart__"] == null)
             {

@@ -16,9 +16,18 @@ namespace DataAndServices.Admin_Services.CheckoutOrderServices
         {
             _db = db.GetCheckout_OderCollection();
         }
-        public Task<bool> DeleteAccount(string id)
+        public async Task<bool> DeleteAccount(string id)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                await _db.DeleteOneAsync(id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<Checkout_Oder> GetAccountById(string id)
@@ -49,9 +58,30 @@ namespace DataAndServices.Admin_Services.CheckoutOrderServices
             return await _db.Find(s => s._id == id).ToListAsync();
         }
 
-        public Task<bool> Update_Ad_acc(Checkout_Oder dTO_Account)
+        public bool Update_Ad_acc(Checkout_Oder custom)
         {
-            throw new NotImplementedException();
+            var acc = GetAccountById(custom._id);
+            if (acc != null)
+            {
+                var eqfilter = Builders<Checkout_Oder>.Filter.Where(s => s._id == custom._id);
+
+                var update = Builders<Checkout_Oder>.Update.Set(s => s.TenSP, custom.TenSP)
+                    .Set(s => s.SoLuong, custom.SoLuong)
+                    .Set(s => s.Gia, custom.Gia)
+                    .Set(s => s._id, custom._id)
+                    .Set(s => s.Id_KH, custom.Id_KH)
+
+                    .Set(s => s.TrangThai, custom.TrangThai);
+
+                var options = new UpdateOptions { IsUpsert = true };
+
+
+
+
+                _db.UpdateOneAsync(eqfilter, update, options);
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Model.DTO.DTO_Ad
 {
     public class DTO_User_Acc
     {
+        public string _id { get; set; }
         public int idUser { get; set; }
 
         [Required]

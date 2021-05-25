@@ -96,12 +96,12 @@ namespace DataAndServices.Admin_Services.AccountService
 
         }
 
-        public async Task<bool> UpdateCustomer(Account custom)
+        public bool UpdateCustomer(Account custom)
         {
             try
             {
               
-                var userAccount = await GetCustomerByID(custom._id);
+                var userAccount = GetCustomerByID(custom._id);
                 if (userAccount != null)
                 {
 
@@ -121,7 +121,7 @@ namespace DataAndServices.Admin_Services.AccountService
                    
 
 
-                    await _db.UpdateOneAsync(eqfilter,update,options).ConfigureAwait(false);
+                    _db.UpdateOneAsync(eqfilter,update,options);
                 }
                 return true;
             }

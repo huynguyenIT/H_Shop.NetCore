@@ -21,11 +21,11 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
         {
             _db = db.GetAccountCollection();
         }
-        public async Task<bool> Create_Ad_acc(Account account)
+        public bool Create_Ad_acc(Account account)
         {
             try
             {
-                await _db.InsertOneAsync(account);
+                 _db.InsertOne(account);
                 //await db.SaveChangesAsync();
                 return true;
             }
@@ -39,13 +39,9 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
         {
             try
             {
-                ////var filter = Builders<Account>.Filter;
-                ////var serach = filter(id);
-                ////Account account = (Account)_db.Find(s=>s.idUser==id);
-                //FilterDefinitionBuilder<Account> filter = Builders<Account>.Filter;
-                //FilterDefinition<Account> eqFilter = filter.Where(x => x._id == id);
+               
                 await _db.DeleteOneAsync(id);
-               // db.SaveChanges();
+               
                 return true;
             }
             catch
@@ -66,7 +62,7 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
 
        
 
-        public async Task<List<Account_Role>> GetAllAccounts2()
+        public List<Account_Role> GetAllAccounts2()
         {
 
             var acccountCollection = db.GetAccountCollection();
@@ -80,23 +76,28 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
                                   LastName = account.LastName,
                                   RoleName = role.RoleName
                               };
-            return await accountInfo.ToListAsync();
+            return  accountInfo.ToList();
         }
 
-        public async Task<bool> Update_Ad_acc(Account account)
+        public bool Update_Ad_acc(Account custom)
         {
-            var acc = await GetAccountById(account._id);
+            var acc =  GetAccountById(custom._id);
             if (acc != null)
             {
-                acc.idUser = account.idUser;
-                acc.FirstName = account.FirstName;
-                acc.Email = account.Email;
-                acc.LastName = account.LastName;
-                acc.Password = Encryptor.MD5Hash(account.Password);
-                acc.RoleId = account.RoleId;
+                var eqfilter = Builders<Account>.Filter.Where(s => s.idUser == custom.idUser);
 
-               // await db.SaveChangesAsync();
-                return true;
+                var update = Builders<Account>.Update.Set(s => s.Email, custom.Email)
+                    .Set(s => s.FirstName, custom.FirstName)
+                    .Set(s => s.LastName, custom.LastName)
+                    .Set(s => s.Password, Encryptor.MD5Hash(custom.Password))
+                    .Set(s => s.idUser, custom.idUser);
+
+                var options = new UpdateOptions { IsUpsert = true };
+
+
+
+
+                _db.UpdateOneAsync(eqfilter, update, options);
             }
 
 
@@ -106,20 +107,28 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
             return false;
         }
 
-        public async Task<bool> Update_Ad_acc2(Account account)
+        public bool Update_Ad_acc2(Account custom)
         {
-            var acc = await GetAccountById(account._id);
+            var acc =  GetAccountById(custom._id);
             if (acc != null)
             {
-                acc.idUser = account.idUser;
-                acc.FirstName = account.FirstName;
-                acc.Email = account.Email;
-                acc.LastName = account.LastName;
-                // acc.Password = Encryptor.MD5Hash(account.Password);
-                acc.RoleId = account.RoleId;
+               
+                
+                    var eqfilter = Builders<Account>.Filter.Where(s => s.idUser == custom.idUser);
 
-              // await db.SaveChangesAsync();
-                return true;
+                    var update = Builders<Account>.Update.Set(s => s.Email, custom.Email)
+                        .Set(s => s.FirstName, custom.FirstName)
+                        .Set(s => s.LastName, custom.LastName)
+                        .Set(s => s.Password, Encryptor.MD5Hash(custom.Password))
+                        .Set(s => s.idUser, custom.idUser);
+
+                    var options = new UpdateOptions { IsUpsert = true };
+
+
+
+
+                    _db.UpdateOneAsync(eqfilter, update, options);
+                    return true;
             }
             return false;
         }

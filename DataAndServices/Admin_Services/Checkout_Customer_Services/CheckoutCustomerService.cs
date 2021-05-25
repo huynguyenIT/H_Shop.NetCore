@@ -21,10 +21,10 @@ namespace DataAndServices.Admin_Services.Checkout_Customer_Services
         {
             try
             {
-                FilterDefinitionBuilder<Checkout_Customer> filter = Builders<Checkout_Customer>.Filter;
-                FilterDefinition<Checkout_Customer> eqFilter = filter.Where(x => x._Id == id);
+                //FilterDefinitionBuilder<Checkout_Customer> filter = Builders<Checkout_Customer>.Filter;
+                //FilterDefinition<Checkout_Customer> eqFilter = filter.Where(x => x._Id == id);
 
-                await _db.DeleteOneAsync(eqFilter);
+                await _db.DeleteOneAsync(id);
 
               
                 return true;
@@ -50,29 +50,34 @@ namespace DataAndServices.Admin_Services.Checkout_Customer_Services
             return await _db.Find(s => s._Id == id).ToListAsync();
         }
 
-        public Task<bool> Update_Ad_acc(Checkout_Customer account)
+        public bool Update_Ad_acc(Checkout_Customer custom)
         {
-            var acc =  GetAccountById(account._Id);
+            var acc =  GetAccountById(custom._Id);
             if (acc != null)
             {
-                //acc.Id_KH = account.Id_KH;
-                //acc.FirstName = account.FirstName;
-                //acc.Email = account.Email;
-                //acc.LastName = account.LastName;
-                ////acc.NgayTao = account.NgayTao;
-                //acc.SDT = account.SDT;
-                //acc.TongTien = account.TongTien;
-                //acc.TrangThai = account.TrangThai;
-                //acc.Zipcode = account.Zipcode;
-                //acc.GiamGia = account.GiamGia;
-                //acc.DiaChi = account.DiaChi;
+                var eqfilter = Builders<Checkout_Customer>.Filter.Where(s => s._Id == custom._Id);
 
-                //db.SaveChanges();
-                //return true;
-                
+                var update = Builders<Checkout_Customer>.Update.Set(s => s.Email, custom.Email)
+                    .Set(s => s.FirstName, custom.FirstName)
+                    .Set(s => s.LastName, custom.LastName)
+                    .Set(s => s.City, custom.City)
+                    .Set(s => s.GiamGia, custom.GiamGia)
+                    .Set(s=>s.NgayTao,custom.NgayTao)
+                    .Set(s=>s.SDT,custom.SDT)
+                    .Set(s=>s.TongTien,custom.TongTien)
+                    .Set(s=>s.TrangThai,custom.TrangThai);
+
+                var options = new UpdateOptions { IsUpsert = true };
+
+
+
+
+                _db.UpdateOneAsync(eqfilter, update, options);
+                return true;
+
             }
 
-            return null;
+            return false;
 
 
 

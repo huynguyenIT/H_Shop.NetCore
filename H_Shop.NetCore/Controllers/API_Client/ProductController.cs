@@ -52,9 +52,9 @@ namespace H_Shop.NetCore.Controllers.API_Client
 
         [HttpGet]
         [Route("GetAllProductItemByPageList")]
-        public async Task<IActionResult> GetAllProductItemByPageList()
+        public IActionResult GetAllProductItemByPageList()
         {
-           var listProItemByPage= await  _productAdminService.GetProductItemByPageList();
+           var listProItemByPage=  _productAdminService.GetProductItemByPageList();
             return Ok(listProItemByPage);
         }
         [Route("GetAllProductItem")]

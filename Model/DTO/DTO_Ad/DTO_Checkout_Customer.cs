@@ -11,6 +11,7 @@ namespace Model.DTO.DTO_Ad
     {
 
         [Key]
+        public string _id { get; set; }
        
         public int Id_KH { get; set; }
 

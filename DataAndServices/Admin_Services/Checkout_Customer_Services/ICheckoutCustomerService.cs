@@ -20,7 +20,7 @@ namespace DataAndServices.Admin_Services.Checkout_Customer_Services
 
 
 
-        Task<bool> Update_Ad_acc(Checkout_Customer dTO_Account);
+        bool Update_Ad_acc(Checkout_Customer dTO_Account);
 
         Task<bool> DeleteAccount(string id);
     }

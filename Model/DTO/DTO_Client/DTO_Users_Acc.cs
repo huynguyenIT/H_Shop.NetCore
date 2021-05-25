@@ -12,6 +12,7 @@ namespace Model.DTO.DTO_Client
     {
         //[Key, Column(Order = 1)]
         //[DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public string _id { get; set; }
         public int idUser { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 3)]

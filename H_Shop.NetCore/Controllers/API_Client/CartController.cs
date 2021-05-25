@@ -20,14 +20,14 @@ namespace H_Shop.NetCore.Controllers.API_Client
             _cartServices = cartServices;
         }
         [Route("InsertBill")]
-        public  async Task<int> InsertBill(CheckoutCustomer_Order checkoutCustomer_Order)
+        public  int InsertBill(CheckoutCustomer_Order checkoutCustomer_Order)
         {
-            return await _cartServices.InsertBill(checkoutCustomer_Order);
+            return  _cartServices.InsertBill(checkoutCustomer_Order);
         }
         [Route("InsertCKOrder")]
-        public async Task<bool> InsertCKOrder(Checkout_Oder dTO_Account)
+        public bool InsertCKOrder(Checkout_Oder dTO_Account)
         {
-            return await _cartServices.InsertCheckoutOrder(dTO_Account);
+            return  _cartServices.InsertCheckoutOrder(dTO_Account);
         }
         [Route("GetGiamGia/{zipcode}")]
         public async Task< double> GetGiamGia(string zipcode)

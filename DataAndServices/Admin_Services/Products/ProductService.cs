@@ -331,21 +331,21 @@ namespace DataAndServices.Admin_Services.Products
 
         public List<Product_Item_Type> GetProductItemById_client(int id)
         {
-            var itemCollection = db.GetItemCollection();
+            var itemTypeCollection = db.GetItem_TypeCollection();
             var productCollection = db.GetProductClientCollection();
-            var Info = (from item in itemCollection.AsQueryable()
-                        join product in productCollection.AsQueryable() on item.Id_SanPham equals product.Id_SanPham
-                        where product.Id_SanPham == id && item.Id_SanPham == id
+            var Info = (from item in itemTypeCollection.AsQueryable()
+                        join product in productCollection.AsQueryable() on item.Id_Item equals product.Id_Item
+                        where  item.Id_Item == id
                         select new Product_Item_Type()
                         {
-                            _id = product._id,
+                            _id = item._id,
                             Id_SanPham = product.Id_SanPham,
                             Name = product.Name,
                             Price = product.Price,
                             Details = product.Details,
                             Photo = product.Photo,
                             Id_Item = product.Id_Item,
-                            Quantity = item.Quantity
+                            Type_Product = item.Type_Product
 
 
 
@@ -359,20 +359,20 @@ namespace DataAndServices.Admin_Services.Products
                     item.Price = Convert.ToInt32(GetPriceDiscountById(item.Id_SanPham));
                 }
             }
-            return  Info;
+            return  Info.ToList();
         }
 
-        public async Task<List<Product_Item_Type>> GetProductItemByPageList()
+        public List<Product_Item_Type> GetProductItemByPageList()
         {
             var itemCollection = db.GetItemCollection();
             var productCollection = db.GetProductClientCollection();
             var Info = (from item in itemCollection.AsQueryable()
-                        join product in productCollection.AsQueryable() on item.Id_SanPham equals product.Id_SanPham
-                        orderby product.Id_SanPham
+                        join product in productCollection.AsQueryable() on item._id equals product._id
+                        orderby item._id
                         //where product.Id_SanPham == id && item.Id_SanPham == id
                         select new Product_Item_Type()
                         {
-                            _id = product._id,
+                            _id = item._id,
                             Id_SanPham = product.Id_SanPham,
                             Name = product.Name,
                             Price = product.Price,
@@ -386,7 +386,7 @@ namespace DataAndServices.Admin_Services.Products
 
                         });
 
-            return await Info.ToListAsync();
+            return  Info.ToList();
         }
 
         public Dis_Product GetProduct_DiscountById(string id)
@@ -449,65 +449,30 @@ namespace DataAndServices.Admin_Services.Products
 
         }
 
-        //public Task<int> UpdateProduct(Product_Admin productItem, Item item)
-        //{
+     
 
-        //    try
-        //    {
-
-
-
-        //        Product_Admin prodItem = _db.Find(p => p.Id_SanPham == productItem.Id_SanPham).FirstOrDefault();
-        //        if (prodItem != null)
-        //        {
-        //            prodItem.Id_SanPham = productItem.Id_SanPham;
-        //            prodItem.Name = productItem.Name;
-        //            prodItem.Price = productItem.Price;
-        //            prodItem.Photo = productItem.Photo;
-        //            prodItem.Details = productItem.Details;
-        //            //prodItem.Id_Item = productItem.Id_Item;
-
-        //        }
-
-        //        Item it = _dbItem.Find(p => p.Id_SanPham == productItem.Id_SanPham).FirstOrDefault();
-        //        if (it != null)
-        //        {
-        //            it.Id_SanPham = item.Id_SanPham;
-        //            it.Quantity = item.Quantity;
-
-        //        }
-
-        //        try
-        //        {
-
-
-        //            //int result = db.SaveChanges();
-        //           // transaction.Commit();
-        //            //return result;
-        //        }
-        //        catch (Exception)
-        //        {
-        //            //transaction.Rollback();
-        //           // return -2;
-        //        }
-        //    }
-        //}
-
-        public async Task<bool> UpdateQuantityItem(string id ,int quantity)
+        public bool UpdateQuantityItem(Item item)
         {
-            var itemNow = await _dbItem.Find(s => s._id == id).FirstOrDefaultAsync();
+            var itemNow =  _dbItem.Find(s => s._id == item._id).FirstOrDefault();
 
-            //var quantityNow;
+           
             if (itemNow != null)
             {
                 var quantityNow = itemNow.Quantity; // vidu: 0.3 0.4
-                var quantityPay = quantityNow - quantity;
-                //if(itemNow.Quantity - quantity > 0)
+                var quantityPay = quantityNow - item.Quantity;
+               
                 if (quantityNow - quantityPay > 0)
                 {
-                    //Item item = new Item();
+
+                    
                     itemNow.Quantity = quantityPay;
-                    //item.Id_SanPham = id;
+                    var eqfilter = Builders<Item>.Filter.Where(s => s._id == item._id);
+                    var update = Builders<Item>.Update.Set(s => s.Quantity, itemNow.Quantity);
+                    
+
+                    var options = new UpdateOptions { IsUpsert = true };
+                    _dbItem.UpdateOne(eqfilter, update, options);
+
                     //db.SaveChanges();
                     return true;
                 }
@@ -553,9 +518,6 @@ namespace DataAndServices.Admin_Services.Products
             }
         }
 
-        public Task<bool> UpdateQuantityItem(Item item)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

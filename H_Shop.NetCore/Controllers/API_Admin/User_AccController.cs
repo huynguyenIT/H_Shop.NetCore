@@ -22,14 +22,14 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             _homeServices = homeServices;
         }
         [Route("Update")]
-        public async Task<bool> Update(User_Acc dTO_Account)
+        public bool Update(User_Acc dTO_Account)
         {
-            return await _users.Update_Ad_acc(dTO_Account);
+            return  _users.Update_Ad_acc(dTO_Account);
         }
         [Route("Update2")]
-        public async Task< bool> Update2(User_Acc dTO_Account)
+        public bool Update2(User_Acc dTO_Account)
         {
-            return await _users.Update_Ad_acc2(dTO_Account);
+            return  _users.Update_Ad_acc2(dTO_Account);
         }
 
         // DELETE: api/Admin_acc/5
@@ -67,17 +67,17 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             return Ok(cusDetails);
         }
         [Route("InsertCustomer")]
-        public async Task<bool> InsertCustomer(User_Acc cusInsert)
+        public bool InsertCustomer(User_Acc_Client cusInsert)
         {
-            return await _homeServices.InsertCustomer(cusInsert);
+            return  _homeServices.InsertCustomer(cusInsert);
         }
         [Route("UpdateCustomer")]
-        public async Task<bool> UpdateCustomer(User_Acc cusUpdate)
+        public bool UpdateCustomer(User_Acc_Client cusUpdate)
         {
-            return await _homeServices.UpdateCustomer(cusUpdate);
+            return _homeServices.UpdateCustomer(cusUpdate);
         }
         [Route("DeleteCustomer")]
-        public async Task<bool> DeleteCustomer(int id)
+        public async Task<bool> DeleteCustomer(string id)
         {
             return await _homeServices.DeleteCustomer(id);
         }

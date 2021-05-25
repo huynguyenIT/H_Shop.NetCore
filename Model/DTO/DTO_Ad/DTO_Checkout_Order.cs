@@ -9,6 +9,7 @@ namespace Model.DTO.DTO_Ad
 {
    public class DTO_Checkout_Order
     {
+        public string _id { get; set; }
         public int ID { get; set; }
 
         public int Id_KH { get; set; }

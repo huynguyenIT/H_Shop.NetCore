@@ -23,7 +23,7 @@ namespace DataAndServices.Admin_Services.CheckoutOrderServices
 
 
 
-        Task<bool> Update_Ad_acc(Checkout_Oder dTO_Account);
+        bool Update_Ad_acc(Checkout_Oder dTO_Account);
 
         Task<bool> DeleteAccount(string id);
     }

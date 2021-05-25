@@ -396,7 +396,7 @@ namespace UI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ResetPassword2(ResetPasswordModel2 model,int id, string mail)
+        public ActionResult ResetPassword2(ResetPasswordModel2 model,string id, string mail)
         {
             DTO_Users_Acc resultReset = GetCustomerByEmail(mail);
             string resultPass = GetCustomerByPassword(model.oldPassword);
@@ -404,7 +404,8 @@ namespace UI.Controllers
             {
                 resultReset.Password = model.NewPassword;
                 resultReset.Email = model.Mail;
-                resultReset.idUser = id;
+                //resultReset.idUser = id;
+                resultReset._id = id;
 
                 HttpResponseMessage responseUpdate = serviceObj.PutResponse(url + "UpdateCustomer3", resultReset);
                 responseUpdate.EnsureSuccessStatusCode();
@@ -632,7 +633,7 @@ namespace UI.Controllers
             
             UserLogin u = new UserLogin
             {
-                idUser = resultInsert,
+                _id = resultInsert.ToString(),
                 LastName = accountSocials.FullName,
                 Email = accountSocials.Email,
                 Password = ""

@@ -13,19 +13,19 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
         Task<List<Account>> GetAllAccounts();
 
 
-        Task<List<Account_Role>> GetAllAccounts2();
+        List<Account_Role> GetAllAccounts2();
 
 
         Task<Account> GetAccountById(string id);
 
 
-        Task<bool> Create_Ad_acc(Account Account);
+        bool Create_Ad_acc(Account Account);
 
 
-        Task<bool> Update_Ad_acc(Account Account);
+        bool Update_Ad_acc(Account Account);
 
 
-        Task<bool> Update_Ad_acc2(Account Account);
+        bool Update_Ad_acc2(Account Account);
 
 
         Task<bool> DeleteAccount(string id);

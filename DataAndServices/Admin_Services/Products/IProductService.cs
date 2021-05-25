@@ -29,7 +29,7 @@ namespace DataAndServices.Admin_Services.Products
 
         Product_Item_Type GetProductItemById2(string id);
 
-        Task<List<Product_Item_Type>> GetProductItemByPageList();
+        List<Product_Item_Type> GetProductItemByPageList();
 
         List<Product_Item_Type> GetProductItemById_client(int id);
 
@@ -54,7 +54,7 @@ namespace DataAndServices.Admin_Services.Products
 
 
 
-        Task<bool> UpdateQuantityItem(Item item);
+        bool UpdateQuantityItem(Item item);
 
 
 

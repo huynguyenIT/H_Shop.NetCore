@@ -10,10 +10,10 @@ namespace DataAndServices.Client_Services
 {
     public interface ICartServices
     {
-        Task<int> InsertBill(CheckoutCustomer_Order dTO_CheckoutCustomer_Order);
+        int InsertBill(CheckoutCustomer_Order dTO_CheckoutCustomer_Order);
 
 
-        Task<bool> InsertCheckoutOrder(Checkout_Oder checkout_Order);
+        bool InsertCheckoutOrder(Checkout_Oder checkout_Order);
 
 
         Task<double> GetGiamGia(string zipcode);

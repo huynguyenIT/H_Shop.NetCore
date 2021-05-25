@@ -21,10 +21,10 @@ namespace DataAndServices.Admin_Services.UserServices
        
 
 
-        Task<bool> Update_Ad_acc(User_Acc Account);
+        bool Update_Ad_acc(User_Acc Account);
 
 
-        Task<bool> Update_Ad_acc2(User_Acc Account);
+        bool Update_Ad_acc2(User_Acc Account);
 
 
         Task<bool> DeleteAccount(string id);

@@ -1,4 +1,5 @@
-﻿using DataAndServices.Data;
+﻿using DataAndServices.Common;
+using DataAndServices.Data;
 using DataAndServices.DataModel;
 using MongoDB.Driver;
 using System;
@@ -23,9 +24,10 @@ namespace DataAndServices.Client_Services
             _dbFeed = db.GetFeedbackCollection();
             _dbitemType = db.GetItem_TypeCollection();
         }
-        public Task<bool> DeleteCustomer(int id)
+        public async Task<bool> DeleteCustomer(string id)
         {
-            throw new NotImplementedException();
+            await _dbUser.DeleteOneAsync(id);
+            return true;
         }
 
         public async Task<List<User_Acc_Client>> GetAllCustomers()
@@ -63,44 +65,219 @@ namespace DataAndServices.Client_Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> InsertCustomer(User_Acc cusInsert)
+        public bool InsertCustomer(User_Acc_Client custom)
         {
-            throw new NotImplementedException();
+            if (!UserNameIsExist(custom.Email) && custom != null)
+            {
+                try
+                {
+                    custom.Password = Encryptor.MD5Hash(custom.Password);
+                    _dbUser.InsertOne(custom);
+                 
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return false;
         }
 
         public Task<bool> InsertFeedback(Feedback feedback)
         {
             throw new NotImplementedException();
         }
-
-        public Task<long> InsertForFacebook(User_Acc cusInsert)
+        public string PasswordIsExist(string email)
         {
-            throw new NotImplementedException();
+            string pass = Encryptor.MD5Hash(email);
+            var account = _dbUser.Find(t => t.Password == pass).SingleOrDefault();
+
+
+            if (account != null)
+                return Encryptor.MD5Hash(account.Password).ToString();
+            return "";
+
+        }
+        public bool UserNameIsExist(string userName)
+        {
+
+            var account = _dbUser.Find(t => t.Email == userName).SingleOrDefault();
+            if (account != null)
+                return true;
+            return false;
         }
 
-        public Task<long> InsertForGoogle(User_Acc cusInsert)
+        public string InsertForFacebook(User_Acc_Client cusInsert)
         {
-            throw new NotImplementedException();
+            var user = _dbUser.Find(x => x.Email == cusInsert.Email).SingleOrDefault();
+            if (user == null)
+            {
+                _dbUser.InsertOne(cusInsert);
+
+                return cusInsert._id;
+            }
+            else
+            {
+                return user._id;
+            }
         }
 
-        public Task<User_Acc_Client> LoginCustomer(string user, string pass)
+        public string InsertForGoogle(User_Acc_Client cusInsert)
         {
-            throw new NotImplementedException();
+            var user = _dbUser.Find(x => x.Email == cusInsert.Email).SingleOrDefault();
+            if (user == null)
+            {
+                _dbUser.InsertOne(cusInsert);
+                
+                return cusInsert._id;
+            }
+            else
+            {
+                return user._id;
+            }
+            
         }
 
-        public Task<bool> UpdateCustomer(User_Acc cusUpdate)
+        public async Task<User_Acc_Client> LoginCustomer(string user, string pass)
         {
-            throw new NotImplementedException();
+            string hash = Encryptor.MD5Hash(pass);
+            var cus = await _dbUser.Find(x => x.Email == user & x.Password == hash).FirstOrDefaultAsync();
+            if (cus != null)
+                return new User_Acc_Client() { _id = cus._id, Email = cus.Email, LastName = cus.LastName, FirstName = cus.FirstName, idUser = cus.idUser, RoleId = cus.RoleId };
+            return new User_Acc_Client();
+
         }
 
-        public Task<bool> UpdateCustomer2(User_Acc cusUpdate)
+        public bool UpdateCustomer(User_Acc_Client custom)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var userAccount = GetCustomerByID(custom._id);
+
+                if (userAccount != null)
+                {
+
+
+
+                    //userAccount.idUser = custom.idUser;
+                    //// userAccount.Password = Encryptor.MD5Hash(custom.Password);
+                    //userAccount.LastName = custom.LastName;
+                    //userAccount.FirstName = custom.FirstName;
+                    //userAccount.Email = custom.Email;
+
+                    //db.SaveChanges();
+
+                    var eqfilter = Builders<User_Acc_Client>.Filter.Where(s => s._id == custom._id);
+
+                    var update = Builders<User_Acc_Client>.Update.Set(s => s.Email, custom.Email)
+                        .Set(s => s.FirstName, custom.FirstName)
+                        .Set(s => s.LastName, custom.LastName)
+                       //.Set(s => s.Password, Encryptor.MD5Hash(custom.Password))
+                       .Set(s => s._id, custom._id);
+
+                    var options = new UpdateOptions { IsUpsert = true };
+
+
+
+
+                    _dbUser.UpdateOneAsync(eqfilter, update, options);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public Task<bool> UpdateCustomer3(User_Acc cusUpdate)
+        public bool UpdateCustomer2(User_Acc_Client custom)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var userAccount = GetCustomerByID(custom._id);
+                if (userAccount != null)
+                {
+
+
+                    var eqfilter = Builders<User_Acc_Client>.Filter.Where(s => s._id == custom._id);
+
+                    var update = Builders<User_Acc_Client>.Update.Set(s => s.Email, custom.Email)
+                        .Set(s => s.FirstName, custom.FirstName)
+                        .Set(s => s.LastName, custom.LastName)
+                        .Set(s => s.Password, Encryptor.MD5Hash(custom.Password))
+                        .Set(s => s._id, custom._id);
+
+                    var options = new UpdateOptions { IsUpsert = true };
+
+
+
+
+                    _dbUser.UpdateOneAsync(eqfilter, update, options);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
+
+        public bool UpdateCustomer3(User_Acc_Client custom)
+        {
+            try
+            {
+                var userAccount = GetCustomerByID(custom._id);
+
+                if (userAccount != null)
+                {
+                   
+                    var eqfilter = Builders<User_Acc_Client>.Filter.Where(s => s._id== custom._id);
+
+                    var update = Builders<User_Acc_Client>.Update.Set(s => s.Email, custom.Email)
+                        .Set(s => s.FirstName, custom.FirstName)
+                        .Set(s => s.LastName, custom.LastName)
+                        .Set(s => s.Password, Encryptor.MD5Hash(custom.Password))
+                        .Set(s => s._id, custom._id);
+
+                    var options = new UpdateOptions { IsUpsert = true };
+
+
+
+
+                    _dbUser.UpdateOneAsync(eqfilter, update, options);
+                    return true;
+                }
+                return false;
+
+
+
+
+
+
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+      
+        //public bool ChangeStatusCustomer(int userID)
+        //{
+        //    try
+        //    {
+        //        var acc = db.Users_Acc.SingleOrDefault(x => x.idUser == userID);
+        //        acc.Statu = !acc.Statu;
+        //        db.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return false;
+        //    }
+        //}
+       
+      
     }
 }

@@ -24,11 +24,11 @@ namespace H_Shop.NetCore.Controllers.API_Admin
 
         [HttpPut]
         [Route("UpdateAccount")]
-        public async Task<bool> UpdateCustomer([FromForm] Account model)
+        public bool UpdateCustomer([FromForm] Account model)
         {
             try
             {
-                return await accountService.UpdateCustomer(model);
+                return  accountService.UpdateCustomer(model);
             }
             catch (Exception)
             {

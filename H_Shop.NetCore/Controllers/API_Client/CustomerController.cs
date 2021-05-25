@@ -54,11 +54,11 @@ namespace H_Shop.NetCore.Controllers.API_Client
 
         [HttpPut]
         [Route("UpdateCustomer")]
-        public async Task<bool> UpdateCustomer(User_Acc model)
+        public bool UpdateCustomer(User_Acc_Client model)
         {
             try
             {
-                return await _homeServices.UpdateCustomer(model);
+                return  _homeServices.UpdateCustomer(model);
             }
             catch (Exception)
             {
@@ -68,11 +68,11 @@ namespace H_Shop.NetCore.Controllers.API_Client
         }
         [HttpPut]
         [Route("UpdateCustomer2")]
-        public async Task<bool> UpdateCustomer2(User_Acc model)
+        public bool UpdateCustomer2(User_Acc_Client model)
         {
             try
             {
-                return await _homeServices.UpdateCustomer2(model);
+                return  _homeServices.UpdateCustomer2(model);
             }
             catch (Exception)
             {
@@ -82,11 +82,11 @@ namespace H_Shop.NetCore.Controllers.API_Client
         }
         [HttpPut]
         [Route("UpdateCustomer3")]
-        public async Task<bool> UpdateCustomer3(User_Acc model)
+        public bool UpdateCustomer3(User_Acc_Client model)
         {
             try
             {
-                return await _homeServices.UpdateCustomer3(model);
+                return  _homeServices.UpdateCustomer3(model);
             }
             catch (Exception)
             {
@@ -97,11 +97,11 @@ namespace H_Shop.NetCore.Controllers.API_Client
 
         [HttpPost]
         [Route("InsertForFacebook")]
-        public async Task<long> InsertForFacebook(User_Acc model)
+        public string InsertForFacebook(User_Acc_Client model)
         {
             try
             {
-                return await _homeServices.InsertForFacebook(model);
+                return _homeServices.InsertForFacebook(model);
             }
             catch (Exception)
             {
@@ -110,11 +110,11 @@ namespace H_Shop.NetCore.Controllers.API_Client
             }
         }
         [Route(" InsertForGoogle")]
-        public async Task<long> InsertForGoogle(User_Acc model)
+        public string InsertForGoogle(User_Acc_Client model)
         {
             try
             {
-                return await _homeServices.InsertForGoogle(model);
+                return _homeServices.InsertForGoogle(model);
             }
             catch (Exception)
             {
@@ -124,11 +124,11 @@ namespace H_Shop.NetCore.Controllers.API_Client
         }
         [HttpPost]
         [Route("InsertCustomer")]
-        public async Task<bool> InsertCustomer(User_Acc cusInsert)
+        public bool InsertCustomer(User_Acc_Client cusInsert)
         {
             try
             {
-                return await _homeServices.InsertCustomer(cusInsert);
+                return _homeServices.InsertCustomer(cusInsert);
             }
             catch (Exception)
             {

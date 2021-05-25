@@ -16,7 +16,7 @@ namespace DataAndServices.Admin_Services.AccountService
         //Task<bool> UserNameIsExitst(string username);
 
 
-        Task<bool> UpdateCustomer(Account cusUpdate);
+        bool UpdateCustomer(Account cusUpdate);
 
 
         Task<bool> DeleteCustomer(string _id);
