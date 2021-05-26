@@ -80,15 +80,15 @@ namespace H_Shop.NetCore.Controllers.API_Client
         }
         [HttpGet]
         [Route("GetProductItemById/{Id}")]
-        public IActionResult GetProductItemById(int Id)
+        public IActionResult GetProductItemById(string Id)
         {
             var proItemById=  _productAdminService.GetProductItemById(Id);
             return Ok(proItemById);
         }
-        [Route("GetSoLuong/{Id:int}")]
-        public async Task<int> GetSoLuong(int Id)
+        [Route("GetSoLuong/{Id}")]
+        public int GetSoLuong(string Id)
         {
-            return await _productClientService.GetSoLuong(Id);
+            return  _productClientService.GetSoLuong(Id);
         }
     }
 }

@@ -99,7 +99,6 @@ C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAn
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.dll
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.pdb
 C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\DataAndServices\obj\Debug\DataAndServices.csprojAssemblyReference.cache
-C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\obj\Debug\DataAndServices.csprojAssemblyReference.cache
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\obj\Debug\DataAndServices.csproj.CoreCompileInputs.cache
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\obj\Debug\DataAndServices.dll
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\obj\Debug\DataAndServices.pdb
@@ -133,3 +132,4 @@ C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\bin\Debug\M
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\bin\Debug\System.Buffers.xml
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\obj\Debug\DataAndServices.csproj.CopyComplete
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\obj\Debug\DataAndServices.csprojAssemblyReference.cache

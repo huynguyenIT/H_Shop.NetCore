@@ -16,11 +16,11 @@ namespace UI.Areas.Admin.Controllers
 
         // GET: Admin/Admin_acc
 
-        [DeatAuthorize(Order =2)]
+        [DeatAuthorize(Order = 2)]
         public ActionResult Index()
         {
 
-           
+
             HttpResponseMessage responseMessage = service.GetResponse("api/Admin_acc/getallaccounts");
             responseMessage.EnsureSuccessStatusCode();
             List<DTO_Account> dTO_Accounts = responseMessage.Content.ReadAsAsync<List<DTO_Account>>().Result;
@@ -33,7 +33,7 @@ namespace UI.Areas.Admin.Controllers
             HttpResponseMessage responseMessage = service.GetResponse("api/Admin_acc/GetAccountById/" + id);
             responseMessage.EnsureSuccessStatusCode();
             DTO_Account dtoAccounts = responseMessage.Content.ReadAsAsync<DTO_Account>().Result;
-            
+
             return View(dtoAccounts);
         }
         [HttpGet]
@@ -66,7 +66,7 @@ namespace UI.Areas.Admin.Controllers
                     HttpResponseMessage response = service.PostResponse("api/Admin_acc/Update2/", dTO_Account);
                     response.EnsureSuccessStatusCode();
                 }
-                
+
             }
             else
             {
@@ -86,7 +86,7 @@ namespace UI.Areas.Admin.Controllers
                 }
             }
 
-           
+
 
 
             return RedirectToAction("Index");
@@ -126,7 +126,7 @@ namespace UI.Areas.Admin.Controllers
 
         //    return View(dtoAccounts);
         //}
-        
+
         public ActionResult Delete(string id)
         {
             try

@@ -63,7 +63,7 @@
                                                     <td>
 
 
-                                                        @item.Id_SanPham
+                                                        @item._id
 
 
                                                     </td>
@@ -85,7 +85,7 @@
                                                         @string.Format("{0:0,0}", (item.Price * item.Quantity))
                                                     </td>
                                                     @*<td><button><i class="fa fa-trash"></i></button></td>*@
-                                                    <td><a onclick="Remove()" id="btn_remove" href="@Url.Action("Remove", "Cart", new { id = item.Id_SanPham })"><i class="fa fa-trash">Xóa</i></a></td>
+                                                    <td><a onclick="Remove()" id="btn_remove" href="@Url.Action("Remove", "Cart", new { id = @item._id })"><i class="fa fa-trash">Xóa</i></a></td>
 
                                                 </tr>
 

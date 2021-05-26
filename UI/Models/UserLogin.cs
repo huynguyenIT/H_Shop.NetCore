@@ -26,7 +26,7 @@ namespace UI.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Yêu cầu nhập Mật khẩu")]
-        
+
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

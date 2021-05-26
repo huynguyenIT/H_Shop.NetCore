@@ -83,12 +83,14 @@ namespace DataAndServices.Admin_Services.Products
         {
             try
             {
-                //var product = _db.Find(s=>s.Id_SanPham==id).FirstOrDefault();
+                //var product = _db.Find(s=>s._id==id).FirstOrDefault();
+                var deleteFilter = Builders<Product_Admin>.Filter.Eq("_id", id);
                 //Item item = _dbItem.Find(s => s.Id_SanPham == id).FirstOrDefault();
                 //Discount_Product discount_Product = _dbDis.Find(s => s.Id_SanPham == id).FirstOrDefault();
-                _db.DeleteOne(id);
-                _dbItem.DeleteOne(id);
-                _dbDis.DeleteOne(id);
+                _db.DeleteOne(deleteFilter);
+                //_db.DeleteOne(product, id);
+                //_dbItem.DeleteOne(id);
+                //_dbDis.DeleteOne(id);
                // db.Discount_Product.Remove(discount_Product);
                 //db.Items.Remove(item);
                // db.SaveChanges();
@@ -234,16 +236,16 @@ namespace DataAndServices.Admin_Services.Products
 
         }
 
-        public  Product_Item_Type GetProductItemById(int id)
+        public  Product_Item_Type GetProductItemById(string id)
         {
             var itemCollection = db.GetItemCollection();
             var productCollection = db.GetProductClientCollection();
             var Info =  (from item in itemCollection.AsQueryable()
-                       join product in productCollection.AsQueryable() on item.Id_SanPham equals product.Id_SanPham
-                       where product.Id_SanPham == id && item.Id_SanPham == id
+                       join product in productCollection.AsQueryable() on item._id equals product._id
+                       where  item._id == id
                        select new Product_Item_Type()
                        {
-                           _id = product._id,
+                           _id = item._id,
                            Id_SanPham = product.Id_SanPham,
                            Name = product.Name,
                            Price = product.Price,
@@ -494,6 +496,7 @@ namespace DataAndServices.Admin_Services.Products
                 var update = Builders<Product_Admin>.Update.Set(s => s.Name, custom.Name)
                     .Set(s => s.Photo, custom.Photo)
                     .Set(s => s.Details, custom.Details)
+                    .Set(s => s.Price, custom.Price)
                     .Set(s => s._id, custom._id)
                     .Set(s => s.Id_Item, custom.Id_Item);
 

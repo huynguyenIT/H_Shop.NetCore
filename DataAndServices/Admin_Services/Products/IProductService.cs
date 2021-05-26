@@ -23,7 +23,7 @@ namespace DataAndServices.Admin_Services.Products
 
         List<Dis_Product> GetProductById_Item(int id);
 
-        Product_Item_Type GetProductItemById(int id);
+        Product_Item_Type GetProductItemById(string id);
 
         Product_Item_Type GetProductItemById_admin(string id);
 

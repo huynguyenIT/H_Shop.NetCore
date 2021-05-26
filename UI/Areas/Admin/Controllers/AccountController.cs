@@ -47,15 +47,15 @@ namespace UI.Areas.Admin.Controllers
         public AdminLogin CheckAccount()
         {
             AdminLogin result = null;
-         
+
             string firstname = string.Empty;
-          
+
             if (Request.Cookies["firstname1"] != null)
                 firstname = Request.Cookies["firstname1"].Value;
 
-           
+
             if (!string.IsNullOrEmpty(firstname))
-                result = new AdminLogin {  FirstName = firstname };
+                result = new AdminLogin { FirstName = firstname };
             return result;
         }
         public ActionResult AddRegister()
@@ -69,73 +69,73 @@ namespace UI.Areas.Admin.Controllers
         [DeatAuthorize(Order = 2)]
         public ActionResult AddRegister([Bind(Include = "FirstName,LastName,Email,Password,ConfirmPassword")] RegisterAdminModel model, string AuthenticationCode)
         {
-           
-            if (ModelState.IsValid )
+
+            if (ModelState.IsValid)
             {
-               
-                    //check email đã đc dùng
-                    var mail = GetAccountByEmail(model.Email);
-                    if (mail != null)
-                    {
-                        ModelState.AddModelError("", "Email này đã được sử dụng.");
-                        return View(model);
-                    }
 
-                    DTO_Account c = new DTO_Account
-                    {
-                        FirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(model.FirstName.Trim().ToLower()),
-                        LastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(model.LastName.Trim().ToLower()),
-                        Password = model.Password,
-                        Email = model.Email,
-                        RoleId=model.RoleId
+                //check email đã đc dùng
+                var mail = GetAccountByEmail(model.Email);
+                if (mail != null)
+                {
+                    ModelState.AddModelError("", "Email này đã được sử dụng.");
+                    return View(model);
+                }
 
-
-                    };
-                     var stt = Request.Form["stt"];
-                     if (stt == "Admin")
-                     {
-                            c.RoleId = 1;
-
-                            HttpResponseMessage response = serviceObj.PostResponse(url + "InsertAccount/", c);
-                            response.EnsureSuccessStatusCode();
-                     }
-                     else
-                     {
-
-                             c.RoleId = 2;
-                             
-                            HttpResponseMessage response = serviceObj.PostResponse(url + "InsertAccount/", c);
-                            response.EnsureSuccessStatusCode();
-                     }
+                DTO_Account c = new DTO_Account
+                {
+                    FirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(model.FirstName.Trim().ToLower()),
+                    LastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(model.LastName.Trim().ToLower()),
+                    Password = model.Password,
+                    Email = model.Email,
+                    RoleId = model.RoleId
 
 
+                };
+                var stt = Request.Form["stt"];
+                if (stt == "Admin")
+                {
+                    c.RoleId = 1;
 
-
-
-                    //AdminLogin u = new AdminLogin
-
-                    //{
-
-                    //    FirstName = c.FirstName,
-                    //    Password = c.Password,
-                    //    Email = c.Email
-                    //};
-                    //var userSession = new UserLogin();
-                    //userSession.UserName = model.Name;
-                    //userSession.Email = model.UserName;
-                    //Session[Constants.USER_SESSION] = null;
-                    //Session[Constants.USER_SESSION] = u;
-                     ModelState.Clear();
-                    ViewData["ErrorMessage"]= "Đăng ký thành công";
-                    return View();
+                    HttpResponseMessage response = serviceObj.PostResponse(url + "InsertAccount/", c);
+                    response.EnsureSuccessStatusCode();
                 }
                 else
                 {
-                    ViewData["ErrorMessage"]= "Vui lòng kiểm tra lại thông tin";
-                    return View(model);
+
+                    c.RoleId = 2;
+
+                    HttpResponseMessage response = serviceObj.PostResponse(url + "InsertAccount/", c);
+                    response.EnsureSuccessStatusCode();
                 }
-            
-            
+
+
+
+
+
+                //AdminLogin u = new AdminLogin
+
+                //{
+
+                //    FirstName = c.FirstName,
+                //    Password = c.Password,
+                //    Email = c.Email
+                //};
+                //var userSession = new UserLogin();
+                //userSession.UserName = model.Name;
+                //userSession.Email = model.UserName;
+                //Session[Constants.USER_SESSION] = null;
+                //Session[Constants.USER_SESSION] = u;
+                ModelState.Clear();
+                ViewData["ErrorMessage"] = "Đăng ký thành công";
+                return View();
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Vui lòng kiểm tra lại thông tin";
+                return View(model);
+            }
+
+
         }
 
         public DTO_Account GetAccountByEmail(string mail)
@@ -174,7 +174,7 @@ namespace UI.Areas.Admin.Controllers
                 //    Email = customLogin.Email,
                 //    Password = customLogin.Password
                 //};
-               
+
 
                 HttpCookie ck1 = new HttpCookie("firstname1", (resultLogin.FirstName + "  " + resultLogin.LastName).ToString());
                 ck1.Expires = DateTime.Now.AddHours(48);
@@ -192,7 +192,7 @@ namespace UI.Areas.Admin.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"]=( "Tên đăng nhập hoặc mật khẩu không tồn tại.");
+                ViewData["ErrorMessage"] = ("Tên đăng nhập hoặc mật khẩu không tồn tại.");
             }
             return this.View();
 
@@ -202,7 +202,7 @@ namespace UI.Areas.Admin.Controllers
             try
             {
                 Session.Remove(CommonConstants.ACCOUNT_SESSION);
-               
+
 
                 if (Request.Cookies["firstname1"] != null)
                 {
@@ -212,13 +212,13 @@ namespace UI.Areas.Admin.Controllers
                 }
 
 
-               
+
 
                 //Session.Clear();
                 Session.Abandon();
                 //Response.Cookies.Clear();
                 //Request.Cookies.Clear(); 
-                
+
                 return RedirectToAction("Login", "Account");
             }
             catch (Exception)

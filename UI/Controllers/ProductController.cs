@@ -17,24 +17,24 @@ namespace UI.Controllers
     {
         ServiceRepository service = new ServiceRepository();
 
-        public  ActionResult TypeProduct()
+        public ActionResult TypeProduct()
         {
-            HttpResponseMessage responseMessage =  service.GetResponse("api/Products_Ad/GetAllProductByType");
+            HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetAllProductByType");
             responseMessage.EnsureSuccessStatusCode();
-            List<List<DTO_Dis_Product>> dTO_Accounts =  responseMessage.Content.ReadAsAsync<List<List<DTO_Dis_Product>>>().Result;
-           
+            List<List<DTO_Dis_Product>> dTO_Accounts = responseMessage.Content.ReadAsAsync<List<List<DTO_Dis_Product>>>().Result;
+
 
             //HttpResponseMessage responseMessage3 = service.GetResponse("api/Products_Ad/GetAllProductByType");
             //responseMessage3.EnsureSuccessStatusCode();
             //List<List<DTO_Product>> dTO_Accounts2 = responseMessage3.Content.ReadAsAsync<List<List<DTO_Product>>>().Result;
-            var view =  dTO_Accounts.ToPagedList(1, 50);
+            var view = dTO_Accounts.ToPagedList(1, 50);
             return View(view);
 
         }
         // GET: Product
-        public ActionResult Index( FormCollection fc, int? page, int? gia, int? gia_,string searchName1)
+        public ActionResult Index(FormCollection fc, int? page, int? gia, int? gia_, string searchName1)
         {
-    
+
             var searchName = fc["searchName"];
             var searchPrice = Request.Form["searchPrice"];
             var priceGiaMin = Request.Form["priceGiaMin"];
@@ -52,7 +52,7 @@ namespace UI.Controllers
 
             int pageNumber = (page ?? 1);
 
-            if ((searchName != null && searchName != "")|| (searchName1!="" && searchName1!=null))
+            if ((searchName != null && searchName != "") || (searchName1 != "" && searchName1 != null))
             {
                 try
                 {
@@ -98,7 +98,7 @@ namespace UI.Controllers
 
             //}
 
-            if (priceGiaMin!=null && priceGiaMax!=null && priceGiaMin!="" && priceGiaMax != "")
+            if (priceGiaMin != null && priceGiaMax != null && priceGiaMin != "" && priceGiaMax != "")
             {
                 HttpResponseMessage responseMessage2 = service.GetResponse("api/product/GetAllProductByPrice/" + priceGiaMin + "/" + priceGiaMax);
                 responseMessage2.EnsureSuccessStatusCode();
@@ -115,7 +115,7 @@ namespace UI.Controllers
                 List<DTO_Dis_Product> dTO_Accounts2 = responseMessage2.Content.ReadAsAsync<List<DTO_Dis_Product>>().Result;
                 return View(dTO_Accounts2.ToPagedList(pageNumber, pageSize));
 
-              
+
             }
             catch
             {
@@ -123,20 +123,20 @@ namespace UI.Controllers
                 //responseMessage.EnsureSuccessStatusCode();
                 //List<DTO_Product_Client> dTO_Accounts = responseMessage.Content.ReadAsAsync<List<DTO_Product_Client>>().Result;
                 //return View(dTO_Accounts.ToPagedList(pageNumber, pageSize));
-                HttpResponseMessage responseMessage =  service.GetResponse("api/Products_Ad/GetAllProduct_Discount");
+                HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetAllProduct_Discount");
                 responseMessage.EnsureSuccessStatusCode();
                 List<DTO_Dis_Product> dTO_Accounts = responseMessage.Content.ReadAsAsync<List<DTO_Dis_Product>>().Result;
                 return View(dTO_Accounts.ToPagedList(pageNumber, pageSize));
 
             }
-           
+
 
 
 
 
 
         }
-        public ActionResult Index_(DTO_Dis_Product dTO_Product,int? page)
+        public ActionResult Index_(DTO_Dis_Product dTO_Product, int? page)
         {
             if (page == null) page = 1;
             int pageSize = 25;
@@ -148,8 +148,8 @@ namespace UI.Controllers
             return View(dTO_Accounts.ToPagedList(pageNumber, pageSize));
 
 
-            
-            
+
+
 
 
 
@@ -157,10 +157,10 @@ namespace UI.Controllers
 
 
         }
-        public ActionResult Search(  int? page, string searchName)
+        public ActionResult Search(int? page, string searchName)
         {
 
-        
+
 
 
 
@@ -188,7 +188,7 @@ namespace UI.Controllers
         public ActionResult Index2(int id, string seachBy, string search, int? page, int? gia, int? gia_)
         {
 
-           
+
 
             if (page == null) page = 1;
 
@@ -222,9 +222,9 @@ namespace UI.Controllers
             }
             HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetAllProductByIdItem/" + id);
             responseMessage.EnsureSuccessStatusCode();
-           
+
             List<DTO_Dis_Product> dTO_Accounts = responseMessage.Content.ReadAsAsync<List<DTO_Dis_Product>>().Result;
-          
+
             if (dTO_Accounts == null)
             {
                 return Content("Chưa có sản phẩm bạn đang muốn tìm kiếm");
@@ -384,10 +384,10 @@ namespace UI.Controllers
 
         private int isExist(string Id)
         {
-           List<DTO_Product_Item_Type> cart = (List< DTO_Product_Item_Type>)Session["cart"];
+            List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
 
             for (int i = 0; i < cart.Count; i++)
-                if (cart[i].Id_SanPham.Equals(Id))
+                if (cart[i]._id.Equals(Id))
                     return i;
             return -1;
         }
@@ -401,94 +401,7 @@ namespace UI.Controllers
         }
         public ActionResult Buy(string Id)
         {
-            
-                HttpResponseMessage response = service.GetResponse("api/Product/GetSoLuong/" + Id);
 
-                response.EnsureSuccessStatusCode();
-                int quantity = response.Content.ReadAsAsync<int>().Result;
-                if (quantity > 0)
-                {
-                    if (Session["cart"] == null)
-                    {
-                        List<DTO_Product_Item_Type> li = new List<DTO_Product_Item_Type>();
-                        // var product = db.Products.Find(Id);
-
-                        HttpResponseMessage responseUser = service.GetResponse("api/Products_Ad/GetProductItemById/" + Id);
-                        responseUser.EnsureSuccessStatusCode();
-                        DTO_Product_Item_Type proItem = responseUser.Content.ReadAsAsync<DTO_Product_Item_Type>().Result;
-
-
-                        li.Add(new DTO_Product_Item_Type()
-                        {
-
-                            Quantity = 1,
-                            Id_SanPham = proItem.Id_SanPham,
-                            Name = proItem.Name,
-                            Price = proItem.Price,
-                            Details = proItem.Details,
-                            Photo = proItem.Photo,
-                            Id_Item = proItem.Id_Item,
-                            //Quantity = item.Quantity
-                        });
-                        Session["cart"] = li;
-
-
-
-
-
-
-                    }
-                    else
-                    {
-                        List<DTO_Product_Item_Type> li = (List<DTO_Product_Item_Type>)Session["cart"];
-                        HttpResponseMessage responseUser = service.GetResponse("api/Products_Ad/GetProductItemById/" + Id);
-                        responseUser.EnsureSuccessStatusCode();
-                        DTO_Product_Item_Type proItem = responseUser.Content.ReadAsAsync<DTO_Product_Item_Type>().Result;
-
-                        int index = isExist(Id);
-                        if (index != -1)
-                        {
-                            li[index].Quantity++;
-                        }
-                        else
-                        {
-                            li.Add(new DTO_Product_Item_Type()
-                            {
-
-                                Id_SanPham = proItem.Id_SanPham,
-                                Name = proItem.Name,
-                                Price = proItem.Price,
-                                Details = proItem.Details,
-                                Photo = proItem.Photo,
-                                Id_Item = proItem.Id_Item,
-                                Quantity = 1
-                            });
-
-                        }
-
-
-                        Session["cart"] = li;
-
-                    }
-                    return RedirectToAction("Details", "Product");
-                }
-                else
-                {
-                    
-                    return RedirectToAction("HetHang","Cart");
-                }
-            
-            
-        }
-         
-               
-         
-           
-
-        
-        
-        public ActionResult Buy_Favorite(string Id)
-        {
             HttpResponseMessage response = service.GetResponse("api/Product/GetSoLuong/" + Id);
 
             response.EnsureSuccessStatusCode();
@@ -505,11 +418,11 @@ namespace UI.Controllers
                     DTO_Product_Item_Type proItem = responseUser.Content.ReadAsAsync<DTO_Product_Item_Type>().Result;
 
 
-
                     li.Add(new DTO_Product_Item_Type()
                     {
 
                         Quantity = 1,
+                        _id = proItem._id,
                         Id_SanPham = proItem.Id_SanPham,
                         Name = proItem.Name,
                         Price = proItem.Price,
@@ -519,7 +432,6 @@ namespace UI.Controllers
                         //Quantity = item.Quantity
                     });
                     Session["cart"] = li;
-                    return Json(new { buy = li, status="Thành công" });
 
 
 
@@ -545,6 +457,7 @@ namespace UI.Controllers
                         {
 
                             Id_SanPham = proItem.Id_SanPham,
+                            _id = proItem._id,
                             Name = proItem.Name,
                             Price = proItem.Price,
                             Details = proItem.Details,
@@ -552,12 +465,103 @@ namespace UI.Controllers
                             Id_Item = proItem.Id_Item,
                             Quantity = 1
                         });
-                        return Json(new { buy = li,status="Thành công" });
+
                     }
 
 
                     Session["cart"] = li;
-                    return Json(new { buy = li,status ="Thành công" });
+
+                }
+                return RedirectToAction("Details", "Product");
+            }
+            else
+            {
+
+                return RedirectToAction("HetHang", "Cart");
+            }
+
+
+        }
+
+
+
+
+
+
+
+        public ActionResult Buy_Favorite(string Id)
+        {
+            HttpResponseMessage response = service.GetResponse("api/Product/GetSoLuong/" + Id);
+
+            // response.EnsureSuccessStatusCode();
+            int quantity = response.Content.ReadAsAsync<int>().Result;
+            if (quantity > 0)
+            {
+                if (Session["cart"] == null)
+                {
+                    List<DTO_Product_Item_Type> li = new List<DTO_Product_Item_Type>();
+                    // var product = db.Products.Find(Id);
+
+                    HttpResponseMessage responseUser = service.GetResponse("api/Products_Ad/GetProductItemById/" + Id);
+                    responseUser.EnsureSuccessStatusCode();
+                    DTO_Product_Item_Type proItem = responseUser.Content.ReadAsAsync<DTO_Product_Item_Type>().Result;
+
+
+
+                    li.Add(new DTO_Product_Item_Type()
+                    {
+
+                        Quantity = 1,
+                        Id_SanPham = proItem.Id_SanPham,
+                        _id = proItem._id,
+                        Name = proItem.Name,
+                        Price = proItem.Price,
+                        Details = proItem.Details,
+                        Photo = proItem.Photo,
+                        Id_Item = proItem.Id_Item,
+                        //Quantity = item.Quantity
+                    });
+                    Session["cart"] = li;
+                    return Json(new { buy = li, status = "Thành công" });
+
+
+
+
+
+
+                }
+                else
+                {
+                    List<DTO_Product_Item_Type> li = (List<DTO_Product_Item_Type>)Session["cart"];
+                    HttpResponseMessage responseUser = service.GetResponse("api/Products_Ad/GetProductItemById/" + Id);
+                    responseUser.EnsureSuccessStatusCode();
+                    DTO_Product_Item_Type proItem = responseUser.Content.ReadAsAsync<DTO_Product_Item_Type>().Result;
+
+                    int index = isExist(Id);
+                    if (index != -1)
+                    {
+                        li[index].Quantity++;
+                    }
+                    else
+                    {
+                        li.Add(new DTO_Product_Item_Type()
+                        {
+
+                            Id_SanPham = proItem.Id_SanPham,
+                            _id = proItem._id,
+                            Name = proItem.Name,
+                            Price = proItem.Price,
+                            Details = proItem.Details,
+                            Photo = proItem.Photo,
+                            Id_Item = proItem.Id_Item,
+                            Quantity = 1
+                        });
+                        return Json(new { buy = li, status = "Thành công" });
+                    }
+
+
+                    Session["cart"] = li;
+                    return Json(new { buy = li, status = "Thành công" });
 
                 }
 
@@ -576,7 +580,7 @@ namespace UI.Controllers
         {
             if (Session["cart"] == null)
             {
-                List<DTO_Product_Item_Type> li = new List<DTO_Product_Item_Type> ();
+                List<DTO_Product_Item_Type> li = new List<DTO_Product_Item_Type>();
                 HttpResponseMessage responseUser = service.GetResponse("api/Products_Ad/GetProductItemById/" + Id);
                 responseUser.EnsureSuccessStatusCode();
                 DTO_Product_Item_Type proItem = responseUser.Content.ReadAsAsync<DTO_Product_Item_Type>().Result;
@@ -585,6 +589,7 @@ namespace UI.Controllers
                 {
 
                     Id_SanPham = proItem.Id_SanPham,
+                    _id = proItem._id,
                     Name = proItem.Name,
                     Price = proItem.Price,
                     Details = proItem.Details,
@@ -620,13 +625,14 @@ namespace UI.Controllers
                         li[index].Quantity--;
                         li[index].Price = proItem.Price * li[index].Quantity;
                     }
-                    
+
                 }
                 else
                 {
                     li.Add(new DTO_Product_Item_Type()
                     {
                         Id_SanPham = proItem.Id_SanPham,
+                        _id = proItem._id,
                         Name = proItem.Name,
                         Price = proItem.Price,
                         Details = proItem.Details,
@@ -642,7 +648,7 @@ namespace UI.Controllers
                 return Json(new { soLuong = li });
             }
 
-            
+
 
         }
         public ActionResult Update(string Id, FormCollection fc)
@@ -668,6 +674,7 @@ namespace UI.Controllers
                 {
 
                     Id_SanPham = proItem.Id_SanPham,
+                    _id = proItem._id,
                     Name = proItem.Name,
                     Price = proItem.Price,
                     Details = proItem.Details,
@@ -698,6 +705,7 @@ namespace UI.Controllers
                 {
 
                     Id_SanPham = proItem.Id_SanPham,
+                    _id = proItem._id,
                     Name = proItem.Name,
                     Price = proItem.Price,
                     Details = proItem.Details,
@@ -732,6 +740,7 @@ namespace UI.Controllers
                     li.Add(new DTO_Product_Item_Type()
                     {
                         Id_SanPham = proItem.Id_SanPham,
+                        _id = proItem._id,
                         Name = proItem.Name,
                         Price = proItem.Price,
                         Details = proItem.Details,
@@ -739,7 +748,7 @@ namespace UI.Controllers
                         Id_Item = proItem.Id_Item,
                         Quantity = +1
                     });
-                    return Json(new { soLuong = li});
+                    return Json(new { soLuong = li });
 
                 }
 
@@ -747,7 +756,7 @@ namespace UI.Controllers
                 Session["cart"] = li;
                 return Json(new { soLuong = li });
             }
-           
+
         }
 
         public ActionResult Details1(string Id)
@@ -764,6 +773,7 @@ namespace UI.Controllers
                 new DTO_Product_Item_Type()
                 {
                     Id_SanPham = proItem.Id_SanPham,
+                    _id = proItem._id,
                     Name = proItem.Name,
                     Price = proItem.Price,
                     Details = proItem.Details,
@@ -799,6 +809,7 @@ namespace UI.Controllers
                 new DTO_Product_Item_Type()
                 {
                     Id_SanPham = proItem.Id_SanPham,
+                    _id = proItem._id,
                     Name = proItem.Name,
                     Price = proItem.Price,
                     Details = proItem.Details,
@@ -814,7 +825,7 @@ namespace UI.Controllers
 
 
             }
-            return RedirectToAction("LuaChon","Cart");
+            return RedirectToAction("LuaChon", "Cart");
         }
         public PartialViewResult Search()
         {
@@ -825,6 +836,6 @@ namespace UI.Controllers
             return View(dTO_Item_Type);
         }
 
-       
+
     }
 }

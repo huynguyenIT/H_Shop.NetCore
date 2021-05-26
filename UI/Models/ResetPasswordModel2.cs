@@ -8,6 +8,7 @@ namespace UI.Models
 {
     public class ResetPasswordModel2
     {
+        public string _id { get; set; }
         [Required(ErrorMessage = "Mật khẩu mới không được để trống.", AllowEmptyStrings = false)]
         [DataType(DataType.Password)]
         public string oldPassword { get; set; }

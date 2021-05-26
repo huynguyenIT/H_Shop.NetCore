@@ -37,7 +37,7 @@ namespace UI.Areas.Admin.Controllers
             }
 
 
-           
+
         }
         [HttpGet]
         public ActionResult Edit(string id)

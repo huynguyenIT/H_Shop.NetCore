@@ -18,7 +18,7 @@ namespace DataAndServices.Client_Services
 
          List<Dis_Product> GetAllProductByName(string name);
 
-        Task< int> GetSoLuong(int id);
+         int GetSoLuong(string id);
        
     }
 }

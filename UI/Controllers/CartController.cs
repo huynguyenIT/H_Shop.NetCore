@@ -54,11 +54,11 @@ namespace UI.Controllers
             bool flag = true;
             List<string> messages = new List<string>();
             List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
-            foreach(var item in cart)
+            foreach (var item in cart)
             {
                 //int quantityBuy = Convert.ToInt32(Request.Form["quantity"]);
 
-                HttpResponseMessage response = service.GetResponse("api/Product/GetSoLuong/" + item.Id_SanPham);
+                HttpResponseMessage response = service.GetResponse("api/Product/GetSoLuong/" + item._id);
 
                 response.EnsureSuccessStatusCode();
                 int quantity = response.Content.ReadAsAsync<int>().Result;
@@ -81,7 +81,7 @@ namespace UI.Controllers
         }
         public ActionResult saveOrder1(FormCollection fc, DTO_CheckoutCustomer_Order check)
         {
-          
+
 
 
 
@@ -126,7 +126,7 @@ namespace UI.Controllers
 
 
 
-                            dTO_Checkout_Order.Id_SanPham = item.Id_SanPham;
+                            dTO_Checkout_Order._id = item._id;
                             dTO_Checkout_Order.TenSP = item.Name;
                             dTO_Checkout_Order.SoLuong = (int)item.Quantity;
                             dTO_Checkout_Order.Gia = total;
@@ -135,7 +135,7 @@ namespace UI.Controllers
 
                             check.dTO_Checkout_Orders.Add(dTO_Checkout_Order);
 
-                           
+
 
 
 
@@ -158,7 +158,7 @@ namespace UI.Controllers
                 {
                     checkZip = null;
                     var price = Request.Form["gia1"];
-                    
+
                     List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
                     //DTO_Checkout_Customer check = new DTO_Checkout_Customer();
                     //check.Id_KH = Int32.Parse(fc["Id_KH"]);
@@ -187,7 +187,7 @@ namespace UI.Controllers
 
 
 
-                        dTO_Checkout_Order.Id_SanPham = item.Id_SanPham;
+                        dTO_Checkout_Order._id = item._id;
                         dTO_Checkout_Order.TenSP = item.Name;
                         dTO_Checkout_Order.SoLuong = (int)item.Quantity;
                         dTO_Checkout_Order.Gia = total;
@@ -231,7 +231,7 @@ namespace UI.Controllers
             try
             {
 
-              
+
                 HttpResponseMessage responseUser = service.GetResponse("api/Cart/GetGiamGia/" + priceCode);
 
                 responseUser.EnsureSuccessStatusCode();
@@ -250,7 +250,7 @@ namespace UI.Controllers
                 //});
                 string messsage = ("Mã code " + priceCode.ToString() + " hợp lệ");
                 ViewBag.Message = messsage;
-                return Json(new { checkout = giamgia }); 
+                return Json(new { checkout = giamgia });
             }
             catch
             {
@@ -300,8 +300,8 @@ namespace UI.Controllers
         {
             if (Session["cart_"] == null)
             {
-                List < DTO_Product_Item_Type > li = new List<DTO_Product_Item_Type > ();
-                
+                List<DTO_Product_Item_Type> li = new List<DTO_Product_Item_Type>();
+
                 HttpResponseMessage responseUser = service.GetResponse("api/Products_Ad/GetProductItemById/" + Id);
                 responseUser.EnsureSuccessStatusCode();
                 DTO_Product_Item_Type proItem = responseUser.Content.ReadAsAsync<DTO_Product_Item_Type>().Result;
@@ -309,6 +309,7 @@ namespace UI.Controllers
                 li.Add(new DTO_Product_Item_Type()
                 {
                     Id_SanPham = proItem.Id_SanPham,
+                    _id=proItem._id,
                     Name = proItem.Name,
                     Price = proItem.Price,
                     Details = proItem.Details,
@@ -340,6 +341,7 @@ namespace UI.Controllers
                     li.Add(new DTO_Product_Item_Type()
                     {
                         Id_SanPham = proItem.Id_SanPham,
+                        _id = proItem._id,
                         Name = proItem.Name,
                         Price = proItem.Price,
                         Details = proItem.Details,
@@ -364,7 +366,7 @@ namespace UI.Controllers
         {
             List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart_"];
             for (int i = 0; i < cart.Count; i++)
-                if (cart[i].Id_SanPham.Equals(Id))
+                if (cart[i]._id.Equals(Id))
                     return i;
             return -1;
         }
@@ -380,7 +382,7 @@ namespace UI.Controllers
         {
             List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
             for (int i = 0; i < cart.Count; i++)
-                if (cart[i].Id_SanPham.Equals(Id))
+                if (cart[i]._id.Equals(Id))
                     return i;
             return -1;
         }
@@ -388,7 +390,7 @@ namespace UI.Controllers
         {
             List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
             int index = isExist(Id);
-            cart.RemoveAt(index);
+            cart.RemoveAt(Convert.ToInt32(index));
             Session["cart"] = cart;
             return RedirectToAction("Index");
         }
@@ -421,12 +423,12 @@ namespace UI.Controllers
         }
         public ActionResult Details_Buy(string Id)
         {
-            
+
             HttpResponseMessage response = service.GetResponse("api/Product/GetSoLuong/" + Id);
 
             response.EnsureSuccessStatusCode();
             int quantity = response.Content.ReadAsAsync<int>().Result;
-            if(quantity > 0)
+            if (quantity > 0)
             {
                 if (Session["cart"] == null)
                 {
@@ -443,6 +445,7 @@ namespace UI.Controllers
 
                         Quantity = 1,
                         Id_SanPham = proItem.Id_SanPham,
+                        _id = proItem._id,
                         Name = proItem.Name,
                         Price = proItem.Price,
                         Details = proItem.Details,
@@ -466,9 +469,9 @@ namespace UI.Controllers
                     DTO_Product_Item_Type proItem = responseUser.Content.ReadAsAsync<DTO_Product_Item_Type>().Result;
 
                     int index = isExist(Id);
-                    if (index != -1)
+                    if (index != null)
                     {
-                        li[index].Quantity++;
+                        li[Convert.ToInt32(index)].Quantity++;
                     }
                     else
                     {
@@ -476,6 +479,7 @@ namespace UI.Controllers
                         {
 
                             Id_SanPham = proItem.Id_SanPham,
+                            _id=proItem._id,
                             Name = proItem.Name,
                             Price = proItem.Price,
                             Details = proItem.Details,
@@ -498,10 +502,10 @@ namespace UI.Controllers
                 ViewData["MessQuantity"] = ("Sản phẩm đã hết");
                 return View("LuaChon");
             }
-          
+
             //return View();
         }
-       
+
 
 
     }

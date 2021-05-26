@@ -23,8 +23,8 @@ namespace UI.Controllers
         public string userName;
         public ActionResult Index()
         {
-           
-           
+
+
             return View();
         }
         public PartialViewResult ListTypeProduct()
@@ -43,16 +43,16 @@ namespace UI.Controllers
 
             try
             {
-              
+
                 fb.Name = fc["Name"];
                 fb.Email = fc["Email"];
                 fb.Details = fc["details"];
                 fb.SDT = (fc["SDT"]);
                 fb.Content = fc["content"];
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PostResponse("api/Feedback/Create/",fb);
+                HttpResponseMessage response = serviceObj.PostResponse("api/Feedback/Create/", fb);
                 response.EnsureSuccessStatusCode();
-                ViewData["ErrorMessageFeedback"]=("Gửi phản hồi thành công");
+                ViewData["ErrorMessageFeedback"] = ("Gửi phản hồi thành công");
                 return View("Index");
             }
             catch
@@ -77,7 +77,7 @@ namespace UI.Controllers
                 ServiceRepository serviceObj = new ServiceRepository();
                 HttpResponseMessage response = serviceObj.PostResponse("api/Feedback/Create/", fb);
                 response.EnsureSuccessStatusCode();
-                ViewData["ErrorMessageFeedback"]=("Gửi phản hồi thành công");
+                ViewData["ErrorMessageFeedback"] = ("Gửi phản hồi thành công");
                 return RedirectToAction("Details", "Product");
             }
             catch
@@ -102,7 +102,7 @@ namespace UI.Controllers
                 ServiceRepository serviceObj = new ServiceRepository();
                 HttpResponseMessage response = serviceObj.PostResponse("api/Feedback/Create/", fb);
                 response.EnsureSuccessStatusCode();
-                ViewData["ErrorMessage"]=("Gửi phản hồi thành công");
+                ViewData["ErrorMessage"] = ("Gửi phản hồi thành công");
                 return RedirectToAction("YeuThich", "Cart");
             }
             catch
@@ -126,8 +126,8 @@ namespace UI.Controllers
                 ServiceRepository serviceObj = new ServiceRepository();
                 HttpResponseMessage response = serviceObj.PostResponse("api/Feedback/Create/", fb);
                 response.EnsureSuccessStatusCode();
-                ViewData["ErrorMessage"]=("Gửi phản hồi thành công");
-               
+                ViewData["ErrorMessage"] = ("Gửi phản hồi thành công");
+
                 return RedirectToAction("LuaChon", "Cart");
             }
             catch

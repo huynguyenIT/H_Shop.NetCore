@@ -29,7 +29,7 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         }
         [HttpGet]
         [Route("GetProductItemById/{Id}")]
-        public IActionResult GetProductItemById(int Id)
+        public IActionResult GetProductItemById(string Id)
         {
            var proItemById=  _productService.GetProductItemById(Id);
             return Ok(proItemById);

@@ -31,7 +31,9 @@ namespace DataAndServices.Client_Services
 
                         select new Dis_Product()
                                {
+
                                    Id_SanPham = product.Id_SanPham,
+                                   _id=dis._id,
                                    Name = product.Name,
                                    Price = product.Price,
                                    Details = product.Details,
@@ -61,7 +63,9 @@ namespace DataAndServices.Client_Services
 
                         select new Dis_Product()
                               {
+
                                   Id_SanPham = product.Id_SanPham,
+                                  _id =product._id,
                                   Name = product.Name,
                                   Price = product.Price,
                                   Details = product.Details,
@@ -89,7 +93,7 @@ namespace DataAndServices.Client_Services
             foreach (var item in Info)
             {
                 //dis_Product.Add(item);
-                if (GetPriceDiscountById(Convert.ToInt32(item.Id_SanPham)) != 0)
+                if (GetPriceDiscountById(Convert.ToInt32(item._id)) != 0)
                 {
                     //item.Price = Convert.ToInt32(GetPriceDiscountById((Convert.ToInt32(item.Id_SanPham))));
 
@@ -144,9 +148,9 @@ namespace DataAndServices.Client_Services
             throw new NotImplementedException();
         }
 
-        public async Task<int> GetSoLuong(int id)
+        public int GetSoLuong(string id)
         {
-            var temp = await _dbItem.Find(s => s.Id_SanPham == id).FirstOrDefaultAsync();
+            var temp =  _dbItem.Find(s => s._id == id).FirstOrDefault();
             if (temp != null)
             {
                 return (int)temp.Quantity; // vidu: 0.3 0.4

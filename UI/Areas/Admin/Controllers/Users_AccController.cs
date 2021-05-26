@@ -48,7 +48,7 @@ namespace UI.Areas.Admin.Controllers
         {
             var pass = Request.Form["pass"];
 
-           
+
             if (pass != "")
             {
                 DTO_User_Acc.Password = pass;
@@ -65,8 +65,8 @@ namespace UI.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-       
-    
+
+
         public ActionResult Delete(string id)
         {
             try

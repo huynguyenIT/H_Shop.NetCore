@@ -20,7 +20,7 @@ namespace UI.Areas.Admin.Controllers
 
             var timkiemtim = Request.Form["timkiemtim"];
 
-            
+
             if (seachby == "id")
             {
                 HttpResponseMessage responseMessage1 = service.GetResponse("api/Checkout_Customer/GetListcustomerById/" + timkiemtim);
@@ -36,9 +36,9 @@ namespace UI.Areas.Admin.Controllers
                 responseMessage.EnsureSuccessStatusCode();
                 List<DTO_Checkout_Customer> DTO_Checkout_Customers = responseMessage.Content.ReadAsAsync<List<DTO_Checkout_Customer>>().Result;
                 return View(DTO_Checkout_Customers);
-                
+
             }
-                   
+
 
 
         }
@@ -66,7 +66,7 @@ namespace UI.Areas.Admin.Controllers
         public ActionResult Edit(DTO_Checkout_Customer DTO_Checkout_Customer)
         {
             DTO_Checkout_Customer.TrangThai = Request.Form["stt"];
-            
+
 
             HttpResponseMessage response = service.PostResponse("api/Checkout_Customer/Update/", DTO_Checkout_Customer);
             response.EnsureSuccessStatusCode();
@@ -115,7 +115,7 @@ namespace UI.Areas.Admin.Controllers
             try
             {
                 // TODO: Add delete logic here
-                
+
                 HttpResponseMessage responseMessage = service.GetResponse("api/Checkout_Order/GetOrderByIdKH/" + id);
                 responseMessage.EnsureSuccessStatusCode();
                 DTO_Checkout_Order dtoOrder = responseMessage.Content.ReadAsAsync<DTO_Checkout_Order>().Result;
@@ -132,9 +132,9 @@ namespace UI.Areas.Admin.Controllers
                     ViewBag.Mess = "Không thể xóa vì khách hàng đang còn đơn đặt hàng";
                     return Json(new { mes = false });
                 }
-               
 
-               
+
+
             }
             catch
             {

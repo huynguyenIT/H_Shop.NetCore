@@ -1,5 +1,6 @@
 ﻿using Model.DTO.DTO_Ad;
 using Model.DTO_Model;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -76,10 +77,10 @@ namespace UI.Areas.Admin.Controllers
         }
         public ActionResult Index2(int id)
         {
-           
 
 
-            HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetAllProductByIdItem/"+id);
+
+            HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetAllProductByIdItem/" + id);
             responseMessage.EnsureSuccessStatusCode();
             //List<DTO_Product> dTO_Accounts = responseMessage.Content.ReadAsAsync<List<DTO_Product>>().Result;
             //return View(dTO_Accounts);
@@ -92,7 +93,7 @@ namespace UI.Areas.Admin.Controllers
         // GET: Admin/Products_Add/Details/5
         public ActionResult Details(string Id)
         {
-            HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetProductItemById/"+Id);
+            HttpResponseMessage responseMessage = service.GetResponse("api/Products_Ad/GetProductItemById/" + Id);
             responseMessage.EnsureSuccessStatusCode();
             DTO_Product_Item_Type dTO_Accounts = responseMessage.Content.ReadAsAsync<DTO_Product_Item_Type>().Result;
             return View(dTO_Accounts);
@@ -104,9 +105,9 @@ namespace UI.Areas.Admin.Controllers
             DTO_Product_Item_Type pro = new DTO_Product_Item_Type();
             return View(pro);
         }
-       
 
-        
+
+
         public string ProcessUpload(HttpPostedFileBase file)
         {
 
@@ -117,11 +118,11 @@ namespace UI.Areas.Admin.Controllers
         }
 
         // POST: Admin/Products_Add/Create
-       
+
         [HttpPost, ValidateInput(false)]
         public ActionResult Create(FormCollection collection, DTO_Product_Item_Type dTO_Product_Item_Type, HttpPostedFileBase ImageUpload)
         {
-            
+
             string Id = dTO_Product_Item_Type.Photo;
             //DTO_Product_Item_Type dTO_Product_Item_Type = new DTO_Product_Item_Type();
             var stt = Request.Form["stt"];
@@ -129,7 +130,7 @@ namespace UI.Areas.Admin.Controllers
             {
                 dTO_Product_Item_Type.Id_Item = 1;
 
-               
+
             }
             if (stt == "Máy ảnh và máy quay phim")
             {
@@ -219,7 +220,7 @@ namespace UI.Areas.Admin.Controllers
                     HttpResponseMessage responseUser = service.PostResponse("api/Products_Ad/CreateProduct/", dTO_Product_Item_Type);
 
                     responseUser.EnsureSuccessStatusCode();
-                        //HttpResponseMessage responseUser1 = service.PostResponse("api/Products_Ad/CreateItem/", item);
+                    //HttpResponseMessage responseUser1 = service.PostResponse("api/Products_Ad/CreateItem/", item);
                     //}
                     //else
                     //{
@@ -245,7 +246,7 @@ namespace UI.Areas.Admin.Controllers
                 return View(dTO_Product_Item_Type);
             }
         }
-        
+
         public ActionResult Create_Discount(string id)
         {
             ServiceRepository service = new ServiceRepository();
@@ -269,12 +270,12 @@ namespace UI.Areas.Admin.Controllers
             {
                 end = null;
             }
-           
-            tO_Dis_Product.Content = stt +"%";
-            tO_Dis_Product.Start =Convert.ToDateTime(start);
+
+            tO_Dis_Product.Content = stt + "%";
+            tO_Dis_Product.Start = Convert.ToDateTime(start);
             tO_Dis_Product.End = Convert.ToDateTime(end);
             ServiceRepository service = new ServiceRepository();
-            HttpResponseMessage responseMessage = service.PostResponse("api/Products_Ad/CreateProduct_Discount/" , tO_Dis_Product);
+            HttpResponseMessage responseMessage = service.PostResponse("api/Products_Ad/CreateProduct_Discount/", tO_Dis_Product);
             responseMessage.EnsureSuccessStatusCode();
 
 
@@ -289,11 +290,11 @@ namespace UI.Areas.Admin.Controllers
 
             return View(dtoAccounts);
         }
-      
+
 
         // POST: Admin/Products_Add/Edit/5
         [HttpPost, ValidateInput(false)]
-        public ActionResult Edit( FormCollection collection, DTO_Product_Item_Type dTO_Product_Item_Type, HttpPostedFileBase ImageUpload)
+        public ActionResult Edit(FormCollection collection, DTO_Product_Item_Type dTO_Product_Item_Type, HttpPostedFileBase ImageUpload)
         {
             var stt = Request.Form["stt"];
             if (stt == "Đồng hồ")
@@ -366,7 +367,7 @@ namespace UI.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
+
                     if (ImageUpload != null)
                     {
 
@@ -397,10 +398,9 @@ namespace UI.Areas.Admin.Controllers
 
                         responseUser.EnsureSuccessStatusCode();
                     }
-                  
-                   
+
+
                 }
-               
 
 
 
@@ -415,7 +415,8 @@ namespace UI.Areas.Admin.Controllers
 
 
 
-          
+
+
 
 
                 return RedirectToAction("Index");
