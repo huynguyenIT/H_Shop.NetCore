@@ -33,9 +33,9 @@ namespace DataAndServices.Admin_Services.UserServices
             }
         }
 
-        public User_Acc GetAccountById(string id)
+        public async Task<User_Acc> GetAccountById(string id)
         {
-            return  _db.Find(s => s._id == id).FirstOrDefault();
+            return await _db.Find(s => s._id == id).FirstOrDefaultAsync();
 
         }
 
@@ -44,9 +44,9 @@ namespace DataAndServices.Admin_Services.UserServices
             return await _db.Find(s =>true).ToListAsync();
         }
 
-        public bool Update_Ad_acc(User_Acc custom)
+        public async Task<bool> Update_Ad_acc(User_Acc custom)
         {
-            var acc = GetAccountById(custom._id);
+            var acc = await GetAccountById(custom._id);
             if (acc != null)
             {
                 var eqfilter = Builders<User_Acc>.Filter.Where(s => s._id == custom._id);
@@ -62,7 +62,7 @@ namespace DataAndServices.Admin_Services.UserServices
 
 
 
-                _db.UpdateOneAsync(eqfilter, update, options);
+               await _db.UpdateOneAsync(eqfilter, update, options);
                 return true;
             }
 
@@ -78,7 +78,7 @@ namespace DataAndServices.Admin_Services.UserServices
             var acc = GetAccountById(custom._id);
             if (acc != null)
             {
-                var eqfilter = Builders<User_Acc>.Filter.Where(s => s._id == custom._id);
+                var eqfilter =  Builders<User_Acc>.Filter.Where(s => s._id == custom._id);
 
                 var update = Builders<User_Acc>.Update.Set(s => s.Email, custom.Email)
                     .Set(s => s.FirstName, custom.FirstName)

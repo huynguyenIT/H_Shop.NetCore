@@ -278,3 +278,7 @@ C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\H_Shop.NetCore\obj\Debug\ne
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\H_Shop.NetCore\obj\Debug\netcoreapp3.1\H_Shop.NetCore.RazorTargetAssemblyInfo.cache
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\H_Shop.NetCore\obj\Debug\netcoreapp3.1\H_Shop.NetCore.csproj.CopyComplete
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\H_Shop.NetCore\obj\Debug\netcoreapp3.1\H_Shop.NetCore.genruntimeconfig.cache
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\H_Shop.NetCore\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\H_Shop.NetCore\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\H_Shop.NetCore\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Huy-Pc\Documents\GitHub\H_Shop.NetCore\H_Shop.NetCore\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

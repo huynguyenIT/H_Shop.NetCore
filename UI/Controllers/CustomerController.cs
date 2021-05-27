@@ -12,7 +12,6 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using System.Web.Security;
 using UI.Models;
 using UI.Service;
 
@@ -212,7 +211,7 @@ namespace UI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Signup([Bind(Include = "FirstName,LastName,Email,Password,ConfirmPassword")] RegisterModel model, string AuthenticationCode)
+        public  ActionResult Signup([Bind(Include = "FirstName,LastName,Email,Password,ConfirmPassword")] RegisterModel model, string AuthenticationCode)
         {
             var id = Request.Form["AuthenticationCode"];
             if (id == "")
@@ -277,10 +276,10 @@ namespace UI.Controllers
         }
         public DTO_Users_Acc GetCustomerByEmail(string mail)
         {
-            HttpResponseMessage response = serviceObj.GetResponse(url + "GetCustomerByEmail?mail=" + mail);
+            HttpResponseMessage response =  serviceObj.GetResponse(url + "GetCustomerByEmail?mail=" + mail);
             response.EnsureSuccessStatusCode();
-            DTO_Users_Acc result = response.Content.ReadAsAsync<DTO_Users_Acc>().Result;
-            return result;
+            DTO_Users_Acc  result =  response.Content.ReadAsAsync<DTO_Users_Acc>().Result;
+            return  result;
         }
         public string GetCustomerByPassword(string email)
         {

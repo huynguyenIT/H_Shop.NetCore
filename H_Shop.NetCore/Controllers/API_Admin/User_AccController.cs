@@ -22,9 +22,9 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             _homeServices = homeServices;
         }
         [Route("UpdateUser")]
-        public bool Update(User_Acc dTO_Account)
+        public async  Task<bool> Update(User_Acc dTO_Account)
         {
-            return  _users.Update_Ad_acc(dTO_Account);
+            return await  _users.Update_Ad_acc(dTO_Account);
         }
         [Route("UpdateUserTwo")]
         public bool Update2(User_Acc dTO_Account)
@@ -48,9 +48,9 @@ namespace H_Shop.NetCore.Controllers.API_Admin
        
         [HttpGet]
         [Route("GetAccountById/{Id}")]
-        public IActionResult GetProductById(string Id)
+        public async Task<IActionResult> GetProductById(string Id)
         {
-            var userById=  _users.GetAccountById(Id);
+            var userById= await _users.GetAccountById(Id);
             return Ok(userById);
         }
         [HttpGet]
