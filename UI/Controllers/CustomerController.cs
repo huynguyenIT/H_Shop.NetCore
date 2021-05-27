@@ -286,7 +286,7 @@ namespace UI.Controllers
         {
             HttpResponseMessage response = serviceObj.GetResponse(url + "GetCustomerByPassword?email=" + email);
             response.EnsureSuccessStatusCode();
-            string result = response.Content.ReadAsAsync<string>().Result;
+            string result = response.Content.ReadAsStringAsync().Result;
             return result;
         }
         private Uri RedirectUri
@@ -382,7 +382,7 @@ namespace UI.Controllers
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
                 smtp.EnableSsl = true;
-                NetworkCredential NetworkCred = new NetworkCredential("nguyentuanhuy301198@gmail.com", "Huyhuy123");
+                NetworkCredential NetworkCred = new NetworkCredential("nguyentuanhuy301198@gmail.com", "Methubakhanh123");
                 smtp.UseDefaultCredentials = true;
                 smtp.Credentials = NetworkCred;
                 smtp.Port = 587;

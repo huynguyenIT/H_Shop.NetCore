@@ -21,19 +21,19 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             _users = users;
             _homeServices = homeServices;
         }
-        [Route("Update")]
+        [Route("UpdateUser")]
         public bool Update(User_Acc dTO_Account)
         {
             return  _users.Update_Ad_acc(dTO_Account);
         }
-        [Route("Update2")]
+        [Route("UpdateUserTwo")]
         public bool Update2(User_Acc dTO_Account)
         {
             return  _users.Update_Ad_acc2(dTO_Account);
         }
 
         // DELETE: api/Admin_acc/5
-        [Route("DeleteAccount/{id:int}")]
+        [Route("DeleteAccount/{id}")]
         public async Task<bool> DeleteAccount(string id)
         {
             return await _users.DeleteAccount(id);
@@ -48,9 +48,9 @@ namespace H_Shop.NetCore.Controllers.API_Admin
        
         [HttpGet]
         [Route("GetAccountById/{Id}")]
-        public async Task<IActionResult> GetProductById(string Id)
+        public IActionResult GetProductById(string Id)
         {
-            var userById= await _users.GetAccountById(Id);
+            var userById=  _users.GetAccountById(Id);
             return Ok(userById);
         }
         [HttpGet]
@@ -76,7 +76,7 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         {
             return _homeServices.UpdateCustomer(cusUpdate);
         }
-        [Route("DeleteCustomer")]
+        [Route("DeleteCustomer/{id}")]
         public async Task<bool> DeleteCustomer(string id)
         {
             return await _homeServices.DeleteCustomer(id);

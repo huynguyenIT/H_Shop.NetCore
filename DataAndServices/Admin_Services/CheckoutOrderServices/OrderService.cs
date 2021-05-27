@@ -48,9 +48,9 @@ namespace DataAndServices.Admin_Services.CheckoutOrderServices
             return test;
         }
 
-        public async Task<List<Checkout_Oder>> GetAllAccounts()
+        public List<Checkout_Oder> GetAllAccounts()
         {
-            return await _db.Find(s => true).ToListAsync();
+            return  _db.Find(s => true).ToList();
         }
 
         public async Task<List<Checkout_Oder>> GetListAccountById(string id)

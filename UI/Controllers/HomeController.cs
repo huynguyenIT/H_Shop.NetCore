@@ -50,14 +50,14 @@ namespace UI.Controllers
                 fb.SDT = (fc["SDT"]);
                 fb.Content = fc["content"];
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PostResponse("api/Feedback/Create/", fb);
+                HttpResponseMessage response = serviceObj.PostResponse("api/Home/Create/", fb);
                 response.EnsureSuccessStatusCode();
                 ViewData["ErrorMessageFeedback"] = ("Gửi phản hồi thành công");
                 return View("Index");
             }
             catch
             {
-                return View("~/Views/Shared/Error_");
+                return View("~/Views/Shared/Error_.cshtml");
             }
 
 
@@ -75,14 +75,14 @@ namespace UI.Controllers
                 fb.SDT = (fc["SDT"]);
                 fb.Content = fc["content"];
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PostResponse("api/Feedback/Create/", fb);
+                HttpResponseMessage response = serviceObj.PostResponse("api/Home/Create/", fb);
                 response.EnsureSuccessStatusCode();
                 ViewData["ErrorMessageFeedback"] = ("Gửi phản hồi thành công");
                 return RedirectToAction("Details", "Product");
             }
             catch
             {
-                return View("~/Views/Shared/Error_");
+                return View("~/Views/Shared/Error_.cshtml");
             }
 
 
@@ -100,14 +100,14 @@ namespace UI.Controllers
                 fb.SDT = (fc["SDT"]);
                 fb.Content = fc["content"];
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PostResponse("api/Feedback/Create/", fb);
+                HttpResponseMessage response = serviceObj.PostResponse("api/Home/Create/", fb);
                 response.EnsureSuccessStatusCode();
                 ViewData["ErrorMessage"] = ("Gửi phản hồi thành công");
                 return RedirectToAction("YeuThich", "Cart");
             }
             catch
             {
-                return View("~/Views/Shared/Error_");
+                return View("~/Views/Shared/Error_.cshtml");
             }
 
 
@@ -124,7 +124,7 @@ namespace UI.Controllers
                 fb.SDT = (fc["SDT"]);
                 fb.Content = fc["content"];
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PostResponse("api/Feedback/Create/", fb);
+                HttpResponseMessage response = serviceObj.PostResponse("api/Home/Create/", fb);
                 response.EnsureSuccessStatusCode();
                 ViewData["ErrorMessage"] = ("Gửi phản hồi thành công");
 
@@ -132,7 +132,7 @@ namespace UI.Controllers
             }
             catch
             {
-                return View("~/Views/Shared/Error_");
+                return View("~/Views/Shared/Error_.cshtml");
             }
 
 

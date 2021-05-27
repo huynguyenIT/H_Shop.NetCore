@@ -39,8 +39,8 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
         {
             try
             {
-               
-                await _db.DeleteOneAsync(id);
+                var deleteFilter3 = Builders<Account>.Filter.Eq("_id", id);
+                await _db.DeleteOneAsync(deleteFilter3);
                
                 return true;
             }
@@ -84,7 +84,7 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
             var acc =  GetAccountById(custom._id);
             if (acc != null)
             {
-                var eqfilter = Builders<Account>.Filter.Where(s => s.idUser == custom.idUser);
+                var eqfilter = Builders<Account>.Filter.Where(s => s._id == custom._id);
 
                 var update = Builders<Account>.Update.Set(s => s.Email, custom.Email)
                     .Set(s => s.FirstName, custom.FirstName)
@@ -98,6 +98,7 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
 
 
                 _db.UpdateOneAsync(eqfilter, update, options);
+                return true;
             }
 
 
@@ -114,12 +115,12 @@ namespace DataAndServices.Admin_Services.Admin_Acc_Services
             {
                
                 
-                    var eqfilter = Builders<Account>.Filter.Where(s => s.idUser == custom.idUser);
+                    var eqfilter = Builders<Account>.Filter.Where(s => s._id == custom._id);
 
                     var update = Builders<Account>.Update.Set(s => s.Email, custom.Email)
                         .Set(s => s.FirstName, custom.FirstName)
                         .Set(s => s.LastName, custom.LastName)
-                        .Set(s => s.Password, Encryptor.MD5Hash(custom.Password))
+                        //.Set(s => s.Password, Encryptor.MD5Hash(custom.Password))
                         .Set(s => s.idUser, custom.idUser);
 
                     var options = new UpdateOptions { IsUpsert = true };

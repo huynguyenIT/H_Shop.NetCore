@@ -32,7 +32,7 @@ namespace UI.Areas.Admin.Controllers
             ServiceRepository service = new ServiceRepository();
             HttpResponseMessage responseMessage = service.GetResponse("api/Admin_acc/GetAccountById/" + id);
             responseMessage.EnsureSuccessStatusCode();
-            DTO_Account dtoAccounts = responseMessage.Content.ReadAsAsync<DTO_Account>().Result;
+            DTO_Account2 dtoAccounts = responseMessage.Content.ReadAsAsync<DTO_Account2>().Result;
 
             return View(dtoAccounts);
         }
@@ -47,7 +47,7 @@ namespace UI.Areas.Admin.Controllers
             return View(dtoAccounts);
         }
         [HttpPost]
-        public ActionResult Edit(DTO_Account dTO_Account)
+        public ActionResult Edit(DTO_Account2 dTO_Account)
         {
             var stt = Request.Form["stt"];
             var pass = Request.Form["pass"];
@@ -57,13 +57,13 @@ namespace UI.Areas.Admin.Controllers
                 if (pass != "")
                 {
                     dTO_Account.Password = pass;
-                    HttpResponseMessage response = service.PostResponse("api/Admin_acc/Update/", dTO_Account);
+                    HttpResponseMessage response = service.PostResponse("api/Admin_acc/UpdateAcc/", dTO_Account);
                     response.EnsureSuccessStatusCode();
                 }
                 else
                 {
 
-                    HttpResponseMessage response = service.PostResponse("api/Admin_acc/Update2/", dTO_Account);
+                    HttpResponseMessage response = service.PostResponse("api/Admin_acc/UpdateAccTwo/", dTO_Account);
                     response.EnsureSuccessStatusCode();
                 }
 
@@ -75,13 +75,13 @@ namespace UI.Areas.Admin.Controllers
                 if (pass != "")
                 {
                     dTO_Account.Password = pass;
-                    HttpResponseMessage response = service.PostResponse("api/Admin_acc/Update/", dTO_Account);
+                    HttpResponseMessage response = service.PostResponse("api/Admin_acc/UpdateAcc/", dTO_Account);
                     response.EnsureSuccessStatusCode();
                 }
                 else
                 {
 
-                    HttpResponseMessage response = service.PostResponse("api/Admin_acc/Update2/", dTO_Account);
+                    HttpResponseMessage response = service.PostResponse("api/Admin_acc/UpdateAccTwo/", dTO_Account);
                     response.EnsureSuccessStatusCode();
                 }
             }

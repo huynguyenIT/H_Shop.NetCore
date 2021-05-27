@@ -1,4 +1,5 @@
 ﻿using DataAndServices.Client_Services;
+using DataAndServices.DataModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,6 +24,19 @@ namespace H_Shop.NetCore.Controllers.API_Client
         {
            var listItemType= await _homeServices.GetAllItemType();
             return Ok(listItemType);
+        }
+        [HttpGet]
+        [Route("getallfeedback")]
+        public IActionResult GetAllFeedback()
+        {
+            var listItemType =  _homeServices.GetAllFeedbacks();
+            return Ok(listItemType);
+        }
+        [Route("Create")]
+        public bool InsertFeedbacks(Feedback feedback)
+        {
+            return _homeServices.InsertFeedback( feedback);
+            
         }
     }
 }

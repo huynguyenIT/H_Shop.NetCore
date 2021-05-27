@@ -10,8 +10,8 @@ namespace DataAndServices.CommonModel
 {
    public class Dis_Product
     {
-        [BsonId]
-        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        //[BsonId]
+        //[BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string _id { get; set; }
         public int ID_Discount { get; set; }
         public string Content { get; set; }

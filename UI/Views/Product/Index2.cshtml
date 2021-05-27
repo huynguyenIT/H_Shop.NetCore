@@ -130,9 +130,9 @@
                                                 </a>
                                                 <div class="product-action">
                                                     @*<a href=" @Url.Action("Buy_Favorite", "Product", new { id = item.Id_SanPham })" onclick="Buy()"><i class="fa fa-cart-plus"></i></a>*@
-                                                    <a class="btn" onclick="Buy_Cart(@item._id)"><i class="fa fa-cart-plus"></i></a>
+                                                    <a class="btn" onclick="Buy_Cart('@item._id')"><i class="fa fa-cart-plus"></i></a>
                                                     @*<a href=" @Url.Action("Details_", "Cart", new { id = item.Id_SanPham })"><i class="fa fa-heart"></i></a>*@
-                                                    <a class="btn" onclick="Buy_Favorite(@item._id)"><i class="fa fa-heart"></i></a>
+                                                    <a class="btn" onclick="Buy_Favorite('@item._id')"><i class="fa fa-heart"></i></a>
                                                     <a class="btn" href=" @Url.Action("Details1", "Product", new { id = item._id })">
                                                         <i class="fa fa-search"></i>
                                                     </a>
@@ -212,7 +212,7 @@
                 type: 'POST',
                 success: function (res) {
                     for (let i = 0; i < res.buy.length; i++) {
-                        if (res.buy[i]["Id_SanPham"] == id_temp) {
+                        if (res.buy[i]["_id"] == id_temp) {
                             alert("Sản phẩm " + res.buy[i]["Name"] + " đã được thêm vào sản phẩm yêu thích");
                             break;
                         }
@@ -241,7 +241,7 @@
                     console.log(res.buy);
                     for (let i = 0; i < res.buy.length; i++) {
 
-                        if (res.buy[i]["Id_SanPham"] == id_temp) {
+                        if (res.buy[i]["_id"] == id_temp) {
                             alert("Sản phẩm " + res.buy[i]["Name"] + " đã được thêm vào giỏ hàng");
                             break;
                         }

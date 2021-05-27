@@ -378,22 +378,30 @@ namespace UI.Controllers
             Session["cart_"] = cart;
             return RedirectToAction("YeuThich");
         }
-        public int isExist(string Id)
-        {
-            List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
-            for (int i = 0; i < cart.Count; i++)
-                if (cart[i]._id.Equals(Id))
-                    return i;
-            return -1;
-        }
-        public ActionResult Remove(string Id)
-        {
-            List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
-            int index = isExist(Id);
-            cart.RemoveAt(Convert.ToInt32(index));
-            Session["cart"] = cart;
-            return RedirectToAction("Index");
-        }
+        //public int isExist(string Id)
+        //{
+        //    //Convert.ToInt32(Id);
+        //    List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
+        //    for (int i = 0; i < cart.Count; i++)
+        //        if (cart[i]._id.Equals(Id))
+        //            return i;
+        //    return -1;
+        //}
+        //public ActionResult Remove(string Id)
+        //{
+        //    bool delete2 = int.TryParse(Id,out int delete);
+        //    if (delete2)
+        //    {
+        //        List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
+        //        //int index = isExist(Id);
+        //        cart.RemoveAt(Convert.ToInt32(delete));
+        //        Session["cart"] = cart;
+        //        return RedirectToAction("Index");
+        //    }
+        //    return RedirectToAction("Index");
+
+
+        //}
 
         //public ActionResult YeuThich()
         //{
@@ -411,6 +419,22 @@ namespace UI.Controllers
         //    return View();
 
         //}
+        private int isExist2(string Id)
+        {
+            List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i]._id.Equals(Id))
+                    return i;
+            return -1;
+        }
+        public ActionResult Remove2(string Id)
+        {
+            List<DTO_Product_Item_Type> cart = (List<DTO_Product_Item_Type>)Session["cart"];
+            int index = isExist2(Id);
+            cart.RemoveAt(index);
+            Session["cart"] = cart;
+            return RedirectToAction("Index");
+        }
         public ActionResult Thankyou()
         {
 
@@ -468,8 +492,8 @@ namespace UI.Controllers
                     responseUser.EnsureSuccessStatusCode();
                     DTO_Product_Item_Type proItem = responseUser.Content.ReadAsAsync<DTO_Product_Item_Type>().Result;
 
-                    int index = isExist(Id);
-                    if (index != null)
+                    int index = isExist2(Id);
+                    if (index != -1)
                     {
                         li[Convert.ToInt32(index)].Quantity++;
                     }

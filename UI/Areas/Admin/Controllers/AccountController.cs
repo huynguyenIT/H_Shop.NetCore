@@ -19,6 +19,7 @@ namespace UI.Areas.Admin.Controllers
         private string url;
         private ServiceRepository serviceObj;
 
+        
         public AccountController()
         {
             serviceObj = new ServiceRepository();

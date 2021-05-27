@@ -15,7 +15,7 @@ namespace DataAndServices.Admin_Services.UserServices
      
 
 
-        Task<User_Acc> GetAccountById(string id);
+        User_Acc GetAccountById(string id);
 
 
        

@@ -40,9 +40,9 @@ namespace DataAndServices.Admin_Services.Checkout_Customer_Services
             return await _db.Find(s => s._Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Checkout_Customer>> GetAllAccounts()
+        public List<Checkout_Customer> GetAllAccounts()
         {
-            return await _db.Find(s=>true).ToListAsync();
+            return  _db.Find(s=>true).ToList();
         }
 
         public async Task<List<Checkout_Customer>> GetListAccountById(string id)

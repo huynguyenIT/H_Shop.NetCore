@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace H_Shop.NetCore.Controllers.API_Admin
 {
-    [Route("api/Admin_Acc")]
+    [Route("api/Admin_acc")]
     [ApiController]
     public class Admin_AccController : ControllerBase
     {
@@ -27,12 +27,12 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         }
 
         // PUT: api/Admin_acc/5
-        [Route("Update")]
+        [Route("UpdateAcc")]
         public bool Update(Account Account)
         {
             return  adminAccService.Update_Ad_acc(Account);
         }
-        [Route("Update2")]
+        [Route("UpdateAccTwo")]
         public bool Update2(Account Account)
         {
             return  adminAccService.Update_Ad_acc2(Account);

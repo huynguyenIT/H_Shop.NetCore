@@ -65,7 +65,7 @@ namespace DataAndServices.Client_Services
                               {
 
                                   Id_SanPham = product.Id_SanPham,
-                                  _id =product._id,
+                                  _id =dis._id,
                                   Name = product.Name,
                                   Price = product.Price,
                                   Details = product.Details,
@@ -93,7 +93,7 @@ namespace DataAndServices.Client_Services
             foreach (var item in Info)
             {
                 //dis_Product.Add(item);
-                if (GetPriceDiscountById(Convert.ToInt32(item._id)) != 0)
+                if (GetPriceDiscountById(item._id) != 0)
                 {
                     //item.Price = Convert.ToInt32(GetPriceDiscountById((Convert.ToInt32(item.Id_SanPham))));
 
@@ -126,10 +126,10 @@ namespace DataAndServices.Client_Services
 
             return dis_Product6;
         }
-        public double GetPriceDiscountById(int id)
+        public double GetPriceDiscountById(string id)
         {
             DateTime dateTime = DateTime.Today;
-            var item_discount = _dbDis.Find(t => t.Id_SanPham == id && t.End.Value >= dateTime).FirstOrDefault();
+            var item_discount = _dbDis.Find(t => t._id == id && t.End.Value >= dateTime).FirstOrDefault();
 
             if (item_discount != null && item_discount.Price_Dis != null)
             {

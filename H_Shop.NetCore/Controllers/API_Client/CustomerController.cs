@@ -209,11 +209,11 @@ namespace H_Shop.NetCore.Controllers.API_Client
             }
         }
         [Route("GetCustomerByPassword")]
-        public async Task<User_Acc_Client> GetCustomerByPassword(string email)
+        public string GetCustomerByPassword(string email)
         {
             try
             {
-                return await _homeServices.GetCustomerByPassword(email);
+                return  _homeServices.GetCustomerByPassword(email);
             }
             catch (Exception)
             {

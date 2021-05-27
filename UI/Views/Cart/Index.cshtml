@@ -85,7 +85,7 @@
                                                         @string.Format("{0:0,0}", (item.Price * item.Quantity))
                                                     </td>
                                                     @*<td><button><i class="fa fa-trash"></i></button></td>*@
-                                                    <td><a onclick="Remove()" id="btn_remove" href="@Url.Action("Remove", "Cart", new { id = @item._id })"><i class="fa fa-trash">Xóa</i></a></td>
+                                                    <td><a   href="@Url.Action("Remove2", "Cart", new { id = @item._id })"><i class="fa fa-trash">Xóa</i></a></td>
 
                                                 </tr>
 
@@ -160,7 +160,7 @@
         $('#btn_remove').click(function () {
 
             $.ajax({
-                url: "/Cart/Remove",
+                url: "/Cart/Remove2",
                 type: 'POST',
                 data: {},
                 success: function () {
@@ -170,15 +170,15 @@
         })
 
 
-        function Remove() {
-            Swal.fire({
-                position: 'top',
-                icon: 'success',
-                title: 'Xóa sản phẩm thành công',
-                showConfirmButton: false,
-                timer: 300000
-            })
-        }
+        //function Remove() {
+        //    Swal.fire({
+        //        position: 'top',
+        //        icon: 'success',
+        //        title: 'Xóa sản phẩm thành công',
+        //        showConfirmButton: false,
+        //        timer: 300000
+        //    })
+        //}
         function Discount() {
 
             var dis = $('#discount').val();

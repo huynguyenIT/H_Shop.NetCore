@@ -52,13 +52,13 @@ namespace UI.Areas.Admin.Controllers
             if (pass != "")
             {
                 DTO_User_Acc.Password = pass;
-                HttpResponseMessage response = service.PostResponse("api/User_acc/Update/", DTO_User_Acc);
+                HttpResponseMessage response = service.PostResponse("api/User_acc/UpdateUser/", DTO_User_Acc);
                 response.EnsureSuccessStatusCode();
             }
             else
             {
-                DTO_User_Acc.Password = pass;
-                HttpResponseMessage response = service.PostResponse("api/User_acc/Update2/", DTO_User_Acc);
+                //DTO_User_Acc.Password = pass;
+                HttpResponseMessage response = service.PostResponse("api/User_acc/UpdateUserTwo/", DTO_User_Acc);
                 response.EnsureSuccessStatusCode();
             }
 

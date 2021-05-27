@@ -83,17 +83,16 @@ namespace DataAndServices.Admin_Services.Products
         {
             try
             {
-                //var product = _db.Find(s=>s._id==id).FirstOrDefault();
+                
                 var deleteFilter = Builders<Product_Admin>.Filter.Eq("_id", id);
-                //Item item = _dbItem.Find(s => s.Id_SanPham == id).FirstOrDefault();
-                //Discount_Product discount_Product = _dbDis.Find(s => s.Id_SanPham == id).FirstOrDefault();
+                var deleteFilter2 = Builders<Item>.Filter.Eq("_id", id);
+                var deleteFilter3 = Builders<Discount_Product>.Filter.Eq("_id", id);
+
                 _db.DeleteOne(deleteFilter);
-                //_db.DeleteOne(product, id);
-                //_dbItem.DeleteOne(id);
-                //_dbDis.DeleteOne(id);
-               // db.Discount_Product.Remove(discount_Product);
-                //db.Items.Remove(item);
-               // db.SaveChanges();
+               
+                _dbItem.DeleteOne(id);
+                _dbDis.DeleteOne(id);
+            
                 return true;
             }
             catch
@@ -246,7 +245,7 @@ namespace DataAndServices.Admin_Services.Products
                        select new Product_Item_Type()
                        {
                            _id = item._id,
-                           Id_SanPham = product.Id_SanPham,
+                           Id_SanPham = item.Id_SanPham,
                            Name = product.Name,
                            Price = product.Price,
                            Details = product.Details,

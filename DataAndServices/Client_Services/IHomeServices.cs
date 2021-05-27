@@ -13,7 +13,7 @@ namespace DataAndServices.Client_Services
 
          Task<List<Item_type>> GetAllItemType();
 
-         Task<List<Feedback>> GetAllFeedbacks();
+         List<Feedback> GetAllFeedbacks();
 
          bool InsertCustomer(User_Acc_Client cusInsert);
 
@@ -35,10 +35,10 @@ namespace DataAndServices.Client_Services
 
         Task<User_Acc_Client> GetCustomerByEmail(string mail);
 
-        Task<User_Acc_Client> GetCustomerByPassword(string email);
+        string GetCustomerByPassword(string email);
 
         Task<User_Acc_Client> LoginCustomer(string user, string pass);
-        Task<bool> InsertFeedback(Feedback feedback);
+        bool InsertFeedback(Feedback feedback);
         
 
     }

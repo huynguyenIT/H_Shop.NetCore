@@ -62,9 +62,16 @@ namespace DataAndServices.Admin_Services.AccountService
         {
 
             var account = await _db.Find(t => t.Email == userName).SingleOrDefaultAsync();
-            if (account != null)
+            if (account == null)
+            {
                 return true;
-            return false;
+            }
+            else
+            {
+                return false;
+            }
+                
+            
         }
 
         public async Task<bool> InsertCustomer(Account custom)

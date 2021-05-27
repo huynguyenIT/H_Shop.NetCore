@@ -35,9 +35,9 @@ namespace DataAndServices.Client_Services
             return await _dbUser.Find(s => true).ToListAsync();
         }
 
-        public async Task<List<Feedback>> GetAllFeedbacks()
+        public List<Feedback> GetAllFeedbacks()
         {
-            return await _dbFeed.Find(s => true).ToListAsync();
+            return  _dbFeed.Find(s => true).ToList();
         }
 
         public async Task<List<Item_type>> GetAllItemType()
@@ -55,14 +55,22 @@ namespace DataAndServices.Client_Services
             return await _dbUser.Find(s => s._id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<User_Acc_Client> GetCustomerByPassword(string email)
+        public string GetCustomerByPassword(string email)
         {
-            return await _dbUser.Find(s => s.Password == email).FirstOrDefaultAsync();
+            string pass = Encryptor.MD5Hash(email);
+            var account = _dbUser.Find(s => s.Password == pass).SingleOrDefault();
+
+
+
+
+            if (account != null)
+                return Encryptor.MD5Hash(account.Password);
+            return "";
         }
 
-        public Task<User_Acc_Client> GetCustomerByUsername(string user)
+        public async Task<User_Acc_Client> GetCustomerByUsername(string user)
         {
-            throw new NotImplementedException();
+            return await _dbUser.Find(s => s.Email == user).FirstOrDefaultAsync();
         }
 
         public bool InsertCustomer(User_Acc_Client custom)
@@ -84,9 +92,18 @@ namespace DataAndServices.Client_Services
             return false;
         }
 
-        public Task<bool> InsertFeedback(Feedback feedback)
+        public bool InsertFeedback(Feedback custom)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbFeed.InsertOne(custom);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         public string PasswordIsExist(string email)
         {

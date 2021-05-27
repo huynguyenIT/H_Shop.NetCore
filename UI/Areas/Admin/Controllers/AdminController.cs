@@ -92,7 +92,7 @@ namespace UI.Areas.Admin.Controllers
         public ActionResult GetAllFeedbacks()
         {
 
-            HttpResponseMessage responseMessage = service.GetResponse("api/Feedback/getallfeedbacks");
+            HttpResponseMessage responseMessage = service.GetResponse("api/Home/getallfeedback");
             responseMessage.EnsureSuccessStatusCode();
             List<DTO_Feedback> dTO_Accounts = responseMessage.Content.ReadAsAsync<List<DTO_Feedback>>().Result;
             return View(dTO_Accounts);

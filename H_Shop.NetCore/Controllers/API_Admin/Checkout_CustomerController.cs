@@ -34,9 +34,9 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         }
         [HttpGet]
         [Route("GetAllCustomer")]
-        public async Task<IActionResult> GetAllCustomer()
+        public IActionResult GetAllCustomer()
         {   
-             var listAccount= await _checkoutCustomerService.GetAllAccounts();
+             var listAccount=  _checkoutCustomerService.GetAllAccounts();
             return Ok(listAccount);
 
             

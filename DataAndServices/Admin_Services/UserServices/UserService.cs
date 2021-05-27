@@ -23,7 +23,8 @@ namespace DataAndServices.Admin_Services.UserServices
         {
             try
             {
-                await _db.DeleteOneAsync(id);
+                var deleteFilter3 = Builders<User_Acc>.Filter.Eq("_id", id);
+                await _db.DeleteOneAsync(deleteFilter3);
                 return true;
             }
             catch
@@ -32,9 +33,9 @@ namespace DataAndServices.Admin_Services.UserServices
             }
         }
 
-        public async Task<User_Acc> GetAccountById(string id)
+        public User_Acc GetAccountById(string id)
         {
-            return await _db.Find(s => s._id == id).FirstOrDefaultAsync();
+            return  _db.Find(s => s._id == id).FirstOrDefault();
 
         }
 
@@ -48,13 +49,13 @@ namespace DataAndServices.Admin_Services.UserServices
             var acc = GetAccountById(custom._id);
             if (acc != null)
             {
-                var eqfilter = Builders<User_Acc>.Filter.Where(s => s.idUser == custom.idUser);
+                var eqfilter = Builders<User_Acc>.Filter.Where(s => s._id == custom._id);
 
                 var update = Builders<User_Acc>.Update.Set(s => s.Email, custom.Email)
                     .Set(s => s.FirstName, custom.FirstName)
                     .Set(s => s.LastName, custom.LastName)
                     .Set(s => s.Password, Encryptor.MD5Hash(custom.Password))
-                    .Set(s => s.idUser, custom.idUser);
+                    .Set(s => s._id, custom._id);
 
                 var options = new UpdateOptions { IsUpsert = true };
 
@@ -77,13 +78,13 @@ namespace DataAndServices.Admin_Services.UserServices
             var acc = GetAccountById(custom._id);
             if (acc != null)
             {
-                var eqfilter = Builders<User_Acc>.Filter.Where(s => s.idUser == custom.idUser);
+                var eqfilter = Builders<User_Acc>.Filter.Where(s => s._id == custom._id);
 
                 var update = Builders<User_Acc>.Update.Set(s => s.Email, custom.Email)
                     .Set(s => s.FirstName, custom.FirstName)
                     .Set(s => s.LastName, custom.LastName)
                     //.Set(s => s.Password, Encryptor.MD5Hash(custom.Password))
-                    .Set(s => s.idUser, custom.idUser);
+                    .Set(s => s._id, custom._id);
 
                 var options = new UpdateOptions { IsUpsert = true };
 

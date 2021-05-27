@@ -9,7 +9,7 @@ namespace DataAndServices.Admin_Services.CheckoutOrderServices
 {
     public interface IOrderService
     {
-        Task<List<Checkout_Oder>> GetAllAccounts();
+        List<Checkout_Oder> GetAllAccounts();
 
 
 
