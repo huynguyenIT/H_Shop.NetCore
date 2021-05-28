@@ -21,37 +21,37 @@
 </div>
 
 <div class="container">
+    
 
 
+        <div style="text-align:center">
 
-    <div style="text-align:center">
-
-        <div>
             <div>
-                @using (Html.BeginForm("Index", "Checkout_Order", FormMethod.Post))
-                {
+                <div>
+                    @using (Html.BeginForm("Index", "Checkout_Order", FormMethod.Post))
+                    {
 
 
-                    @Html.RadioButton("seachby", "None")<text>Không lọc</text>
-                    @Html.RadioButton("seachby", "id")<text>Mã khách hàng</text>
+                        @Html.RadioButton("seachby", "None")<text>Không lọc</text>
+                        @Html.RadioButton("seachby", "id")<text>Mã khách hàng</text>
 
-                    @*@Html.TextBox("timkiemtim")*@
-                    <input type="search" id="timkiemtim1" name="timkiemtim1" />
+                        @*@Html.TextBox("timkiemtim")*@
+                        <input type="search" id="timkiemtim1" name="timkiemtim1" />
 
 
-                    <input type="submit" value="Tìm kiếm" onclick="search()" class="btn btn-outline-success" />
-                }
+                        <input type="submit" value="Tìm kiếm" onclick="search()" class="btn btn-outline-success" />
+                    }
 
-                <script>
-                    $(document).ready(function search() {
-                        //$('#search')[0].reset();
-                        document.getElementById("#searchSp").value = null;
-                    });
-                </script>
+                    <script>
+                        $(document).ready(function search() {
+                            //$('#search')[0].reset();
+                            document.getElementById("#searchSp").value = null;
+                        });
+                    </script>
+                </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 
 
 
@@ -141,9 +141,9 @@
                                 @Html.DisplayFor(modelItem => item.TrangThai)
                             </td>
                             <td>
-                                <a class="btn btn-success " href=" @Url.Action("Edit", "Checkout_Order", new { id = item._id })">Chỉnh sửa</a>
-                                <a class="btn btn-primary " href=" @Url.Action("Details", "Checkout_Order", new { id = item._id })">Chi tiết</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" onclick="target(@item._id)" data-target="#del">
+                                <a class="btn btn-success " href=" @Url.Action("Edit", "Checkout_Order", new { id = item.ID })">Chỉnh sửa</a>
+                                <a class="btn btn-primary " href=" @Url.Action("Details", "Checkout_Order", new { id = item.Id_KH })">Chi tiết</a>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" onclick="target(@item.ID)" data-target="#del">
                                     Xóa
                                 </button>
 

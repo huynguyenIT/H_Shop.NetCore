@@ -12,19 +12,18 @@ namespace DataAndServices.Admin_Services.Checkout_Customer_Services
     public class CheckoutCustomerService : ICheckoutCustomerService
 
     {
-        private readonly IMongoCollection<Checkout_Customer> _db;
+        private readonly IMongoCollection<CheckoutCustomerOrder> _db;
         public CheckoutCustomerService(DataContext db)
         {
-            _db = db.GetCheckout_CustomerCollection();
+            _db = db.GetCheckoutCustomerOrderCollection();
         }
-        public async Task<bool> DeleteAccount(string id)
+        public bool DeleteAccount(string id)
         {
             try
             {
-                //FilterDefinitionBuilder<Checkout_Customer> filter = Builders<Checkout_Customer>.Filter;
-                //FilterDefinition<Checkout_Customer> eqFilter = filter.Where(x => x._Id == id);
+                var deleteFilter3 = Builders<CheckoutCustomerOrder>.Filter.Eq("_id", id);
 
-                await _db.DeleteOneAsync(id);
+                 _db.DeleteOne(deleteFilter3);
 
               
                 return true;
@@ -35,37 +34,46 @@ namespace DataAndServices.Admin_Services.Checkout_Customer_Services
             }
         }
 
-        public async Task<Checkout_Customer> GetAccountById(string id)
+        public async Task<CheckoutCustomerOrder> GetAccountById(string id)
         {
-            return await _db.Find(s => s._Id == id).FirstOrDefaultAsync();
+            return await _db.Find(s => s._id == id).FirstOrDefaultAsync();
         }
 
-        public List<Checkout_Customer> GetAllAccounts()
+        public List<CheckoutCustomerOrder> GetAllAccounts()
+        
         {
             return  _db.Find(s=>true).ToList();
         }
 
-        public async Task<List<Checkout_Customer>> GetListAccountById(string id)
+        public async Task<List<CheckoutCustomerOrder>> GetListAccountById(string id)
         {
-            return await _db.Find(s => s._Id == id).ToListAsync();
+            return await _db.Find(s => s._id == id).ToListAsync();
         }
 
-        public bool Update_Ad_acc(Checkout_Customer custom)
+        public bool Update_Ad_acc(CheckoutCustomerOrder custom)
         {
-            var acc =  GetAccountById(custom._Id);
+            var acc =  GetAccountById(custom._id);
             if (acc != null)
             {
-                var eqfilter = Builders<Checkout_Customer>.Filter.Where(s => s._Id == custom._Id);
+                var eqfilter = Builders<CheckoutCustomerOrder>.Filter.Where(s => s._id == custom._id);
 
-                var update = Builders<Checkout_Customer>.Update.Set(s => s.Email, custom.Email)
+                var update = Builders<CheckoutCustomerOrder>.Update.Set(s => s.Email, custom.Email)
                     .Set(s => s.FirstName, custom.FirstName)
                     .Set(s => s.LastName, custom.LastName)
                     .Set(s => s.City, custom.City)
                     .Set(s => s.GiamGia, custom.GiamGia)
-                    .Set(s=>s.NgayTao,custom.NgayTao)
-                    .Set(s=>s.SDT,custom.SDT)
-                    .Set(s=>s.TongTien,custom.TongTien)
-                    .Set(s=>s.TrangThai,custom.TrangThai);
+                    .Set(s => s.NgayTao, custom.NgayTao)
+                    .Set(s => s.SDT, custom.SDT)
+                    .Set(s => s.TongTien, custom.TongTien)
+                    .Set(s => s.TrangThai, custom.TrangThai);
+                    //.Set(s => s.ProductOrder, custom.ProductOrder);
+                    //.Set(s => s.TenSP, custom.TenSP)
+                    //.Set(s => s.SoLuong, custom.SoLuong)
+                    //.Set(s => s.Gia, custom.Gia)
+                    //.Set(s => s._id, custom._id)
+                    //.Set(s => s.Id_KH, custom.Id_KH)
+
+                    //        .Set(s => s.TrangThai, custom.TrangThai);
 
                 var options = new UpdateOptions { IsUpsert = true };
 

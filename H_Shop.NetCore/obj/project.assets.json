@@ -1351,11 +1351,23 @@
       },
       "DataAndServices/1.0.0": {
         "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DataAndServices.dll": {}
         },
         "runtime": {
           "bin/placeholder/DataAndServices.dll": {}
+        }
+      },
+      "Model/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Model.dll": {}
         }
       }
     }
@@ -4617,6 +4629,11 @@
       "type": "project",
       "path": "../DataAndServices/DataAndServices.csproj",
       "msbuildProject": "../DataAndServices/DataAndServices.csproj"
+    },
+    "Model/1.0.0": {
+      "type": "project",
+      "path": "../Model/Model.csproj",
+      "msbuildProject": "../Model/Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4625,6 +4642,7 @@
       "Microsoft.AspNetCore.Mvc.Formatters.Json >= 2.2.0",
       "Microsoft.EntityFrameworkCore >= 5.0.6",
       "Microsoft.IdentityModel.Tokens >= 6.11.1",
+      "Model >= 1.0.0",
       "MongoDB.Driver >= 2.12.3",
       "Swashbuckle.AspNetCore >= 6.1.4",
       "System.IdentityModel.Tokens.Jwt >= 6.11.1",
@@ -4632,19 +4650,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Huy-Pc\\.nuget\\packages\\": {}
+    "C:\\Users\\huy.nguyen\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Huy-Pc\\Documents\\GitHub\\H_Shop.NetCore\\H_Shop.NetCore\\H_Shop.NetCore.csproj",
+      "projectUniqueName": "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore2\\H_Shop.NetCore\\H_Shop.NetCore.csproj",
       "projectName": "H_Shop.NetCore",
-      "projectPath": "C:\\Users\\Huy-Pc\\Documents\\GitHub\\H_Shop.NetCore\\H_Shop.NetCore\\H_Shop.NetCore.csproj",
-      "packagesPath": "C:\\Users\\Huy-Pc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Huy-Pc\\Documents\\GitHub\\H_Shop.NetCore\\H_Shop.NetCore\\obj\\",
+      "projectPath": "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore2\\H_Shop.NetCore\\H_Shop.NetCore.csproj",
+      "packagesPath": "C:\\Users\\huy.nguyen\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore2\\H_Shop.NetCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Huy-Pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\huy.nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4658,8 +4676,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Huy-Pc\\Documents\\GitHub\\H_Shop.NetCore\\DataAndServices\\DataAndServices.csproj": {
-              "projectPath": "C:\\Users\\Huy-Pc\\Documents\\GitHub\\H_Shop.NetCore\\DataAndServices\\DataAndServices.csproj"
+            "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore2\\DataAndServices\\DataAndServices.csproj": {
+              "projectPath": "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore2\\DataAndServices\\DataAndServices.csproj"
+            },
+            "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore2\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\huy.nguyen\\Documents\\GitHub\\H_Shop.NetCore2\\Model\\Model.csproj"
             }
           }
         }
@@ -4721,7 +4742,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

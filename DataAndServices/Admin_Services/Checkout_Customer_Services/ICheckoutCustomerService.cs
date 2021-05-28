@@ -9,19 +9,19 @@ namespace DataAndServices.Admin_Services.Checkout_Customer_Services
 {
     public interface ICheckoutCustomerService
     {
-       List<Checkout_Customer> GetAllAccounts();
+       List<CheckoutCustomerOrder> GetAllAccounts();
 
 
 
-        Task<Checkout_Customer> GetAccountById(string id);
+        Task<CheckoutCustomerOrder> GetAccountById(string id);
 
 
-        Task<List<Checkout_Customer>> GetListAccountById(string id);
+        Task<List<CheckoutCustomerOrder>> GetListAccountById(string id);
 
 
 
-        bool Update_Ad_acc(Checkout_Customer dTO_Account);
+        bool Update_Ad_acc(CheckoutCustomerOrder dTO_Account);
 
-        Task<bool> DeleteAccount(string id);
+        bool DeleteAccount(string id);
     }
 }

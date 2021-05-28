@@ -138,7 +138,7 @@
                                                 <a class="btn" onclick="Buy_Cart(@item.Id_SanPham)"><i class="fa fa-cart-plus"></i></a>
                                                 @*<a href=" @Url.Action("Details_", "Cart", new { id = item.Id_SanPham })"><i class="fa fa-heart"></i></a>*@
                                                 <a class="btn" onclick="Buy_Favorite(@item.Id_SanPham)"><i class="fa fa-heart"></i></a>
-                                                <a class="btn" href=" @Url.Action("Details1", "Product", new { id = item._id })">
+                                                <a class="btn" href=" @Url.Action("Details1", "Product", new { id = item.Id_SanPham })">
                                                     <i class="fa fa-search"></i>
                                                 </a>
 
@@ -177,7 +177,7 @@
 
 
 
-                                            <a onclick="AddCart()" class="btn" href=" @Url.Action("Buy", "Product", new { id = item._id })"><i class="fa fa-shopping-cart"></i>Mua hàng</a>
+                                            <a onclick="AddCart()" class="btn" href=" @Url.Action("Buy", "Product", new { id = item.Id_SanPham })"><i class="fa fa-shopping-cart"></i>Mua hàng</a>
                                             @*<a id="btn_mua" onclick="AddCart()" class="btn" href=" @Url.Action("Details", "Cart", new { id = item.Id_SanPham })"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>*@
 
 

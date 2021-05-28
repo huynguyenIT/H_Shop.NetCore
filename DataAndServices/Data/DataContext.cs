@@ -74,6 +74,10 @@ namespace DataAndServices.Data
         {
             return Database.GetCollection<Discount_Product>("Discount_Product");
         }
+        public IMongoCollection<CheckoutCustomerOrder> GetCheckoutCustomerOrderCollection()
+        {
+            return Database.GetCollection<CheckoutCustomerOrder>("CheckoutCustomerOrder");
+        }
 
 
 

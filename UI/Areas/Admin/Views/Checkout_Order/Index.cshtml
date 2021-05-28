@@ -119,9 +119,9 @@
 
                         <tr>
 
-                            <td>
+                            @*<td>
                                 @Html.DisplayFor(modelItem => item.Id_KH)
-                            </td>
+                            </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Id_SanPham)
                             </td>
@@ -140,14 +140,14 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.TrangThai)
                             </td>
-                            <td>
+                            @*<td>
                                 <a class="btn btn-success " href=" @Url.Action("Edit", "Checkout_Order", new { id = item._id })">Chỉnh sửa</a>
                                 <a class="btn btn-primary " href=" @Url.Action("Details", "Checkout_Order", new { id = item._id })">Chi tiết</a>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" onclick="target(@item._id)" data-target="#del">
                                     Xóa
                                 </button>
 
-                            </td>
+                            </td>*@
 
                         </tr>
                     }

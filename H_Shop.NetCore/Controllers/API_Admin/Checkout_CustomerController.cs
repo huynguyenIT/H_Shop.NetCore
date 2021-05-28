@@ -21,16 +21,16 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         }
 
         [Route("Update")]
-        public  bool Update(Checkout_Customer dTO_Account)
+        public  bool Update(CheckoutCustomerOrder dTO_Account)
         {
             return _checkoutCustomerService.Update_Ad_acc(dTO_Account);
         }
 
         // DELETE: api/Admin_acc/5
         [Route("DeleteCustomer/{id}")]
-        public async Task<bool> DeleteCustomer(string id)
+        public bool DeleteCustomer(string id)
         {
-            return await _checkoutCustomerService.DeleteAccount(id);
+            return  _checkoutCustomerService.DeleteAccount(id);
         }
         [HttpGet]
         [Route("GetAllCustomer")]
@@ -48,7 +48,7 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         //    return Json<List<DTO_Account_Role>>(_checkoutCustomerService.GetAllAccounts2());
         //}
         [HttpGet]
-        [Route("GetCustomerById/{Id:int}")]
+        [Route("GetCustomerById/{Id}")]
         public async Task<IActionResult> GetCustomerById(string Id)
         {
             var listAccount = await _checkoutCustomerService.GetAccountById(Id);
@@ -57,7 +57,7 @@ namespace H_Shop.NetCore.Controllers.API_Admin
             
         }
         [HttpGet]
-        [Route("GetListCustomerById/{Id:int}")]
+        [Route("GetListCustomerById/{Id}")]
         public  async Task<IActionResult> GetListCustomerById(string Id)
         {
             var listAccount = await _checkoutCustomerService.GetListAccountById(Id);

@@ -8,14 +8,7 @@
       "TRACE",
       "DEBUG",
       "NETCOREAPP",
-      "NETCOREAPP3_1",
-      "NETCOREAPP1_0_OR_GREATER",
-      "NETCOREAPP1_1_OR_GREATER",
-      "NETCOREAPP2_0_OR_GREATER",
-      "NETCOREAPP2_1_OR_GREATER",
-      "NETCOREAPP2_2_OR_GREATER",
-      "NETCOREAPP3_0_OR_GREATER",
-      "NETCOREAPP3_1_OR_GREATER"
+      "NETCOREAPP3_1"
     ],
     "languageVersion": "8.0",
     "platform": "",
@@ -35,6 +28,7 @@
           "Microsoft.AspNetCore.Mvc.Formatters.Json": "2.2.0",
           "Microsoft.EntityFrameworkCore": "5.0.6",
           "Microsoft.IdentityModel.Tokens": "6.11.1",
+          "Model": "1.0.0",
           "MongoDB.Driver": "2.12.3",
           "Swashbuckle.AspNetCore": "6.1.4",
           "System.IdentityModel.Tokens.Jwt": "6.11.1",
@@ -1267,11 +1261,22 @@
       },
       "System.Threading.Tasks.Extensions/4.5.1": {},
       "DataAndServices/1.0.0": {
+        "dependencies": {
+          "Model": "1.0.0"
+        },
         "runtime": {
           "DataAndServices.dll": {}
         },
         "compile": {
           "DataAndServices.dll": {}
+        }
+      },
+      "Model/1.0.0": {
+        "runtime": {
+          "Model.dll": {}
+        },
+        "compile": {
+          "Model.dll": {}
         }
       },
       "EntityFramework/6.0.0.0": {
@@ -3604,6 +3609,11 @@
       "hashPath": "system.threading.tasks.extensions.4.5.1.nupkg.sha512"
     },
     "DataAndServices/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Model/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

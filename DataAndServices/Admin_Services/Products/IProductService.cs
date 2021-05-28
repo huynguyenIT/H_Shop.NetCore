@@ -54,7 +54,7 @@ namespace DataAndServices.Admin_Services.Products
 
 
 
-        bool UpdateQuantityItem(Item item);
+        //bool UpdateQuantityItem(Item item);
 
 
 

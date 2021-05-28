@@ -10,13 +10,12 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4 style="text-align:center;color:red">Tùy chỉnh danh sách khách đã đặt hàng</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id_KH)
-        @Html.HiddenFor(model => model._id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -98,17 +97,17 @@
             </div>
         </div>
 
-        <div class="form-group">
-            Trạng Thái
-            <div class="col-md-10">
-                <select name="stt" id="stt">
-                    <option selected>@Model.TrangThai</option>
-                    <option>Hoàn thành</option>
-                    <option>Đang chờ</option>
+    <div class="form-group">
+        Trạng Thái
+        <div class="col-md-10">
+            <select name="stt" id="stt">
+                <option selected>@Model.TrangThai</option>
+                <option>Hoàn thành</option>
+                <option>Đang chờ</option>
 
-                </select>
-            </div>
+            </select>
         </div>
+    </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

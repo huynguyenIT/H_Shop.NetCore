@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Model.DTO.DTO_Ad.DTO_Account>
+﻿@model IEnumerable< Model.DTO.DTO_Ad.DTO_Account>
 
 @{
     ViewBag.Title = "Index";
@@ -75,9 +75,9 @@
                                 @Html.DisplayFor(modelItem => item.Password)
                             </td>
                             <td>
-                                <a class="btn btn-success " href=" @Url.Action("Edit", "Admin_acc", new { id = item._id })">Chỉnh sửa</a>
-                                <a class="btn btn-primary " href=" @Url.Action("Details", "Admin_acc", new { id = item._id })">Chi tiết</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" onclick="target(@item._id)" data-target="#del">
+                                <a class="btn btn-success " href=" @Url.Action("Edit", "Admin_acc", new { id = item.idUser })">Chỉnh sửa</a>
+                                <a class="btn btn-primary " href=" @Url.Action("Details", "Admin_acc", new { id = item.idUser })">Chi tiết</a>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" onclick="target(@item.idUser)" data-target="#del">
                                     Xóa
                                 </button>
                             </td>
@@ -91,7 +91,7 @@
 </div>
 
 <script>
-
+  
     var del;
     function target(id) {
         del = id;

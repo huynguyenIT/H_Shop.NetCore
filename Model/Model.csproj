@@ -40,6 +40,10 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.12.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\UI_\bin\MongoDB.Bson.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -60,6 +64,7 @@
     <Compile Include="DTO\DTO_Ad\DTO_Account2.cs" />
     <Compile Include="DTO\DTO_Client\DTO_CodeDiscount.cs" />
     <Compile Include="DTO\DTO_Client\DTO_Feedback.cs" />
+    <Compile Include="DTO_Model\DTOCheckoutCustomerOrder.cs" />
     <Compile Include="DTO_Model\DTO_Account_Role.cs" />
     <Compile Include="DTO\DTO_Ad\DTO_Checkout_Customer.cs" />
     <Compile Include="DTO\DTO_Ad\DTO_Checkout_Order.cs" />

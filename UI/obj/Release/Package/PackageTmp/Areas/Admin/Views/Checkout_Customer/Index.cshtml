@@ -21,42 +21,42 @@
 
 <div class="container">
 
+   
 
 
+        <div style="text-align:center">
 
-    <div style="text-align:center">
-
-        <div>
-            <div style="margin:0 auto">
-                @using (Html.BeginForm("Index", "Checkout_Customer", FormMethod.Post))
-                {
-
-
-                    @Html.RadioButton("seachby", "None")<text>Không lọc</text>
-                    @Html.RadioButton("seachby", "id")<text>Mã khách hàng</text>
-
-                    @*@Html.TextBox("timkiemtim")*@
-                    <input type="search" id="timkiemtim" name="timkiemtim" />
+            <div >
+                <div style="margin:0 auto">
+                    @using (Html.BeginForm("Index", "Checkout_Customer", FormMethod.Post))
+                    {
 
 
-                    <input type="submit" value="Tìm kiếm" onclick="search()" class="btn btn-outline-success" />
-                }
+                        @Html.RadioButton("seachby", "None")<text>Không lọc</text>
+                        @Html.RadioButton("seachby", "id")<text>Mã khách hàng</text>
 
-                <script>
-                    $(document).ready(function search() {
-                        //$('#search')[0].reset();
-                        document.getElementById("#searchSp").value = null;
-                    });
-                </script>
+                        @*@Html.TextBox("timkiemtim")*@
+                        <input type="search" id="timkiemtim" name="timkiemtim" />
+
+
+                        <input type="submit" value="Tìm kiếm" onclick="search()" class="btn btn-outline-success" />
+                    }
+
+                    <script>
+                        $(document).ready(function search() {
+                            //$('#search')[0].reset();
+                            document.getElementById("#searchSp").value = null;
+                        });
+                    </script>
+                </div>
             </div>
+
+
         </div>
 
 
-    </div>
 
-
-
-
+    
 </div>
 
 <div class="card shadow mb-4">
@@ -162,9 +162,9 @@
 
 
                             <td>
-                                <a class="btn btn-success " href=" @Url.Action("Edit", "Checkout_Customer", new { id = item._id })">Chỉnh sửa</a>
-                                <a class="btn btn-primary " href=" @Url.Action("Details", "Checkout_Customer", new { id = item._id })">Chi tiết</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" onclick="target(@item._id)" data-target="#del">
+                                <a class="btn btn-success " href=" @Url.Action("Edit", "Checkout_Customer", new { id = item.Id_KH })">Chỉnh sửa</a>
+                                <a class="btn btn-primary " href=" @Url.Action("Details", "Checkout_Customer", new { id = item.Id_KH })">Chi tiết</a>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" onclick="target(@item.Id_KH)" data-target="#del">
                                     Xóa
                                 </button>
 
@@ -172,7 +172,7 @@
                                     <p style="color:red"> @ViewBag.Mess</p>
 
                                 </div>
-
+                                
 
 
                             </td>
@@ -189,7 +189,7 @@
 <script>
     var del;
     function target(id) {
-        del = id;
+        del = id;    
     }
     function xoaSanPham() {
         $.ajax({

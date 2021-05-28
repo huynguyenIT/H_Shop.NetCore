@@ -62,9 +62,9 @@ namespace UI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(DTO_Checkout_Order DTO_Checkout_Order)
         {
-            DTO_Checkout_Order.TrangThai = Request.Form["stt"];
-            HttpResponseMessage response = service.PostResponse("api/Checkout_Order/Update/", DTO_Checkout_Order);
-            response.EnsureSuccessStatusCode();
+            //DTO_Checkout_Order.TrangThai = Request.Form["stt"];
+            //HttpResponseMessage response = service.PostResponse("api/Checkout_Order/Update/", DTO_Checkout_Order);
+            //response.EnsureSuccessStatusCode();
 
 
             return RedirectToAction("Index");

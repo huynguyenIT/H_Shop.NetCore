@@ -90,11 +90,11 @@ namespace H_Shop.NetCore.Controllers.API_Admin
         {
             return  _productService.DeleteAccount(id);
         }
-        [Route("UpdateQuantityItem")]
-        public  bool UpdateQuantityItem(Item item)
-        {
-            return _productService.UpdateQuantityItem(item);
-        }
+        //[Route("UpdateQuantityItem")]
+        //public  bool UpdateQuantityItem(Item item)
+        //{
+        //    return _productService.UpdateQuantityItem(item);
+        //}
 
         [HttpGet]
         [Route("GetAllProduct_Discount")]

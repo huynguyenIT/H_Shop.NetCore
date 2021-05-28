@@ -79,7 +79,7 @@ namespace UI.Controllers
 
 
         }
-        public ActionResult saveOrder1(FormCollection fc, DTO_CheckoutCustomer_Order check)
+        public ActionResult saveOrder1(FormCollection fc, DTOCheckoutCustomerOrder check)
         {
 
 
@@ -109,12 +109,12 @@ namespace UI.Controllers
                         check.Zipcode = fc["zip"];
                         check.DiaChi = fc["diaChi"];
                         check.TongTien = Convert.ToInt32(price);
-                        check.GiamGia = Int32.Parse(price1);
+                        check.GiamGia = price1;
                         check.City = fc["city"];
                         check.SDT = Int32.Parse(fc["sdt"]);
                         check.TrangThai = "Đang chờ";
 
-                        check.dTO_Checkout_Orders = new List<DTO_Checkout_Order>();
+                        check.ProductOrder = new List<DTO_Checkout_Order>();
 
                         foreach (DTO_Product_Item_Type item in cart)
                         {
@@ -126,14 +126,14 @@ namespace UI.Controllers
 
 
 
-                            dTO_Checkout_Order._id = item._id;
+                            dTO_Checkout_Order.Id_SanPham = item._id;
                             dTO_Checkout_Order.TenSP = item.Name;
                             dTO_Checkout_Order.SoLuong = (int)item.Quantity;
                             dTO_Checkout_Order.Gia = total;
-                            dTO_Checkout_Order.NgayTao = DateTime.Now;
-                            dTO_Checkout_Order.TrangThai = "Đang chờ";
+                            //dTO_Checkout_Order.NgayTao = DateTime.Now;
+                            //dTO_Checkout_Order.TrangThai = "Đang chờ";
 
-                            check.dTO_Checkout_Orders.Add(dTO_Checkout_Order);
+                            check.ProductOrder.Add(dTO_Checkout_Order);
 
 
 
@@ -175,7 +175,7 @@ namespace UI.Controllers
                     check.SDT = Int32.Parse(fc["sdt"]);
                     check.TrangThai = "Đang chờ";
 
-                    check.dTO_Checkout_Orders = new List<DTO_Checkout_Order>();
+                    check.ProductOrder = new List<DTO_Checkout_Order>();
 
                     foreach (DTO_Product_Item_Type item in cart)
                     {
@@ -187,14 +187,14 @@ namespace UI.Controllers
 
 
 
-                        dTO_Checkout_Order._id = item._id;
+                        dTO_Checkout_Order.Id_SanPham = item.Id_SanPham;
                         dTO_Checkout_Order.TenSP = item.Name;
                         dTO_Checkout_Order.SoLuong = (int)item.Quantity;
                         dTO_Checkout_Order.Gia = total;
-                        dTO_Checkout_Order.NgayTao = DateTime.Now;
-                        dTO_Checkout_Order.TrangThai = "Đang chờ";
+                        //dTO_Checkout_Order.NgayTao = DateTime.Now;
+                        //dTO_Checkout_Order.TrangThai = "Đang chờ";
 
-                        check.dTO_Checkout_Orders.Add(dTO_Checkout_Order);
+                        check.ProductOrder.Add(dTO_Checkout_Order);
 
 
                     }

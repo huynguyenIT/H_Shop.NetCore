@@ -51,8 +51,12 @@ C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\EntityFrame
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\EntityFramework.xml
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.csprojAssemblyReference.cache
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.dll
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.pdb
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\MongoDB.Bson.dll
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\MongoDB.Bson.xml
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\Model\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

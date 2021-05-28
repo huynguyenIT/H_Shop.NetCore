@@ -133,3 +133,6 @@ C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\bin\Debug\S
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\obj\Debug\DataAndServices.csproj.CopyComplete
 C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\obj\Debug\DataAndServices.csprojAssemblyReference.cache
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\bin\Debug\Model.dll
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\bin\Debug\Model.pdb
+C:\Users\huy.nguyen\Documents\GitHub\H_Shop.NetCore2\DataAndServices\bin\Debug\Model.dll.config

@@ -1,4 +1,5 @@
 ﻿using Model.DTO.DTO_Ad;
+using Model.DTO_Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace UI.Areas.Admin.Controllers
             {
                 HttpResponseMessage responseMessage1 = service.GetResponse("api/Checkout_Customer/GetListcustomerById/" + timkiemtim);
                 responseMessage1.EnsureSuccessStatusCode();
-                List<DTO_Checkout_Customer> dtocustomer = responseMessage1.Content.ReadAsAsync<List<DTO_Checkout_Customer>>().Result;
+                List<DTOCheckoutCustomerOrder> dtocustomer = responseMessage1.Content.ReadAsAsync<List<DTOCheckoutCustomerOrder>>().Result;
                 return View(dtocustomer);
             }
 
@@ -34,7 +35,7 @@ namespace UI.Areas.Admin.Controllers
             {
                 HttpResponseMessage responseMessage = service.GetResponse("api/Checkout_Customer/getallcustomer");
                 responseMessage.EnsureSuccessStatusCode();
-                List<DTO_Checkout_Customer> DTO_Checkout_Customers = responseMessage.Content.ReadAsAsync<List<DTO_Checkout_Customer>>().Result;
+                List<DTOCheckoutCustomerOrder> DTO_Checkout_Customers = responseMessage.Content.ReadAsAsync<List<DTOCheckoutCustomerOrder>>().Result;
                 return View(DTO_Checkout_Customers);
 
             }
@@ -48,7 +49,7 @@ namespace UI.Areas.Admin.Controllers
             ServiceRepository service = new ServiceRepository();
             HttpResponseMessage responseMessage = service.GetResponse("api/Checkout_Customer/GetcustomerById/" + id);
             responseMessage.EnsureSuccessStatusCode();
-            DTO_Checkout_Customer dtocustomer = responseMessage.Content.ReadAsAsync<DTO_Checkout_Customer>().Result;
+            DTOCheckoutCustomerOrder dtocustomer = responseMessage.Content.ReadAsAsync<DTOCheckoutCustomerOrder>().Result;
 
             return View(dtocustomer);
         }
@@ -58,12 +59,12 @@ namespace UI.Areas.Admin.Controllers
             ServiceRepository service = new ServiceRepository();
             HttpResponseMessage responseMessage = service.GetResponse("api/Checkout_Customer/GetCustomerById/" + id);
             responseMessage.EnsureSuccessStatusCode();
-            DTO_Checkout_Customer dtocustomer = responseMessage.Content.ReadAsAsync<DTO_Checkout_Customer>().Result;
+            DTOCheckoutCustomerOrder dtocustomer = responseMessage.Content.ReadAsAsync<DTOCheckoutCustomerOrder>().Result;
 
             return View(dtocustomer);
         }
         [HttpPost]
-        public ActionResult Edit(DTO_Checkout_Customer DTO_Checkout_Customer)
+        public ActionResult Edit(DTOCheckoutCustomerOrder DTO_Checkout_Customer)
         {
             DTO_Checkout_Customer.TrangThai = Request.Form["stt"];
 
@@ -116,22 +117,22 @@ namespace UI.Areas.Admin.Controllers
             {
                 // TODO: Add delete logic here
 
-                HttpResponseMessage responseMessage = service.GetResponse("api/Checkout_Order/GetOrderByIdKH/" + id);
-                responseMessage.EnsureSuccessStatusCode();
-                DTO_Checkout_Order dtoOrder = responseMessage.Content.ReadAsAsync<DTO_Checkout_Order>().Result;
-                if (dtoOrder == null)
-                {
+                //HttpResponseMessage responseMessage = service.GetResponse("api/Checkout_Order/GetOrderByIdKH/" + id);
+                //responseMessage.EnsureSuccessStatusCode();
+                //DTO_Checkout_Order dtoOrder = responseMessage.Content.ReadAsAsync<DTO_Checkout_Order>().Result;
+                //if (dtoOrder == null)
+                //{
                     HttpResponseMessage response = service.DeleteResponse("api/Checkout_Customer/Deletecustomer/" + id);
                     response.EnsureSuccessStatusCode();
 
 
                     return Json(new { mes = true });
-                }
-                else
-                {
-                    ViewBag.Mess = "Không thể xóa vì khách hàng đang còn đơn đặt hàng";
-                    return Json(new { mes = false });
-                }
+                //}
+                //else
+                //{
+                //    ViewBag.Mess = "Không thể xóa vì khách hàng đang còn đơn đặt hàng";
+                //    return Json(new { mes = false });
+                //}
 
 
 

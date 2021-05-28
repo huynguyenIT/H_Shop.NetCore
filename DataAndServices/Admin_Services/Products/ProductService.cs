@@ -452,35 +452,35 @@ namespace DataAndServices.Admin_Services.Products
 
      
 
-        public bool UpdateQuantityItem(Item item)
-        {
-            var itemNow =  _dbItem.Find(s => s._id == item._id).FirstOrDefault();
+        //public bool UpdateQuantityItem(string _id,int quantity)
+        //{
+        //    var itemNow =  _dbItem.Find(s => s._id == _id).FirstOrDefault();
 
            
-            if (itemNow != null)
-            {
-                var quantityNow = itemNow.Quantity; // vidu: 0.3 0.4
-                var quantityPay = quantityNow - item.Quantity;
+        //    if (itemNow != null)
+        //    {
+        //        var quantityNow = itemNow.Quantity; // vidu: 0.3 0.4
+        //        var quantityPay = quantityNow - quantity;
                
-                if (quantityNow - quantityPay > 0)
-                {
+        //        if (quantityNow - quantityPay > 0)
+        //        {
 
                     
-                    itemNow.Quantity = quantityPay;
-                    var eqfilter = Builders<Item>.Filter.Where(s => s._id == item._id);
-                    var update = Builders<Item>.Update.Set(s => s.Quantity, itemNow.Quantity);
+        //            itemNow.Quantity = quantityPay;
+        //            var eqfilter = Builders<Item>.Filter.Where(s => s._id == _id);
+        //            var update = Builders<Item>.Update.Set(s => s.Quantity, itemNow.Quantity);
                     
 
-                    var options = new UpdateOptions { IsUpsert = true };
-                    _dbItem.UpdateOne(eqfilter, update, options);
+        //            var options = new UpdateOptions { IsUpsert = true };
+        //            _dbItem.UpdateOne(eqfilter, update, options);
 
-                    //db.SaveChanges();
-                    return true;
-                }
+        //            //db.SaveChanges();
+        //            return true;
+        //        }
 
-            }
-            return false;
-        }
+        //    }
+        //    return false;
+        //}
 
         public bool UpdateProduct(Product_Item_Type custom)
         {

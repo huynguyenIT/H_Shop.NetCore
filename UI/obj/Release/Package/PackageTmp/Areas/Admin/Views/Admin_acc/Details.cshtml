@@ -3,7 +3,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-@{
+@{ 
     var stt = Model.RoleId;
     string quyen;
     if (stt == 1)
@@ -23,13 +23,13 @@
     <hr />
     <dl class="dl-horizontal">
         @*<dt>
-                @Html.DisplayNameFor(model => model.Role.RoleName)
-            </dt>*@
+            @Html.DisplayNameFor(model => model.Role.RoleName)
+        </dt>*@
 
         @*<dd>
-                <input type="text" />
-                @Html.DisplayFor(model => model.Role.RoleName)
-            </dd>*@
+            <input type="text" />
+            @Html.DisplayFor(model => model.Role.RoleName)
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -63,7 +63,7 @@
             @Html.DisplayFor(model => model.Password)
         </dd>
         <dt>
-            Quyền
+           Quyền
         </dt>
 
         <dd>
@@ -73,6 +73,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model._id }) |
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.idUser }) |
     @Html.ActionLink("Trở về", "Index")
 </p>

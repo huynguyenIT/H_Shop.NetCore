@@ -5,7 +5,7 @@
 }
 
 @{
-
+    
     DTO_Product_Item_Type item = (DTO_Product_Item_Type)Session["cart__"];
     //var total = cart.Sum(item => item.Product.Price * item.Quantity);
     //var total1 = cart.Count();
@@ -89,11 +89,11 @@
 
                                     @*<div class="p-color">
 
-                                            <div class="btn-group btn-group-sm">
-                                                <a class="btn" href="@Url.Action("Remove_", "Cart", new { id = item.Id_SanPham })">Xóa khỏi sản phẩm yêu thích </a>
-                                            </div>
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn" href="@Url.Action("Remove_", "Cart", new { id = item.Id_SanPham })">Xóa khỏi sản phẩm yêu thích </a>
+                        </div>
 
-                                        </div>*@
+                    </div>*@
                                     <div class="row product-detail-bottom">
                                         <div class="col-lg-12">
                                             <ul class="nav nav-pills nav-justified">
@@ -129,7 +129,7 @@
                             <div class="col-lg-12">
                                 <ul class="nav nav-pills nav-justified">
                                     <li class="nav-item">
-                                        <a onclick="AddCart()" class="btn" href="@Url.Action("Details_Buy", "Cart", new { id = item._id })"><i class="fa fa-shopping-bag"></i>Mua hàng</a>
+                                        <a onclick="AddCart()" class="btn" href="@Url.Action("Details_Buy", "Cart", new { id = item.Id_SanPham })"><i class="fa fa-shopping-bag"></i>Mua hàng</a>
                                     </li>
 
                                     <li class="nav-item">
@@ -139,12 +139,12 @@
 
                                 <div class="tab-content">
                                     <!--<div id="description" class="container tab-pane active">
-                                    <div class="action">-->
+    <div class="action">-->
                                     @*<a class="btn" href=""><i class="fa fa-shopping-cart"></i>Add to Cart</a>*@
                                     <!--<a class="btn" href="@Url.Action("Buy", "Cart")"><i class="fa fa-shopping-bag"></i>Xác nhận mua</a>
 
-                                        </div>
-                                    </div>-->
+        </div>
+    </div>-->
 
                                     <div id="reviews" class="container tab-pane fade">
                                         <div class="reviews-submitted">
@@ -191,14 +191,14 @@
                                                     </div>
                                                 </div>
                                                 @*<script>
-                                                        function AddCart() {
-                                                            alert("Gửi phản hồi thành công");
+                                                    function AddCart() {
+                                                        alert("Gửi phản hồi thành công");
 
 
 
-                                                        }
+                                                    }
 
-                                                    </script>*@
+                                                </script>*@
                                             }
 
 
@@ -228,42 +228,42 @@
                             </div>
                         </form>
 
-                        @section Upload {
-                            <script>
-                                $('#tang').click(function (event) {
-                                    event.preventDefault();
-                                    $.ajax({
-                                        url: '/Product/Tang',
-                                        type: 'POST',
-                                        data: { increment: true },
-                                        success: function () { alert('Request has returned') }
+                            @section Upload {
+                                <script>
+                                    $('#tang').click(function (event) {
+                                        event.preventDefault();
+                                        $.ajax({
+                                            url: '/Product/Tang',
+                                            type: 'POST',
+                                            data: { increment: true },
+                                            success: function () { alert('Request has returned') }
+                                        });
+                                        return +val + 1;
                                     });
-                                    return +val + 1;
-                                });
 
-                            </script>
-                            <script>
+                                </script>
+                                <script>
 
+                                  
+                                    $(document).ready(function submitPoll() {
+                                        $('#message').html(data);
+                                        refreshButton.disabled = true;
+                                        setTimeout(function () {
+                                            refreshButton.disabled = false;
+                                        }, 5000);
+                                    });
 
-                                $(document).ready(function submitPoll() {
-                                    $('#message').html(data);
-                                    refreshButton.disabled = true;
-                                    setTimeout(function () {
-                                        refreshButton.disabled = false;
-                                    }, 5000);
-                                });
-
-                                $(function () {
-                                    function show_popup() {
-                                        $("#message").hide();
-                                        //alert("1");
-                                    };
-                                    window.setTimeout(show_popup, 5000); // 5 seconds
-                                });
-                            </script>
+                                    $(function () {
+                                        function show_popup() {
+                                            $("#message").hide();
+                                            //alert("1");
+                                        };
+                                        window.setTimeout(show_popup, 5000); // 5 seconds
+                                    });
+                                </script>
 
 
-                        }
+                            }
                     </div>
 
                     <!-- Side Bar Start -->

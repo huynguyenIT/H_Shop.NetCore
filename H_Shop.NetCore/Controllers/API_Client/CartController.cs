@@ -20,9 +20,9 @@ namespace H_Shop.NetCore.Controllers.API_Client
             _cartServices = cartServices;
         }
         [Route("InsertBill")]
-        public  int InsertBill(CheckoutCustomer_Order checkoutCustomer_Order)
+        public  int InsertBill(CheckoutCustomerOrder checkoutCustomerOrder)
         {
-            return  _cartServices.InsertBill(checkoutCustomer_Order);
+            return  _cartServices.InsertBill(checkoutCustomerOrder);
         }
         [Route("InsertCKOrder")]
         public bool InsertCKOrder(Checkout_Oder dTO_Account)
