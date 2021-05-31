@@ -32,7 +32,7 @@ namespace DataAndServices.Client_Services
                         select new Dis_Product()
                                {
 
-                                   Id_SanPham = product.Id_SanPham,
+                                   //Id_SanPham = product.Id_SanPham,
                                    _id=dis._id,
                                    Name = product.Name,
                                    Price = product.Price,
@@ -64,7 +64,7 @@ namespace DataAndServices.Client_Services
                         select new Dis_Product()
                               {
 
-                                  Id_SanPham = product.Id_SanPham,
+                                  //Id_SanPham = product.Id_SanPham,
                                   _id =dis._id,
                                   Name = product.Name,
                                   Price = product.Price,

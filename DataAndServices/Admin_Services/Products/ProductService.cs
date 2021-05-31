@@ -26,10 +26,10 @@ namespace DataAndServices.Admin_Services.Products
             _dbItem = db.GetItemCollection();
             _dbItemtype = db.GetItem_TypeCollection();
         }
-        public double GetPriceDiscountByIdList(int id)
+        public double GetPriceDiscountByIdList(string id)
         {
             DateTime dateTime = DateTime.Today;
-            var item_discount = _dbDis.Find(t => t.Id_SanPham == id && t.End.Value >= dateTime).ToList();
+            var item_discount = _dbDis.Find(t => t._id == id && t.End.Value >= dateTime).ToList();
             foreach (var item in item_discount)
             {
                 if (item != null && item.Price_Dis != null)
@@ -106,11 +106,11 @@ namespace DataAndServices.Admin_Services.Products
             var itemCollection =  db.GetItemCollection();
             var productCollection = db.GetProductClientCollection();
             var infoProduct = from item in itemCollection.AsQueryable()
-                              join product in productCollection.AsQueryable() on item.Id_SanPham equals product.Id_SanPham
+                              join product in productCollection.AsQueryable() on item._id equals product._id
 
                               select new Product_Item_Type()
                               {
-                                  Id_SanPham = product.Id_SanPham,
+                                  _id =item._id,
                                   Name = product.Name,
                                   Price = product.Price,
                                   Details = product.Details,
@@ -146,7 +146,7 @@ namespace DataAndServices.Admin_Services.Products
 
         public List<Dis_Product> GetAllProduct_Discount()
         {
-          var test=  _db.AsQueryable().Select(x => x.Id_SanPham==15).FirstOrDefault();
+          
 
             //var discount_Products = (IQueryable<Discount_Product>)db.GetDiscountProductCollection();
             //var Products = (IQueryable<Product_Client>)db.GetDiscountProductCollection();
@@ -176,7 +176,7 @@ namespace DataAndServices.Admin_Services.Products
                         select new Dis_Product()
                         {
                             _id = dis._id,
-                            Id_SanPham = product.Id_SanPham,
+                            //Id_SanPham = dis._id,
                             Name = product.Name,
                             Price = product.Price,
                             Details = product.Details,
@@ -215,7 +215,7 @@ namespace DataAndServices.Admin_Services.Products
                         select new Dis_Product()
                         {
                             _id = dis._id,
-                            Id_SanPham = product.Id_SanPham,
+                            //Id_SanPham = dis._id,
                             Name = product.Name,
                             Price = product.Price,
                             Details = product.Details,
@@ -245,7 +245,7 @@ namespace DataAndServices.Admin_Services.Products
                        select new Product_Item_Type()
                        {
                            _id = item._id,
-                           Id_SanPham = item.Id_SanPham,
+                           //Id_SanPham = item._id,
                            Name = product.Name,
                            Price = product.Price,
                            Details = product.Details,
@@ -257,17 +257,17 @@ namespace DataAndServices.Admin_Services.Products
 
 
                        }).FirstOrDefault();
-            if (GetPriceDiscountById(Info.Id_SanPham) != 0)
+            if (GetPriceDiscountById(Info._id) != 0)
             {
-                Info.Price = Convert.ToInt32(GetPriceDiscountById(Info.Id_SanPham));
+                Info.Price = Convert.ToInt32(GetPriceDiscountById(Info._id));
             }
             return Info;
         }
 
-        private double GetPriceDiscountById(int id)
+        private double GetPriceDiscountById(string id)
         {
             DateTime dateTime = DateTime.Today;
-            var item_discount = _dbDis.Find(t => t.Id_SanPham == id && t.End.Value >= dateTime).FirstOrDefault();
+            var item_discount = _dbDis.Find(t => t._id == id && t.End.Value >= dateTime).FirstOrDefault();
 
             if (item_discount != null && item_discount.Price_Dis != null)
             {
@@ -286,7 +286,7 @@ namespace DataAndServices.Admin_Services.Products
                         select new Product_Item_Type()
                         {
                             _id = product._id,
-                            Id_SanPham = product.Id_SanPham,
+                            //Id_SanPham = item._id,
                             Name = product.Name,
                             Price = product.Price,
                             Details = product.Details,
@@ -313,7 +313,7 @@ namespace DataAndServices.Admin_Services.Products
                         select new Product_Item_Type()
                         {
                             _id = item._id,
-                            Id_SanPham = product.Id_SanPham,
+                            //Id_SanPham = item._id,
                             Name = product.Name,
                             Price = product.Price,
                             Details = product.Details,
@@ -340,7 +340,7 @@ namespace DataAndServices.Admin_Services.Products
                         select new Product_Item_Type()
                         {
                             _id = item._id,
-                            Id_SanPham = product.Id_SanPham,
+                            //Id_SanPham = item._id,
                             Name = product.Name,
                             Price = product.Price,
                             Details = product.Details,
@@ -355,9 +355,9 @@ namespace DataAndServices.Admin_Services.Products
 
             foreach (var item in Info)
             {
-                if (GetPriceDiscountByIdList(item.Id_SanPham) != 0)
+                if (GetPriceDiscountByIdList(item._id) != 0)
                 {
-                    item.Price = Convert.ToInt32(GetPriceDiscountById(item.Id_SanPham));
+                    item.Price = Convert.ToInt32(GetPriceDiscountById(item._id));
                 }
             }
             return  Info.ToList();
@@ -374,7 +374,7 @@ namespace DataAndServices.Admin_Services.Products
                         select new Product_Item_Type()
                         {
                             _id = item._id,
-                            Id_SanPham = product.Id_SanPham,
+                            //Id_SanPham = item._id,
                             Name = product.Name,
                             Price = product.Price,
                             Details = product.Details,
@@ -400,7 +400,7 @@ namespace DataAndServices.Admin_Services.Products
                                        select new Dis_Product()
                                        {
                                            _id = dis._id,
-                                           Id_SanPham = product.Id_SanPham,
+                                           //Id_SanPham = dis._id,
                                            Name = product.Name,
                                            Price = product.Price,
                                            Details = product.Details,

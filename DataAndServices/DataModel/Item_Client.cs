@@ -14,7 +14,7 @@ namespace DataAndServices.DataModel
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
-        public int Id_SanPham { get; set; }
+        //public string Id_SanPham { get; set; }
 
         public int? Quantity { get; set; }
 

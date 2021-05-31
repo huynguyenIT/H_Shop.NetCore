@@ -8,7 +8,7 @@ namespace Model.DTO.DTO_Ad
 {
     public class DTO_Item
     {
-        public int Id_SanPham { get; set; }
+       // public string Id_SanPham { get; set; }
 
         public int? Quantity { get; set; }
 

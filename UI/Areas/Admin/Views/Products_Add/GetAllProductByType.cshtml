@@ -144,7 +144,7 @@
 
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Id_SanPham)
+                        @Html.DisplayFor(modelItem => item._id)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
@@ -180,10 +180,10 @@
                     </td>
 
                     <td>
-                        <a class="btn btn-success " href=" @Url.Action("Edit", "Products_Add", new { id = item.Id_SanPham })">Chỉnh sửa</a>
-                        <a class="btn btn-primary " href=" @Url.Action("Details", "Products_Add", new { id = item.Id_SanPham })">Chi tiết</a>
-                        <a class="btn btn-info " href=" @Url.Action("Create_Discount", "Products_Add", new { id = item.Id_SanPham })">Tùy chỉnh giảm giá</a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="target(@item.Id_SanPham)" data-target="#del">
+                        <a class="btn btn-success " href=" @Url.Action("Edit", "Products_Add", new { id = item._id })">Chỉnh sửa</a>
+                        <a class="btn btn-primary " href=" @Url.Action("Details", "Products_Add", new { id = item._id})">Chi tiết</a>
+                        <a class="btn btn-info " href=" @Url.Action("Create_Discount", "Products_Add", new { id = item._id })">Tùy chỉnh giảm giá</a>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="target(@item._id)" data-target="#del">
                             Xóa
                         </button>
                     </td>

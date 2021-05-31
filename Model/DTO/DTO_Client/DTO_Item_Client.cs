@@ -11,7 +11,7 @@ namespace Model.DTO.DTO_Client
          List<DTO_Item_Client> items = new List<DTO_Item_Client>();
         //[Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id_SanPham { get; set; }
+        //public string Id_SanPham { get; set; }
 
         public int? Quantity { get; set; }
 

@@ -14,7 +14,7 @@ namespace Model.DTO_Model
         public Nullable<System.DateTime> Start { get; set; }
         public Nullable<System.DateTime> End { get; set; }
        
-        public Nullable<int> Id_SanPham { get; set; }
+        //public string Id_SanPham { get; set; }
 
        
     }

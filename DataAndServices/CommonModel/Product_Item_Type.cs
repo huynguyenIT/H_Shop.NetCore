@@ -12,7 +12,7 @@ namespace DataAndServices.CommonModel
     public class Product_Item_Type
     {
         public string _id { get; set; }
-        public int Id_SanPham { get; set; }
+       // public string Id_SanPham { get; set; }
 
         public int? Quantity { get; set; }
 

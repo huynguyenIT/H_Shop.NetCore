@@ -10,7 +10,7 @@ namespace Model.DTO.DTO_Client
     public class DTO_Product_Client
     {
         // [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id_SanPham { get; set; }
+       // public string Id_SanPham { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
